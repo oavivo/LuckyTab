@@ -13,14 +13,16 @@
 
 body{
 	margin:0;
-	background-image:url('http://6f2e58107b6165c9c562-94f33990a658cbe0ad31be70884cbddb.r7.cf1.rackcdn.com/814_1_1350300072_lrg.jpg');
+	background-image:url('http://6f2e58107b6165c9c562-94f33990a658cbe0ad31be70884cbddb.r7.cf1.rackcdn.com/521_1_1350907921_lrg.jpg');
 	background-size:cover;
 	background-repeat:no-repeat;
 	background-position:top center;
 	font-family:Merriweather, georgia;
 	color:#fff;
+	overflow: hidden;
+	-webkit-font-smoothing: antialiased;
 }
-h1{
+h1 a {
 	font-weight:700;
 	font-size:30px;
 	line-height:37px;
@@ -28,6 +30,8 @@ h1{
 	margin-bottom:14px;
 	display: inline-block;
 	padding: 5px;
+	color: #fff;
+	text-decoration: none;
 }
 #container{
 	position:absolute;
@@ -53,7 +57,7 @@ h1{
 	margin-bottom:30px;
 	display: inline-block;
 }
-.mainContent a{
+.mainContent a.button{
 	display:inline-block;
 	padding:15px 18px;
 	font-size:18px;
@@ -68,27 +72,42 @@ h1{
 }
 .source{
 	font-weight:300;
-	font-size:16px;
 	line-height:24px;
 	background-color: rgba(0,0,0,.4);
 	padding:0 5px;
 	display:inline-block;
 	position:fixed;
-	bottom:50px;
+	bottom:30px;
 	left:100px;
+	font-size: 14px;
 }
+
+
 #mostVisited {
 	position: absolute;
-	right: 20px;
-	bottom: 20px;
-	width: 200px;
+	right: -50px;
+	top: 0px;
+	width: 210px;
+	height: 100%;
+	background-color: rgba(255,255,255,.8);
+	border-left: solid 1px rgba(0,0,0,.3);
 	overflow: hidden;
-	padding: 5px;
+	font-size: 13px;
+	opacity: .4;
+	-webkit-transition:.2s ease-in-out;
+}
+#mostVisited:hover {
+	opacity: 1;
+	border-color: rgba(0,0,0,.1);
+	right: 0;
+}
+#mostVisited:hover a {
+}
+#mostVisited ul {
+	margin: 15px;
 }
 #mostVisited li {
-	background-color: rgba(255,255,255,.4);
 	margin-bottom: 2px;
-	font-size: 12px;
 	font-family: arial, sans-serif;
 }
 #mostVisited a {
@@ -96,32 +115,38 @@ h1{
 	overflow: hidden;
 	display: block;
 	white-space: nowrap;
-	color: #333;
+	color: #555;
 	text-decoration: none;
-	padding: 4px;
-	padding-left: 22px;
+	padding: 5px 0;
+	padding-left: 26px;
+	font-size: 13px;
+}
+#mostVisited a:hover {
+	color: #000;
 }
 #mostVisited  h2 {
-	background-color: rgba(255,255,255,.2);
-	padding: 10px;
-	font-size: 13px;
-	color: #666;
-	margin-bottom: 5px;
+	font-size: 14px;
+	color: #555;
+	padding: 15px;
+	border-bottom: solid 1px rgba(0,0,0,.1);
+	padding-bottom: 15px;
+	margin-top: 2px;
+	font-weight: 700;
 }
 </style>
 </head>
 <body>
 	<div id="container">
 		<div class="mainContent">
-			<h1>Spaghetti with prawns & rocket</h1><br />
+			<h1><a href="#">Spaghetti with prawns & rocket</a></h1><br />
 	        <p>This dish was on the menu in a little restaurant called La Gondola in one of the roughest parts of Palermo....</p><br /><br />
-	        <a href="#">Read It</a>
+	        <a href="#" class="button">Read It</a>
 		</div>
 		
 	    <div class="source">From: jamieoliver.com</div>
 	</div>
 	<div id="mostVisited">
-		<h2>Most Visited Sites</h2>
+		<h2>Most Visited</h2>
 		<ul></ul>
 	</div>
 </body>
