@@ -6,7 +6,8 @@
 	},
 	"permissions": [
 		"topSites",
-		"chrome://favicon/"
+		"chrome://favicon/",		
+		"http://82.196.3.219/"
 	],
-	"manifest_version": 2
+	"manifest_version": 2	
 }

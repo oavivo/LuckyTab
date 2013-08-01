@@ -13,7 +13,7 @@
 
 body{
 	margin:0;
-	background-image:url('http://6f2e58107b6165c9c562-94f33990a658cbe0ad31be70884cbddb.r7.cf1.rackcdn.com/521_1_1350907921_lrg.jpg');
+	background-image:url('');
 	background-size:cover;
 	background-repeat:no-repeat;
 	background-position:top center;
@@ -138,12 +138,12 @@ h1 a {
 <body>
 	<div id="container">
 		<div class="mainContent">
-			<h1><a href="#">Spaghetti with prawns & rocket</a></h1><br />
-	        <p>This dish was on the menu in a little restaurant called La Gondola in one of the roughest parts of Palermo....</p><br /><br />
-	        <a href="#" class="button">Read It</a>
+			<h1><a id="pageTitle" href="#" style="display:none"></a></h1><br />
+	        <p id="pageDesc" style="display:none"></p><br /><br />
+	        <a id="readPage" href="#" class="button" style="display:none">Read It!</a>
 		</div>
 		
-	    <div class="source">From: jamieoliver.com</div>
+	    <div id="pageSource" class="source" style="display:none"></div>
 	</div>
 	<div id="mostVisited">
 		<h2>Most Visited</h2>

@@ -6,7 +6,8 @@
         "default_popup": "curate.html"
     },
 	"permissions": [
-	    "tabs"
+	    "tabs",
+		"http://82.196.3.219/"
 	],
 	"manifest_version": 2
 }

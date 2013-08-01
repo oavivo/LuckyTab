@@ -26,7 +26,7 @@
 <body>
 <p>
 	<label for="url">Category</label>
-	<select name="" id="">
+	<select name="" id="pageCategory">
 		<option value="">Category...</option>
 		<option value="">Food</option>
 		<option value="">Art &amp; Design</option>
@@ -38,40 +38,40 @@
 </p>
 <p>
 	<label for="url">Page URL</label>
-	<input type="text" value="" id="url" placeholder="Insert URL" />
+	<input type="text" value="" id="pageURL" placeholder="Insert URL" />
 </p>
 <p>
 	<label for="url">Title</label>
-	<input type="text" value="" id="url" placeholder="Article title" />
+	<input type="text" value="" id="pageTitle" placeholder="Article title" />
 </p>
 <p>
 	<label for="url">Description</label>
-	<textarea type="text" value="" placeholder="(Optional, but great!)"></textarea>
+	<textarea type="text" id="pageDesc" value="" placeholder="(Optional, but great!)"></textarea>
 </p>
 <p>
-	<label for="url">Photo URL</label>
-	<input type="text" value="" id="url" placeholder="Insert URL" />
+	<label for="url">Image URL</label>
+	<input type="text" value="" id="pageImage" placeholder="Insert URL" />
 </p>
 <p>
 	<label for="url">Source</label>
-	<input type="text" value="" id="url" placeholder="e.g The Verge" />
+	<input type="text" value="" id="pageSource" placeholder="e.g The Verge" />
 </p>
 <p>
 	<label for="url">Timeless?</label>
-	<input type="checkbox" />
+	<input id="isTimeless" type="checkbox" />
 </p>
-<input type="submit" value="Send" /> or <a href="#">cancel</a>
+<a id="sendForm" href="javascript:void(0)">Send</a> or <a href="javascript:void(0)">cancel</a>
 
 <div id="content">
 
-<p>
+<!--<p>
 	<span class="comment">
 		<strong>YOUTUBE THUMBNAIL:</strong><br /><i>http://img.youtube.com/vi/VIDEO_ID_HERE/maxresdefault.jpg</i>
 	</span><br />
 	<span class="comment">
 		<strong>VIMEO THUMBNAIL:</strong><br /><i>inspect, get the image url</i>
 	</span>
-</p>
+</p>-->
 </div>
 
 
