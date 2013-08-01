@@ -1,0 +1,12 @@
+{
+	"name": "Lucky Tab",
+	"version": "0.1",
+	"chrome_url_overrides": {
+		"newtab": "luckyTab.html"
+	},
+	"permissions": [
+		"topSites",
+		"chrome://favicon/"
+	],
+	"manifest_version": 2
+}

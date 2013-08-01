@@ -1,0 +1,79 @@
+<!DOCTYPE html> <!-- The new doctype -->
+<html>
+<head> <!-- No title and meta tags are necessary for the extension -->
+<script src="jquery.js"></script>
+<script src="scripts.js"></script>
+<style>
+	body {
+		width: 400px;
+		height: 450px;
+		font-family: arial, sans-serif;
+		font-size: 13px;
+		color: #333;
+	}
+	input[type=text], textarea {
+		width: 390px;
+		padding: 2px;
+		display: block;
+	}
+	.comment {
+		font-size: 12px;
+		color: #666;
+	}
+</style>
+</head>
+
+<body>
+<p>
+	<label for="url">Category</label>
+	<select name="" id="">
+		<option value="">Category...</option>
+		<option value="">Food</option>
+		<option value="">Art &amp; Design</option>
+		<option value="">Gadgets</option>
+		<option value="">Tech News</option>
+		<option value="">Arts &amp; Crafts</option>
+		<option value="">Autos</option>
+	</select>
+</p>
+<p>
+	<label for="url">Page URL</label>
+	<input type="text" value="" id="url" placeholder="Insert URL" />
+</p>
+<p>
+	<label for="url">Title</label>
+	<input type="text" value="" id="url" placeholder="Article title" />
+</p>
+<p>
+	<label for="url">Description</label>
+	<textarea type="text" value="" placeholder="(Optional, but great!)"></textarea>
+</p>
+<p>
+	<label for="url">Photo URL</label>
+	<input type="text" value="" id="url" placeholder="Insert URL" />
+</p>
+<p>
+	<label for="url">Source</label>
+	<input type="text" value="" id="url" placeholder="e.g The Verge" />
+</p>
+<p>
+	<label for="url">Timeless?</label>
+	<input type="checkbox" />
+</p>
+<input type="submit" value="Send" /> or <a href="#">cancel</a>
+
+<div id="content">
+
+<p>
+	<span class="comment">
+		<strong>YOUTUBE THUMBNAIL:</strong><br /><i>http://img.youtube.com/vi/VIDEO_ID_HERE/maxresdefault.jpg</i>
+	</span><br />
+	<span class="comment">
+		<strong>VIMEO THUMBNAIL:</strong><br /><i>inspect, get the image url</i>
+	</span>
+</p>
+</div>
+
+
+</body>
+</html>
