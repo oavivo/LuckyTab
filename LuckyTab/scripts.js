@@ -11,9 +11,9 @@ getTopSites(function(url){
 var xhr = new XMLHttpRequest();
 		xhr.open("GET", "http://82.196.3.219/getKey", true);
 		xhr.onreadystatechange = function() {			
-  		if (xhr.readyState == 4) { 
-  			console.log(xhr.responseText);   		
-    		var responseObj = JSON.parse(xhr.responseText);
+  		if (xhr.readyState == 4) {  			 		
+    		var responseObj = JSON.parse(xhr.responseText);    		
+    		window.returnedJson = responseObj;
     		$("body").css("background-image","url("+responseObj.image+")");
     		$("#pageTitle").html(responseObj.title).attr("href",responseObj.url).css("display","block");	
 			if (responseObj.desc) {$("#pageDesc").html(responseObj.desc).css("display","block");} //show only if description available
