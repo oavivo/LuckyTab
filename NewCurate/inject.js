@@ -31,7 +31,8 @@ chrome.runtime.onMessage.addListener(
 			"height": "476px",
 			"width": "440px",
 			"border":"1px solid black",
-			"border-radius":"10px"
+			"border-radius":"10px",
+			"z-index":"9999999999999"
         }).appendTo('body');
       	sendResponse({result: "success"});
      }
