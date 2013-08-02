@@ -4,7 +4,14 @@ chrome.tabs.getSelected(null, function(tab) {
 function populate(url) { 
   tablink = url;
   $('#pageURL').val(tablink);
+  $('#pageSource').val(getDomain(tablink));
 }
+
+
+function getDomain(url) {
+	return url.match(/:\/\/(www[0-9]?\.)?(.[^/:]+)/)[2];
+}
+
 if (!String.prototype.format) {
   String.prototype.format = function() {
     var args = arguments;
