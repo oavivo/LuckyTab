@@ -16,7 +16,7 @@ var xhr = new XMLHttpRequest();
     		var responseObj = JSON.parse(xhr.responseText);
     		$("body").css("background-image","url("+responseObj.image+")");
     		$("#pageTitle").html(responseObj.title).attr("href",responseObj.url).css("display","block");	
-			$("#pageDesc").html(responseObj.desc).css("display","block");
+			if (responseObj.desc) {$("#pageDesc").html(responseObj.desc).css("display","block");} //show only if description available
 			$("#readPage").attr("href",responseObj.url).css("display","inline");
 			$("#pageSource").html("From: "+responseObj.source).css("display","block");
   		}
