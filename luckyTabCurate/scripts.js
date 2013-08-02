@@ -1,5 +1,5 @@
-chrome.tabs.getSelected(null, function(tab) {
-    populate(tab.url,tab.title);
+chrome.tabs.query({active: true}, function(tab){
+	populate(tab[0].url,tab[0].title);
 });
 function populate(url,title) { 
   tablink = url;
