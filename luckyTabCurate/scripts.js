@@ -1,10 +1,12 @@
 chrome.tabs.getSelected(null, function(tab) {
-    populate(tab.url);
+    populate(tab.url,tab.title);
 });
-function populate(url) { 
+function populate(url,title) { 
   tablink = url;
+  tabtitle = title;
   $('#pageURL').val(tablink);
   $('#pageSource').val(getDomain(tablink));
+  $('#pageTitle').val(tabtitle);
 }
 
 
