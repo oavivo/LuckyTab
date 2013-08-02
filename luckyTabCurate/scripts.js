@@ -1,3 +1,14 @@
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+    console.log(sender.tab ?
+                "from a content script:" + sender.tab.url :
+                "from the extension");
+    if (request.greeting == "hello")
+      sendResponse({farewell: "goodbye"});
+});
+
+
+
 chrome.tabs.query({active: true}, function(tab){
 	populate(tab[0].url,tab[0].title);
 });
