@@ -19,7 +19,7 @@ $.get(chrome.extension.getURL('curate.html'), function(data) {
 		$('#curateTab').remove();
 	});
 	$('#sendForm').click(function(){
-		validateFields($("input"));
+		validateFields($("#curateTab input"));
 	});	
 });
 
@@ -67,7 +67,7 @@ function restoreBorder(el){
 }
 
 function validateFields(fieldsArray){
-	var sendForm = true;
+	var sendForm = true;	
 	$(fieldsArray).each(function(){
 		if($(this).val() == ""){
 			sendForm = false;
