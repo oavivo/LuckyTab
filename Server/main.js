@@ -1,8 +1,51 @@
 url = require('url');
 http = require('http');
 format = require('util').format;
+var express = require('express');
+var app = express();
 redisHandler = require(__dirname + "/bin/redisHandler.js");
 fs = require('fs');
+
+
+app.get('/getKey', function(req, res){
+	var callback = function(data){res.write(data);res.end()};
+	res.setTimeout(5000,function(){res.end("Timeout - 5 seconds")});
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+	redisHandler.getKey(callback);
+})
+
+app.get('/setKey', function(req, res){
+	var callback = function(data){res.write(data);res.end()};
+	res.setTimeout(5000,function(){res.end("Timeout - 5 seconds")});
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+	var url_parts = url.parse(req.url,true);
+	redisHandler.setKey(url_parts.query.value,callback);
+})
+
+app.get('/insertKey', function(req, res){
+	var callback = function(data){res.write(data);res.end()};
+	res.setTimeout(5000,function(){res.end("Timeout - 5 seconds")});    
+	res.writeHead(200, {'Content-Type': 'text/html','Content-Encoding':'utf-8'});
+	var url_parts = url.parse(req.url,true);
+	var pageTitle = url_parts.query.pageTitle || "";
+	var pageURL = url_parts.query.pageURL || "";
+	var pageSource = url_parts.query.pageSource || "";
+	fs.readFile(__dirname+"/bin/iframe.html","utf-8", function read(err, data) {				
+		var returnHTML = format(data,pageTitle,pageURL,pageSource);		
+		callback(returnHTML);
+	})	
+})
+
+app.get('/bin/*.js', function(req, res){
+	var callback = function(data){res.write(data);res.end()};
+	var url_parts = url.parse(req.url,true);
+	fs.readFile(__dirname+url_parts.pathname,"utf-8", function read(err, data) {	
+		callback(data,res);
+	});
+})
+
+
+/*
 
 http.createServer(function (req, res) {
     res.setTimeout(5000,function(){res.end("Timeout - 5 seconds")});
@@ -52,4 +95,8 @@ http.createServer(function (req, res) {
 
 }).listen(80);
 
+*/
+
+
+app.listen(80);
 console.log("Started on port 80");

@@ -19,7 +19,8 @@
 								"*.doc","*.docx","*.ppt","*.pptx","*.xls","*.xlsx","*.pdf","*.xml","*.txt",
 								"*.mpg","*.mpeg","*.qt","*.mp4","*.m4v","*.m4a","*.mp3","*.ogv","*.ogm","*.ogg","*.oga","*.webm","*.wav",
 								"*.","*." ],		
-		"js"				: [ "inject.js" ,"jquery.js"]		
+		"js"				: [ "inject.js" ,"jquery.js"],
+		"run_at": "document_start"
 	}],
 	"manifest_version": 2
 }
