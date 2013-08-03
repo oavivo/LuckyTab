@@ -25,13 +25,18 @@ chrome.runtime.onMessage.addListener(
             src: fullURL                                  
         }).css({
         	"position":"fixed",
-        	"top":"10px",
-        	"right":"10px",
-        	"background": "white",
+        	"top":"0px",
+        	"right":"0px",
+        	"background": "#faf9f5",
 			"height": "476px",
-			"width": "440px",
-			"border":"1px solid black",
-			"border-radius":"10px"
+			"border": "0",
+			"-webkit-border-radius": "0 0 0 0px",
+			"width": "410px",
+			"resize": "both",
+			"overflow": "auto",
+			"padding": "10px",
+			"-webkit-box-shadow":"-5px 5px 10px rgba(0,0,0,.35)",
+			"z-index":"9999999999999"
         }).appendTo('body');
       	sendResponse({result: "success"});
      }
