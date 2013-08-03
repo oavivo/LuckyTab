@@ -1,0 +1,73 @@
+<style>
+	#curateTab {
+		position:fixed;
+		top: 0;
+		right: 0;
+		background: #faf9f5;
+		height: 476px;
+		border: 0;
+		resize:both;
+		overflow: auto;
+		padding: 10px;
+		-webkit-box-shadow: -5px 5px 10px rgba(0,0,0,.35);
+		z-index: 9999999999999;
+		font-family: arial, sans-serif;
+		font-size: 12px;
+	}
+	#curateTab input[type=text], #curateTab textarea {
+		width: 390px;
+		padding: 2px;
+		display: block;
+	}
+	#curateTab .comment {
+		font-size: 12px;
+		color: #666;
+	}
+	#curateTab p {
+		margin-bottom: 10px;
+	}
+</style>
+
+<p>
+	<label for="url">Category</label>
+	<select name="" id="pageCategory">
+		<option value="">General</option>
+		<option value="">Food</option>
+		<option value="">Art &amp; Design</option>
+		<option value="">Gadgets</option>
+		<option value="">Tech News</option>
+		<option value="">Arts &amp; Crafts</option>
+		<option value="">Autos</option>
+		<option value="">Fashion</option>
+		<option value="">Music</option>
+		<option value="">Science</option>
+		<option value="">Humor</option>
+		<option value="">Lifestyle</option>
+	</select>
+</p>
+<p>
+	<label for="url">Page URL</label>
+	<input type="text" value="%s" id="pageURL" placeholder="Insert URL" />
+</p>
+<p>
+	<label for="url">Title</label>
+	<input type="text" value="%s" id="pageTitle" placeholder="Article title" />
+</p>
+<p>
+	<label for="url">Description</label>
+	<textarea type="text" id="pageDesc" value="" placeholder="(Optional, but great!!)"></textarea>
+</p>
+<p>
+	<label for="url">Image URL</label>
+	<input type="text" value="" id="pageImage" placeholder="Insert URL" />
+</p>
+<p>
+	<label for="url">Source</label>
+	<input type="text" value="%s" id="pageSource" placeholder="e.g The Verge" />
+</p>
+<p>
+	<label for="url">Timeless?</label>
+	<input id="isTimeless" type="checkbox" checked="true" />
+</p>
+<a id="sendForm" href="javascript:void(0)">Send</a> or <a href="#" id="PFclose">cancel</a>
+
