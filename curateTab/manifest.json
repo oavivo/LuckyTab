@@ -1,6 +1,6 @@
 {
 	"name": "Lucky Tab Curate",
-	"version": "0.2",	
+	"version": "0.3",	
 	"permissions": [
 	    "tabs", "http://*/*"
 	],
@@ -12,7 +12,8 @@
 	    "persistent": false
 	  },
 	  "browser_action": {
-	    "default_title": "Make this page red"
+	  	"default_icon": "icon.png" ,
+	    "default_title": "Curate Content"
 	  },
 	  "content_scripts"	: [{
 		"matches"			: [ "http://*/*","https://*/*" ],

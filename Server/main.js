@@ -4,15 +4,39 @@ format = require('util').format;
 var express = require('express');
 var app = express();
 redisHandler = require(__dirname + "/bin/redisHandler.js");
+StatsManager = require(__dirname + "/bin/statsManager.js");
 fs = require('fs');
 
+sm = new StatsManager();
 
 app.get('/getKey', function(req, res){
 	var callback = function(data){res.write(data);res.end()};
 	res.setTimeout(5000,function(){res.end("Timeout - 5 seconds")});
     res.writeHead(200, {'Content-Type': 'text/plain'});
+	sm.addImpression();
 	redisHandler.getKey(callback);
 })
+
+app.get('/addClickStat',function(req, res){
+	var callback = function(data){res.write(data);res.end()};
+	res.setTimeout(5000,function(){res.end("Timeout - 5 seconds")});
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+	sm.addClick();
+	console.log(sm.getStats());
+	res.write("click registered");
+	res.end();	
+})
+
+app.get('/getStats', function(req, res){
+	var callback = function(data){res.write(data);res.end()};
+	res.setTimeout(5000,function(){res.end("Timeout - 5 seconds")});
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+	var currentStats = sm.getStats();
+	res.write(JSON.stringify(currentStats));
+	res.end();
+})
+
+
 
 app.get('/setKey', function(req, res){
 	var callback = function(data){res.write(data);res.end()};
