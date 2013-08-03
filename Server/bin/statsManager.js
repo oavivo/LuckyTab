@@ -17,13 +17,12 @@ StatsManager = (function(){
 		
 	}
 	
-	StatsManager.prototype.updateFile = function(){		
-
+	StatsManager.prototype.updateFile = function(){	
 		fs.writeFile(__dirname+"/stats.json", JSON.stringify(that.currentData), function(err) {
 			if(err) {
 				console.log(err);
 			} else {
-				console.log("Stats updated");
+				//console.log("Stats updated");
 			}
 		});
 	}

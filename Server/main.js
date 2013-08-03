@@ -27,7 +27,9 @@ app.get('/addClickStat',function(req, res){
 	res.end();	
 })
 
-app.get('/getStats', function(req, res){
+var auth = express.basicAuth('admin', 'LuckyLuke');
+
+app.get('/getStats', auth, function(req, res){
 	var callback = function(data){res.write(data);res.end()};
 	res.setTimeout(5000,function(){res.end("Timeout - 5 seconds")});
     res.writeHead(200, {'Content-Type': 'text/plain'});
