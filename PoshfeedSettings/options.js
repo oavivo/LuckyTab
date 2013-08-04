@@ -21,10 +21,7 @@ function save_options() {
 function restore_options() {
 	savedCats = chrome.storage.sync.get("categories", function(data){
 		data = $(data.categories).toArray();
-		console.log(data);
-		//alert(data.length);
 		$(data).each(function(){
-			console.log($(this));
 			$('#'+this).attr('checked','checked').parent().addClass('checked');
 			
 		})
