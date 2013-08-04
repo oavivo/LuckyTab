@@ -49,8 +49,8 @@ function sendKey(){
 	var image = encodeURIComponent($("#pageImage").val());
 	var e = document.getElementById("pageCategory");
 	var category = encodeURIComponent(e.options[e.selectedIndex].text);;	
-	var isTimeless = document.getElementById("isTimeless").checked == true ? "yes": "no";
-	sendUrl = sendUrl.format(title,desc,url,source,image,category,isTimeless);
+	//var isTimeless = document.getElementById("isTimeless").checked == true ? "yes": "no";
+	sendUrl = sendUrl.format(title,desc,url,source,image,category);
 	
 	var xhr = new XMLHttpRequest();
 		xhr.open("GET", sendUrl, true);
