@@ -47,12 +47,14 @@ function getContent(cats){
 	xhr.send();
 }
 
-chrome.storage.sync.get("categories", function(data){		
-	data = $(data.categories).toArray();
-	if(data.length > 0){	
-		data = data.toString();
-		getContent(data);
-	}	
+chrome.storage.sync.get("categories", function(data){	
+	data = $(data.categories).toArray();	
+	if(data.length == 0){
+		data = ["food","artDesign","gadgets","techNews","artCraft","autos","fashion","music","science","humor","lifestyle"];
+		chrome.storage.sync.set({'categories': data});
+	}
+	data = data.toString();	
+	getContent(data);
 })
 
 
