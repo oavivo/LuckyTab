@@ -5,7 +5,7 @@
 	"homepage_url": "http://www.poshfeed.com",
 	"options_page": "options.html",
 	"chrome_url_overrides": {
-		"newtab": "luckyTab.html"
+		"newtab": "front.html"
 	},
 	"icons": { 
 		"16": "icon16.png",
