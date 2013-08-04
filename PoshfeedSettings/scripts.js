@@ -46,3 +46,12 @@ var xhr = new XMLHttpRequest();
 xhr.send();
 
 
+//ASAF - below is how you get the saved categories
+
+chrome.storage.sync.get("categories", function(data){
+	data = $(data.categories).toArray();
+	console.log(data);
+})
+
+
+
