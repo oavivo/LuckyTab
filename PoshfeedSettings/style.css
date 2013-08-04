@@ -140,9 +140,19 @@ body#options {
 #options .container {
 	width: 400px;
 	margin: 0 auto;
-	background: url(poshfeed.png) no-repeat left top;
-	padding-top: 90px;
+	border-left: dotted 1px #ccc;
+	padding-left: 20px;
 	margin-top: 50px;
+	position: relative;
+}
+#options .logo {
+	position: absolute;
+	-webkit-transform:rotate(90deg);
+	left: -150px;
+	top: 80px;
+	height: 48px;
+	width: 220px;
+	background: url(poshfeed.png) no-repeat left top;
 }
 #options h1 {
 	font-weight: bold;
@@ -153,8 +163,6 @@ body#options {
 }
 #options h2 {
 	font-weight: bold;
-	padding-bottom: 20px;
-	border-bottom: dotted 1px #ccc;
 	margin: 20px 0;
 }
 #options ul {
