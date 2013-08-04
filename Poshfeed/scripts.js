@@ -4,7 +4,7 @@ function getTopSites(callbackfunc) {
     });
 }
 getTopSites(function(url){
-	var thumbnailUrl = 'chrome://favicon/size/16@1x/' + url.url;
+	var thumbnailUrl = 'chrome://favicon/' + url.url;
 	$('#mostVisited ul').append("<li><a style='background:url("+thumbnailUrl+") no-repeat 2px 2px' href='"+url.url+"'>"+url.title+"</a></li>");
 });
 
