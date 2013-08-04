@@ -1,5 +1,5 @@
 {
-	"name": "Lucky Tab",
+	"name": "Poshfeed",
 	"version": "0.1",
 	"chrome_url_overrides": {
 		"newtab": "luckyTab.html"

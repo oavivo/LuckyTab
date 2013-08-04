@@ -10,18 +10,21 @@ if (!String.prototype.format) {
   };
 }
 
-
-$.get(chrome.extension.getURL('curate.html'), function(data) {	
-	$("<div></div>").attr('id','curateTab').html(data).appendTo('body');
-	populate(document.location.href,document.title,$('meta[name=description]').attr("content"));
-	$('#PFclose').click(function(e){
-		e.preventDefault();
-		$('#curateTab').remove();
+if ($('#curateTab').length == 0 ){
+	$.get(chrome.extension.getURL('curate.html'), function(data) {	
+		$("<div></div>").attr('id','curateTab').html(data).appendTo('body');
+		populate(document.location.href,document.title,$('meta[name=description]').attr("content"));
+		$('#PFclose').click(function(e){
+			e.preventDefault();
+			$('#curateTab').remove();
+		});
+		$('#sendForm').click(function(){
+			validateFields($("#curateTab input"));
+		});	
 	});
-	$('#sendForm').click(function(){
-		validateFields($("#curateTab input"));
-	});	
-});
+} else {
+	$('#curateTab').remove();
+}
 
 
 function getDomain(url) {
