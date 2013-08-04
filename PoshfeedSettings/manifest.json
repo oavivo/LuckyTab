@@ -1,6 +1,6 @@
 {
-	"name": "Poshfeed with options",
-	"version": "0.1",
+	"name": "Poshfeed",
+	"version": "0.2",
 	"description": "Get something inspiring from around the web every time you open a new tab.",
 	"homepage_url": "http://www.poshfeed.com",
 	"options_page": "options.html",
