@@ -14,7 +14,7 @@
 	"permissions": [
 		"topSites",
 		"chrome://favicon/",		
-		"http://82.196.3.219/"
+		"http://poshfeed.com/"
 	],
 	"manifest_version": 2	
 }

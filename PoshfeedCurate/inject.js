@@ -41,7 +41,7 @@ function populate(url,title,descrip) {
 }
 
 function sendKey(){	
-	var sendUrl = 'http://82.196.3.219/setCategoryKey?value="title":"{0}","desc":"{1}","url":"{2}","source":"{3}","image":"{4}","category":"{5}"';
+	var sendUrl = 'http://poshfeed.com/setCategoryKey?value="title":"{0}","desc":"{1}","url":"{2}","source":"{3}","image":"{4}","category":"{5}"';
 	var title = encodeURIComponent($("#pageTitle").val());
 	var desc = encodeURIComponent($("#pageDesc").val());
 	var url = encodeURIComponent($("#pageURL").val());

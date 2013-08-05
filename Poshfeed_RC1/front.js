@@ -10,7 +10,7 @@ getTopSites(function(url){
 
 function fireClickEvent(redirectURL){
 	var eventXHR = new XMLHttpRequest();
-        eventXHR.open("GET", "http://82.196.3.219/addClickStat?value="+encodeURIComponent(returnedJson), true);
+        eventXHR.open("GET", "http://poshfeed.com/addClickStat?value="+encodeURIComponent(returnedJson), true);
 		eventXHR.onreadystatechange = function() {
 			if (eventXHR.readyState == 4) {
 				console.log(xhr.responseText);
@@ -22,7 +22,7 @@ function fireClickEvent(redirectURL){
 
 function getContent(){
 	var xhr = new XMLHttpRequest();
-			xhr.open("GET", "http://82.196.3.219/getKey", true);
+			xhr.open("GET", "http://poshfeed.com/getKey", true);
 			xhr.onreadystatechange = function() {
 	  		if (xhr.readyState == 4) {
                 window.returnedJson = xhr.responseText.substring(1, xhr.responseText.length -1);
