@@ -10,7 +10,7 @@ getTopSites(function(url){
 
 function fireClickEvent(redirectURL){
 	var eventXHR = new XMLHttpRequest();
-		eventXHR.open("GET", "http://82.196.3.219/addClickStat", true);
+        eventXHR.open("GET", "http://82.196.3.219/addClickStat?value="+encodeURIComponent(returnedJson), true);
 		eventXHR.onreadystatechange = function() {
 			if (eventXHR.readyState == 4) {
 				console.log(xhr.responseText);
@@ -24,9 +24,9 @@ function getContent(){
 	var xhr = new XMLHttpRequest();
 			xhr.open("GET", "http://82.196.3.219/getKey", true);
 			xhr.onreadystatechange = function() {
-	  		if (xhr.readyState == 4) {  			 		
-	    		var responseObj = JSON.parse(xhr.responseText);    		
-	    		window.returnedJson = responseObj;
+	  		if (xhr.readyState == 4) {
+                window.returnedJson = xhr.responseText.substring(1, xhr.responseText.length -1);
+                var responseObj = JSON.parse(xhr.responseText);
 	    		$("body").css("background-image","url("+responseObj.image+")");
 	    		$("#pageTitle").html(responseObj.title).attr("href",responseObj.url).css("display","block").click(function(e){
 	    			e.preventDefault();
