@@ -59,3 +59,15 @@ chrome.storage.sync.get("categories", function(data){
 
 
 
+// Check whether new version is installed
+//chrome.runtime.onStartup.addListener(function(details){
+//    console.log('asd');
+//    if(details.reason == "install"){
+//        alert("This is a first install!");
+//    }else if(details.reason == "update"){
+//        var thisVersion = chrome.runtime.getManifest().version;
+//        alert("Updated from");
+//    }
+//});
+
+
