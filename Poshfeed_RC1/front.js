@@ -20,10 +20,10 @@ function fireClickEvent(redirectURL){
 	setTimeout(function(){window.location.href = redirectURL},200);
 }
 
-function getContent(cats){
+function getContent(){
 	var xhr = new XMLHttpRequest();
-			xhr.open("GET", "http://82.196.3.219/getCategoryKey?categories="+cats, true);
-			xhr.onreadystatechange = function() {			
+			xhr.open("GET", "http://82.196.3.219/getKey", true);
+			xhr.onreadystatechange = function() {
 	  		if (xhr.readyState == 4) {  			 		
 	    		var responseObj = JSON.parse(xhr.responseText);    		
 	    		window.returnedJson = responseObj;
@@ -46,6 +46,8 @@ function getContent(cats){
 		}
 	xhr.send();
 }
+
+getContent();
 
 
 
