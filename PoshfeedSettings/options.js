@@ -1,3 +1,11 @@
+function populateCategories(){
+	$(PFcategoryList).each(function(){
+		//console.log($(this)[0].display);
+		$('#poshOptionsContainer').append("<li><input type='checkbox' name='category' id='"+$(this)[0].id+"' value='"+$(this)[0].id+"'  /> <label for='"+$(this)[0].id+"'>"+$(this)[0].display+"</label></li>");
+	})
+}
+
+
 function save_options() {
 	var checkedCats = $('input:checkbox:checked:enabled');
 	var categories = [];
@@ -15,7 +23,7 @@ function save_options() {
 	
 }
 
-// Restores select box state to saved value from localStorage.
+// Restores select box state to saved value from storage.
 function restore_options() {
 	savedCats = chrome.storage.sync.get("categories", function(data){		
 		data = $(data.categories).toArray();
@@ -40,8 +48,14 @@ $('input:checkbox').change(function(){
 	}
 });
 
-document.addEventListener('DOMContentLoaded', restore_options);
-document.querySelector('#save').addEventListener('click', save_options);
+
+
+// ON LOAD
+$(document).ready(function() {
+	populateCategories();
+	restore_options();
+	$('#save').click(save_options);
+});
 
 
 

@@ -41,7 +41,9 @@ function getContent(cats){
 	    			e.preventDefault();
 	    			fireClickEvent(responseObj.url);    			    			
 	    		});
-				$("#pageSource").html("From: "+responseObj.source).css("display","block");
+				var catDisplayName = $.inArray('food', PFcategoryList) > -1; // left this in the middle
+				console.log(catDisplayName);
+				$("#pageSource").html("From: "+responseObj.source +", In: "+responseObj.category).css("display","block");
 	  		}
 		}
 	xhr.send();
