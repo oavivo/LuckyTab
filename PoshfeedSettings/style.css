@@ -116,7 +116,7 @@ h1 a {
 #mostVisited a:hover {
 	color: #000;
 }
-#mostVisited  h2 {
+#mostVisited h2 {
 	font-size: 14px;
 	color: #555;
 	padding: 15px;
@@ -125,6 +125,17 @@ h1 a {
 	margin-top: 2px;
 	font-weight: 700;
 }
+.poshfeedLogo {
+	width:48px;
+	height:48px;
+	background-image:url(icon48.png);
+	background-repeat:no-repeat;
+	position:absolute;
+	bottom:30px;
+	left:81px;
+	opacity:.6;
+}
+
 
 
 /*OPTIONS PAGE*/
