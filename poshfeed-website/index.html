@@ -46,8 +46,7 @@
     		<div class="footie">
                 <h3>Some links</h3>
                 <ul>
-                    <li><a href="#">Become a Curator</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a data-toggle="modal" href="#myModal">Contact Us</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Terms and Conditions</a></li>
                     <li><a href="#"><img style="margin-top:10px;" src="assets/badge-chrome-webstore.png"/></a></li>
@@ -62,9 +61,49 @@
             <div class="clearFix"></div>
         </div>
     </div>
+    
+  <!-- Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Contact Us</h4>
+        </div>
+        <div class="modal-body">
+          <div class="contactLabel">Name</div>
+          <input id="Name" name="" type="text" value="">
+          <div class="contactLabel">Email address</div>
+          <input id="Email" name="" type="text" value="">
+          <div class="contactLabel">I would like to</div>
+          <select id="Subject" name="Subject">
+          	<option>Give feedback</option>
+         	<option>Contact</option>
+          </select>
+          <div class="contactLabel">Message</div>
+          <textarea id="Message"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="sendBtn" data-dismiss="modal">Send</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+    
+    
+    
+    
+    
+    
+    
 </div>
-<script type="text/javascript">
+	<!-- JavaScript plugins (requires jQuery) -->
+	<script src="http://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
 
+
+<script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-42937833-1']);
   _gaq.push(['_trackPageview']);
@@ -74,7 +113,6 @@
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
 </script>
 </body>
 </html>
