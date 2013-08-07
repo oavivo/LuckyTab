@@ -1,14 +1,13 @@
-<<<<<<< HEAD
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Get an amazing content suggestion every time you open up a new tab on your browser. Curated by professionals, just for you. No more internet boredom, be inspired, get poshfeed.">
 	<title>poshfeed is awesome</title>
-    <link rel="shortcut icon" href="assets/favicon.ico" />
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
     <link href='http://fonts.googleapis.com/css?family=Merriweather:400,700,300' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
-    <link href="assets/default.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="assets/style/default.css" media="screen, projection" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div id="container">
@@ -50,7 +49,7 @@
                     <li><a data-toggle="modal" href="#myModal">Contact Us</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Terms and Conditions</a></li>
-                    <li><a href="#"><img style="margin-top:10px;" src="assets/badge-chrome-webstore.png"/></a></li>
+                    <li><a href="#"><img style="margin-top:10px;" src="assets/images/badge-chrome-webstore.png"/></a></li>
                 </ul>
             </div>
             <div class="footie last">
@@ -63,46 +62,39 @@
         </div>
     </div>
     
-  <!-- Modal -->
-  <div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Contact Us</h4>
+  <!-- Contact Form -->
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Contact Us</h4>
+            </div>
+            <div class="modal-body" id="contactFormBody">
+                <div class="contactLabel">Name</div>
+                <input id="Name" name="" class="textValidate" type="text" value="">
+                <div class="contactLabel">Email address</div>
+                <input id="Email" class="emailValidate" name="" type="text" value="">
+                <div class="contactLabel">I would like to</div>
+                <select id="Subject" name="Subject">
+                <option>Give feedback</option>
+                <option>Contact</option>                
+                <option>Become a curator</option>
+                </select>
+                <div class="contactLabel">Message</div>
+                <textarea class="textValidate" id="Message"></textarea>
+            </div>
+            <div class="modal-footer">
+            	<button type="button" id="sendFormButton" class="sendBtn">Send</button>
+            </div>
+            </div>
         </div>
-        <div class="modal-body">
-          <div class="contactLabel">Name</div>
-          <input id="Name" name="" type="text" value="">
-          <div class="contactLabel">Email address</div>
-          <input id="Email" name="" type="text" value="">
-          <div class="contactLabel">I would like to</div>
-          <select id="Subject" name="Subject">
-          	<option>Give feedback</option>
-         	<option>Contact</option>
-          </select>
-          <div class="contactLabel">Message</div>
-          <textarea id="Message"></textarea>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="sendBtn" data-dismiss="modal">Send</button>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-    
-    
-    
-    
-    
-    
+    </div>
     
 </div>
-	<!-- JavaScript plugins (requires jQuery) -->
-	<script src="http://code.jquery.com/jquery.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/main.js"></script>
 
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -116,85 +108,4 @@
   })();
 </script>
 </body>
-=======
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Get an amazing content suggestion every time you open up a new tab on your browser. Curated by professionals, just for you. No more internet boredom, be inspired, get poshfeed.">
-	<title>poshfeed is awesome</title>
-    <link rel="shortcut icon" href="assets/favicon.ico" />
-    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,700,300' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
-    <link href="assets/default.css" media="screen, projection" rel="stylesheet" type="text/css" />
-</head>
-<body>
-<div id="container">
-	<div class="navArea">
-    	<div id="logo"></div>
-    </div>
-	<div class="topContent">
-		<h1>Amazing content delivered to your Chrome start page</h1>
-        <p>Get something inspiring from around the web every time you open a new tab.</p>
-        <a href="https://chrome.google.com/webstore/detail/poshfeed/aimbgnciobahnpjegjhidihgoaipdabm"></a>
-	</div>
-    <div class="featurama">
-    	<div class="feature first">
-        	<div class="icon"></div>
-            <h2>Professionaly Curated</h2>
-            <p>Be surprised with every new tab, get hand-picked content from our professional editors.</p>
-        </div>
-    	<div class="feature second">
-        	<div class="icon"></div>
-            <h2>Non Intrussive</h2>
-            <p>We left the natural funtionality of chrome's start page, so you don't lose what you're used to.</p>
-        </div>
-    	<div class="feature last">
-        	<div class="icon"></div>
-            <h2>Setup in Seconds</h2>
-            <p>Go to <a href="https://chrome.google.com/webstore/detail/poshfeed/aimbgnciobahnpjegjhidihgoaipdabm">chrome webstore</a>, and just press the "Add to Chrome" button. Yes, it's as simple as that!</p>
-        </div>
-        <div class="clearFix"></div>
-    </div>
-    <div class="footerWrapper">
-        <div class="footer">
-			<div class="footie">
-                <h3>About poshfeed</h3>
-                <p>Get an amazing content suggestion every time you open up a new tab in Google Chrome. Curated by professionals, just for you. No more internet boredom, be inspired, get poshfeed.<br/><br/><span class="copyright">© 2013 poshfeed. Handcrafted in Tel Aviv.</span></p>
-            </div>
-    		<div class="footie">
-                <h3>Some links</h3>
-                <ul>
-                    <li><a href="#">Become a Curator</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms and Conditions</a></li>
-                    <li><a href="https://chrome.google.com/webstore/detail/poshfeed/aimbgnciobahnpjegjhidihgoaipdabm"><img style="margin-top:10px;" src="assets/badge-chrome-webstore.png"/></a></li>
-                </ul>
-            </div>
-            <div class="footie last">
-                <h3>Show some love</h3>
-                <p>
-                <iframe src="https://www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fposhfeed&amp;width=300&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false&amp;" scrolling="no" frameborder="0" style="border:none; margin-left:-10px; margin-top:-5px; overflow:hidden; width:300px; height:180px;" allowTransparency="true"></iframe>
-                </p>
-            </div>
-            <div class="clearFix"></div>
-        </div>
-    </div>
-</div>
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-42937833-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
-</body>
->>>>>>> c2d13a6f6941879fc807d9eb196821a047af4f14
 </html>

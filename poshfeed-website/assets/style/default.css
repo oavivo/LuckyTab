@@ -55,7 +55,7 @@ h4{
 	padding:22px 10px 0 10px;
 }
 #logo{
-	background-image:url(../assets/poshfeed.png);
+	background-image:url(../images/poshfeed.png);
 	width:220px;
 	height:48px;
 	background-repeat:no-repeat;
@@ -64,7 +64,7 @@ h4{
 	padding-top:120px;
 	width:100%;
 	height:330px;
-	background-image:url(../assets/bg-main.jpg);
+	background-image:url(../images/bg-main.jpg);
 	background-position:center;
 	background-size:cover;
 	margin-bottom:50px;
@@ -81,7 +81,7 @@ h4{
 	border-radius:50px;
 	text-decoration: none;
 	background-color:#faf9f5;
-	background-image:url(../assets/bg-chrome-store.png);
+	background-image:url(../images/bg-chrome-store.png);
 	background-repeat:no-repeat;
 	width:280px;
 	height:70px;
@@ -121,13 +121,13 @@ h4{
 	margin-right:0;
 }
 .feature.first .icon{
-	background-image:url(../assets/icon-curation.png);
+	background-image:url(../images/icon-curation.png);
 }
 .feature.second .icon{
-	background-image:url(../assets/icon-transparent.png);
+	background-image:url(../images/icon-transparent.png);
 }
 .feature.last .icon{
-	background-image:url(../assets/icon-easy-install.png);
+	background-image:url(../images/icon-easy-install.png);
 }
 .featurama p{
 	color:#666;
@@ -163,10 +163,10 @@ h4{
 	margin-right:15px;
 }
 .people.first .icon{
-	background-image:url(../assets/people-george.png);
+	background-image:url(../assets/images/people-george.png);
 }
 .people.last .icon{
-	background-image:url(../assets/people-2.png);
+	background-image:url(../assets/images/people-2.png);
 }
 .people.last{
 	margin-right:0;
@@ -178,7 +178,7 @@ h4{
 	color:#666;
 	font-size:13px;
 	line-height:18px;
-	background-image:url(../assets/bg-qoute.png);
+	background-image:url(../images/bg-qoute.png);
 	background-repeat:no-repeat;
 	padding-left:30px;
 	padding-top:20px;
@@ -426,6 +426,7 @@ button.close {
 	background-color:#fff;
 }
 .modal-body select{
+	padding:10px 10px 10px 5px;
 	width: 322px;
 	height:40px;
 	font-size:14px;
@@ -476,4 +477,7 @@ button.close {
 }
 .sendBtn:hover{
 	background-color:#e47c51;
+}
+body .modal-body .validFail{
+	background-color:#ffb9b9;
 }
