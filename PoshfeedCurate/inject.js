@@ -42,11 +42,11 @@ function populate(url,title,descrip) {
 
 function sendKey(){	
 	var sendUrl = 'http://poshfeed.com/setCategoryKey?value="title":"{0}","desc":"{1}","url":"{2}","source":"{3}","image":"{4}","category":"{5}"';
-	var title = encodeURIComponent($("#pageTitle").val());
-	var desc = encodeURIComponent($("#pageDesc").val());
-	var url = encodeURIComponent($("#pageURL").val());
-	var source = encodeURIComponent($("#pageSource").val());
-	var image = encodeURIComponent($("#pageImage").val());	
+	var title = encodeURIComponent($("#pageTitle").val().replace(/\"/g,'%22'));
+	var desc = encodeURIComponent($("#pageDesc").val().replace(/\"/g,'\%22'));
+	var url = encodeURIComponent($("#pageURL").val().replace(/\"/g,'%22'));
+	var source = encodeURIComponent($("#pageSource").val().replace(/\"/g,'%22'));
+	var image = encodeURIComponent($("#pageImage").val().replace(/\"/g,'%22'));	
 	var e = document.getElementById("pageCategory");
 	var category = encodeURIComponent(e.options[e.selectedIndex].value);
 	//var isTimeless = document.getElementById("isTimeless").checked == true ? "yes": "no";
