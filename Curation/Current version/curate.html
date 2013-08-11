@@ -1,0 +1,73 @@
+<style>
+	#curateTab {
+		position:fixed;
+		text-align: left;
+		direction: ltr;
+		top: 10px;
+		right: 10px;
+		background: #faf9f5;		
+		border: 0;
+		resize:both;
+		overflow: auto;
+		padding: 10px;
+		-webkit-box-shadow: -5px 5px 10px rgba(0,0,0,.35);
+		z-index: 9999999999999;
+		font-family: arial, sans-serif;
+		font-size: 12px;
+	}
+	#curateTab input[type=text], #curateTab textarea {
+		width: 390px;
+		padding: 2px;
+		display: block;
+	}
+	#curateTab .comment {
+		font-size: 12px;
+		color: #666;
+	}
+	#curateTab p {
+		margin-bottom: 10px;
+	}
+	.inputError{
+		border: 2px solid red;
+	}
+</style>
+
+<p>
+	<label for="url">Category</label>
+	<select name="" id="pageCategory">
+		<option value="">Category...</option>
+		<option value="food">Food</option>
+		<option value="artDesign">Art &amp; Design</option>
+		<option value="gadgets">Gadgets</option>
+		<option value="techNews">Tech News</option>
+		<option value="artsCrafts">Arts &amp; Crafts</option>
+		<option value="autos">Autos</option>
+		<option value="fashion">Fashion</option>
+		<option value="music">Music</option>
+		<option value="science">Science</option>
+		<option value="humor">Humor</option>
+		<option value="lifestyle">Lifestyle</option>
+	</select>
+</p>
+<p>
+	<label for="pageURL">Page URL</label>
+	<input type="text" value="" id="pageURL" placeholder="Insert URL" />
+</p>
+<p>
+	<label for="pageTitle">Title</label>
+	<input type="text" value="" id="pageTitle" placeholder="Article title" />
+</p>
+<p>
+	<label for="pageDesc">Description</label>
+	<textarea type="text" id="pageDesc" value="" placeholder="(Optional, but great!!)"></textarea>
+</p>
+<p>
+	<label for="pageImage">Image URL</label>
+	<input type="text"  value="" id="pageImage" placeholder="Insert largest photo URL" />
+</p>
+<p>
+	<label for="pageSource">Source</label>
+	<input type="text" value="" id="pageSource" placeholder="e.g cnn.com" />
+</p>
+<input type="button" id="sendForm" value="Send" /> or <a href="#" id="PFclose">cancel</a>
+
