@@ -58,8 +58,12 @@ chrome.storage.sync.get("categories", function(data){
 	}
 	$('#currentCats').text(displayNameArray.join(', '));
 	if(data.length == 0){
-		data = ["food","artDesign","gadgets","techNews","artCraft","autos","fashion","music","science","humor","lifestyle"];
-		chrome.storage.sync.set({'categories': data});
+		var allCats = [];
+		for(cat in categoriesObj){
+			allCats.push(cat);			
+		}
+		data = allCats;
+		chrome.storage.sync.set({'categories': allCats});
 	}
 	data = data.toString();	
 	

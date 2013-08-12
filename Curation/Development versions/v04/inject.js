@@ -87,8 +87,9 @@ function validateFields(fieldsArray){
     if(checkedVals.length == 0){
         $(".CT_checkbox").each(function(){
             sendForm = false;
-            $(this).addClass("inputError");
-            restoreBorder(this);
+            var label = $("label[for='"+$(this).attr('value')+"']");
+            label.addClass("inputError");            
+            restoreBorder(label);
         })
     }
 	if (sendForm){
