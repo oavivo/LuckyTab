@@ -3,25 +3,27 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>New Tab</title>
-	<link href='http://fonts.googleapis.com/css?family=Merriweather:400,700,300' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Merriweather:400,700,300,400italic' rel='stylesheet' type='text/css'>
 	<link href='style.css' rel='stylesheet' type='text/css'>
 </head>
 <body id="poshfeed">
 	<div id="container">
 		<div class="mainContent">
+			<div id="pageSource" class="source" style="display:none"></div>
 			<h1><a id="pageTitle" href="#" style="display:none"></a></h1><br />
 	        <a href="#" id="pageDesc" style="display:none"></a><br /><br />
 	        <a id="readPage" href="#" class="button" style="display:none">Read It!</a>
 		</div>
-		
-	    <div id="pageSource" class="source" style="display:none"></div>
 	</div>
 	<div id="mostVisited">
 		<h2>Most Visited</h2>
 		<ul></ul>
-		<div class="poshfeedLogo"></div>
+		
 	</div>
-	<div id="footer">Your getting a <span id="currentCats"></span> feed | <a href="#" id="optionsLink">Change feed preferences</a></div>
+	<div id="footer">
+		<a href="http://www.poshfeed.com/" class="poshfeedLogo"></a>
+		Your getting a <span id="currentCats"></span> feed &nbsp;&nbsp;|&nbsp;&nbsp; <a href="#" id="optionsLink">Change feed preferences</a>
+	</div>
 </body>
 <script src="jquery.js"></script>
 <script src="categories.js"></script>
