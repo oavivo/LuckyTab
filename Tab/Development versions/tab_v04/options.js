@@ -10,7 +10,6 @@ function populateCategories(){
 	//})
 }
 
-
 function save_options() {
 	var checkedCats = $('input:checkbox:checked:enabled');
 	var categories = [];
@@ -45,13 +44,7 @@ function restore_options() {
 	})
 }
 
-$('input:checkbox').change(function(){
-	if ($(this).parent().hasClass('checked')) {
-		$(this).parent().removeClass('checked')
-	} else {
-		$(this).parent().addClass('checked')
-	}
-});
+
 
 
 
@@ -60,7 +53,16 @@ $(document).ready(function() {
 	populateCategories();
 	restore_options();
 	$('#save').click(save_options);
+	
+	
+	// replace class on cb change
+	$('input:checkbox').change(function(){
+		if ($(this).parent().hasClass('checked')) {
+			$(this).parent().removeClass('checked');
+		} else {
+			$(this).parent().addClass('checked')
+		}
+	});
 });
-
 
 
