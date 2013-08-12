@@ -46,13 +46,16 @@ function sendKey(){
 	var desc = encodeURIComponent($("#pageDesc").val().replace(/\"/g,'\%22'));
 	var url = encodeURIComponent($("#pageURL").val().replace(/\"/g,'%22'));
 	var source = encodeURIComponent($("#pageSource").val().replace(/\"/g,'%22'));
-	var image = encodeURIComponent($("#pageImage").val().replace(/\"/g,'%22'));	
-	var e = document.getElementById("pageCategory");
-	var category = encodeURIComponent(e.options[e.selectedIndex].value);
-	//var isTimeless = document.getElementById("isTimeless").checked == true ? "yes": "no";
-	sendUrl = sendUrl.format(title,desc,url,source,image,category);
-	
-	var xhr = new XMLHttpRequest();
+	var image = encodeURIComponent($("#pageImage").val().replace(/\"/g,'%22'));
+
+    var categories = $('.CT_checkbox:checkbox:checked').map(function(){
+        return this.value;
+    }).get();
+
+
+    sendUrl = sendUrl.format(title,desc,url,source,image,categories);
+
+    var xhr = new XMLHttpRequest();
 		xhr.open("GET", sendUrl, true);
 		xhr.onreadystatechange = function() {			
   		if (xhr.readyState == 4) { 
@@ -78,14 +81,16 @@ function validateFields(fieldsArray){
 			restoreBorder(this);
 		}
 	});
-	var e = document.getElementById("pageCategory");
-	var category = encodeURIComponent(e.options[e.selectedIndex].text);
-	if(category == "Category..."){
-		sendForm = false;
-		$(e).addClass("inputError");
-		restoreBorder(e);
-		
-	}
+    var checkedVals = $('.CT_checkbox:checkbox:checked').map(function() {
+        return this.value;
+    }).get();
+    if(checkedVals.length == 0){
+        $(".CT_checkbox").each(function(){
+            sendForm = false;
+            $(this).addClass("inputError");
+            restoreBorder(this);
+        })
+    }
 	if (sendForm){
 		sendKey();
 	}

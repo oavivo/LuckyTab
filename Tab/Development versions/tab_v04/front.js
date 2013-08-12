@@ -53,7 +53,8 @@ chrome.storage.sync.get("categories", function(data){
 	data = $(data.categories).toArray();
 	var displayNameArray = [];
 	for(var i=0;i < data.length ; i++){
-		displayNameArray.push(categoriesObj[data[i]].display)
+        var catName = data[i];
+		displayNameArray.push(categoriesObj[catName].display)
 	}
 	$('#currentCats').text(displayNameArray.join(', '));
 	if(data.length == 0){
@@ -64,7 +65,7 @@ chrome.storage.sync.get("categories", function(data){
 	
 	$('#optionsLink').attr('href',chrome.extension.getURL("options.html"));
 	getContent(data);
-})
+});
 
 
 
