@@ -65,13 +65,12 @@ h1 a {
 .source{
 	font-weight:300;
 	line-height:24px;
-	background-color: rgba(0,0,0,.4);
+	background-color: rgba(0,0,0,.3);
 	padding:0 5px;
+	margin-bottom: 20px;
 	display:inline-block;
-	position:fixed;
-	bottom:30px;
-	left:100px;
 	font-size: 14px;
+	color: #eee;
 }
 
 
@@ -100,7 +99,7 @@ h1 a {
 }
 #mostVisited li {
 	margin-bottom: 2px;
-	font-family: arial, sans-serif;
+	font-family: 'Lucida Grande', sans-serif, arial;
 }
 #mostVisited a {
 	text-overflow: ellipsis;
@@ -111,7 +110,7 @@ h1 a {
 	text-decoration: none;
 	padding: 5px 0;
 	padding-left: 26px;
-	font-size: 13px;
+	font-size: 12px;
 }
 #mostVisited a:hover {
 	color: #000;
@@ -125,14 +124,126 @@ h1 a {
 	margin-top: 2px;
 	font-weight: 700;
 }
+
+#footer {
+	height: 40px;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	color: rgb(127, 127, 127);
+	font-size: 11px;
+	font-family: 'Lucida Grande', sans-serif, arial;
+	background-image: -webkit-linear-gradient( rgba(242, 242, 242, 1), rgba(222, 222, 222, 1));
+	bottom: 0;
+	color: #7F7F7F;
+	font-weight: bold;
+	border-top: solid 1px #ccc;
+}
 .poshfeedLogo {
-	width:48px;
-	height:48px;
-	background-image:url(icon48.png);
+	width:24px;
+	height:24px;
+	background-image:url(icon24.png);
 	background-repeat:no-repeat;
-	position:absolute;
-	bottom:30px;
-	left:81px;
-	opacity:.6;
+	margin: 8px 10px 0 8px;
+	float: left;
+}
+#optionsLink {
+	line-height: 40px;
+	color: rgb(50, 50, 50);
+	text-decoration: none;
+	background: url(cog.png) no-repeat left;
+	padding-left: 18px;
+	opacity: .8;
+}
+#optionsLink:hover {
+	opacity: 1;
 }
 
+
+
+/*OPTIONS PAGE*/
+body#options {
+	margin:0;
+	padding: 0;
+	background:#eee;
+	font-family: 'Lucida Grande', sans-serif, arial;
+	font-size: 13px;
+	color: rgb(48, 57, 66);
+	line-height: 140%;
+}
+#options .container {
+	width: 400px;
+	margin: 0 auto;
+	border-left: dotted 1px #ccc;
+	padding-left: 20px;
+	margin-top: 50px;
+	position: relative;
+}
+#options .logo {
+	position: absolute;
+	-webkit-transform:rotate(90deg);
+	left: -150px;
+	top: 80px;
+	height: 48px;
+	width: 220px;
+	background: url(poshfeed.png) no-repeat left top;
+}
+#options h1 {
+	font-weight: bold;
+	padding-bottom: 20px;
+	border-bottom: solid 1px #ccc;
+	margin-bottom: 20px;
+	font-size: 15px;
+}
+#options h2 {
+	font-weight: bold;
+	margin: 20px 0;
+}
+#options ul {
+	margin: 20px 0;
+}
+#options li {
+	margin-bottom: 5px;
+	color: rgba(48, 57, 66, .6);
+}
+#options li.checked {
+	font-weight: bold;
+	color: rgb(48, 57, 66);
+}
+#options button {
+	-webkit-appearance: none;
+	-webkit-user-select: none;
+	background-image: -webkit-linear-gradient(#ededed, #ededed 38%, #dedede);
+	border: 1px solid rgba(0, 0, 0, 0.25);
+	border-radius: 2px;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.75);
+	color: #444;
+	font: inherit;
+	margin: 0 1px 0 0;
+	text-shadow: 0 1px 0 rgb(240, 240, 240);
+}
+#options button:hover {
+	background-image: -webkit-linear-gradient(#f0f0f0, #f0f0f0 38%, #e0e0e0);
+	border-color: rgba(0, 0, 0, 0.3);
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12), inset 0 1px 2px rgba(255, 255, 255, 0.95);
+	color: black;
+}
+#options button:active {
+	background-image: -webkit-linear-gradient(#e7e7e7, #e7e7e7 38%, #d7d7d7);
+	box-shadow: none;
+	text-shadow: none;
+}
+#options #credit {
+	font-size: 12px;
+	padding: 20px 0;
+	margin-top: 20px;
+	color: rgba(48, 57, 66, .6);
+	border-top: solid 1px #ccc;
+}
+#options #credit a {
+	color: #e89063;
+	text-decoration: underline;
+}
+#options #status {
+	display: none;
+}
