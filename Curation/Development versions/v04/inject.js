@@ -18,7 +18,7 @@ if ($('#PFcurateTab').length == 0 ){
 			e.preventDefault();
 			$('#PFcurateTab').remove();
 		});
-		$('#sendForm').click(function(){
+		$('#PFsendForm').click(function(){
 			validateFields($("#PFcurateTab input"));
 		});	
 	});
@@ -34,19 +34,19 @@ function populate(url,title,descrip) {
   	tablink = url;
   	tabtitle = title;
   	pageDesc = descrip;
-  	$('#pageURL').val(tablink);
-  	$('#pageSource').val(getDomain(tablink));
-  	$('#pageTitle').val(tabtitle);
-  	$('#pageDesc').val(pageDesc);
+  	$('#PFpageURL').val(tablink);
+  	$('#PFpageSource').val(getDomain(tablink));
+  	$('#PFpageTitle').val(tabtitle);
+  	$('#PFpageDesc').val(pageDesc);
 }
 
 function sendKey(){	
 	var sendUrl = 'http://poshfeed.com/setCategoryKey?value="title":"{0}","desc":"{1}","url":"{2}","source":"{3}","image":"{4}","category":"{5}"';
-	var title = encodeURIComponent($("#pageTitle").val().replace(/\"/g,'%22'));
-	var desc = encodeURIComponent($("#pageDesc").val().replace(/\"/g,'\%22'));
-	var url = encodeURIComponent($("#pageURL").val().replace(/\"/g,'%22'));
-	var source = encodeURIComponent($("#pageSource").val().replace(/\"/g,'%22'));
-	var image = encodeURIComponent($("#pageImage").val().replace(/\"/g,'%22'));
+	var title = encodeURIComponent($("#PFpageTitle").val().replace(/\"/g,'%22'));
+	var desc = encodeURIComponent($("#PFpageDesc").val().replace(/\"/g,'\%22'));
+	var url = encodeURIComponent($("#PFpageURL").val().replace(/\"/g,'%22'));
+	var source = encodeURIComponent($("#PFpageSource").val().replace(/\"/g,'%22'));
+	var image = encodeURIComponent($("#PFpageImage").val().replace(/\"/g,'%22'));
 
     var categories = $('.CT_checkbox:checkbox:checked').map(function(){
         return this.value;
@@ -87,7 +87,7 @@ function validateFields(fieldsArray){
     if(checkedVals.length == 0){
         $(".CT_checkbox").each(function(){
             sendForm = false;
-            var label = $("label[for='"+$(this).attr('value')+"']");
+            var label = $("label[for='PF"+$(this).attr('value')+"']");
             label.addClass("inputError");            
             restoreBorder(label);
         })

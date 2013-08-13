@@ -26,14 +26,12 @@
 		height:50px;
 		background-color: #bf5656;
 	}
-	#PFcurateTab .pfHeader{
-		background-image:url("pf-logo-header.png");
-		background-repeat:no-repeat;
+	#PFcurateTab .topHeader .PFHeader{
 		height:50px;
-		padding-left:50px;
+		padding-left:10px;
 		font-family:georgia;
 		color:#ffe6e6;
-		font-weight:300;
+		font-weight:bold;
 		font-size:16px;
 		line-height:50px;
 	}
@@ -44,6 +42,9 @@
 		height:28px;
 		border:1px solid #ccc;
 		margin-top:5px;
+		font-family: "Lucida Grande", sans-serif, arial;
+		font-size: 12px;
+		color:#666;
 	}
 	#PFcurateTab textarea {
 		width: 390px;
@@ -52,23 +53,14 @@
 		height:58px;
 		border:1px solid #ccc;
 		margin-top:5px;
-	}
-	#PFcurateTab .comment {
+		font-family: "Lucida Grande", sans-serif, arial;
 		font-size: 12px;
-		color: #666;
+		color:#666;
 	}
 	#PFcurateTab p {
 		margin-bottom: 10px;
 	}
-	#PFcurateTab .inputError{
-		border: 2px solid red;
-	}
-	#PFcurateTab label.inputError{
-		font-weight:bold;
-		color:red;
-		border:0;
-	}
-	#PFcurateTab h2 {
+		#PFcurateTab h2 {
 		font-family:Georgia, "Times New Roman", Times, serif;
 		padding-top:8px;
 		padding-bottom:5px;
@@ -83,7 +75,27 @@
 		display:block;
 		width:98px;
 		float:left;
+		font-family: "Lucida Grande", sans-serif, arial;
+		font-size: 12px;
+		color:#666;
 	}
+		#PFcurateTab .catCheck label{
+		font-family: "Lucida Grande", sans-serif, arial;
+		font-size: 12px;
+		color:#666 !important;
+	}
+	#PFcurateTab .inputError{
+		border: 2px solid red !important;
+	}
+	#PFcurateTab label.inputError{
+		color:red !important;
+		border:0;
+		font-family: "Lucida Grande", sans-serif, arial;
+		font-size: 12px;
+		color:#666;
+		border: 0 !important;
+	}
+
 	#PFcurateTab .catCheck.last{
 		display:block;
 		width:100px;
@@ -91,44 +103,51 @@
 	#PFcurateTab .clearFix{
 		clear:both;
 	}
+	#PFcurateTab #PFsendForm {
+		background-color: #bf5656;
+		color: #fff !important;
+		text-decoration: none;
+		display: inline-block;
+		padding: 5px 10px;
+	}
 </style>
 
 <div id="PFcurateTab">
     <div class="topHeader">
-        <div class="pfHeader">poshfeed Curator</div>
+        <div class="PFHeader">poshfeed Curator</div>
     </div>
 	<p>
 		<h2>Choose categories</h2>
-			<span class="catCheck"><input type="checkbox" name="category" class="CT_checkbox" id="geeky" value="geeky" /> <label for="geeky">Geeky</label></span>
-			<span class="catCheck"><input type="checkbox" name="category" class="CT_checkbox" id="intelectual" value="intelectual" /> <label for="intelectual">Intelectual</label></span>
-			<span class="catCheck"><input type="checkbox" name="category" class="CT_checkbox" id="music" value="music" /> <label for="music">Musicphile</label></span>
-			<span class="catCheck"><input type="checkbox" name="category" class="CT_checkbox" id="food" value="food" /> <label for="food">Foodie</label></span><br />
-			<span class="catCheck"><input type="checkbox" name="category" class="CT_checkbox" id="art" value="art" /> <label for="art">Artsy</label></span>
-			<span class="catCheck"><input type="checkbox" name="category" class="CT_checkbox" id="cool" value="cool" /> <label for="cool">Cool</label></span>
-			<span class="catCheck last"><input type="checkbox" name="category" class="CT_checkbox" id="fashion" value="fashion" /> <label for="fashion">Fashionable</label></span>
+			<span class="catCheck"><input type="checkbox" name="category" class="CT_checkbox" id="PFgeeky" value="geeky" /> <label for="PFgeeky">Geeky</label></span>
+			<span class="catCheck"><input type="checkbox" name="category" class="CT_checkbox" id="PFintelectual" value="intelectual" /> <label for="PFintelectual">Intelectual</label></span>
+			<span class="catCheck"><input type="checkbox" name="category" class="CT_checkbox" id="PFmusic" value="music" /> <label for="PFmusic">Musicphile</label></span>
+			<span class="catCheck"><input type="checkbox" name="category" class="CT_checkbox" id="PFfood" value="food" /> <label for="PFfood">Foodie</label></span><br />
+			<span class="catCheck"><input type="checkbox" name="category" class="CT_checkbox" id="PFart" value="art" /> <label for="PFart">Artsy</label></span>
+			<span class="catCheck"><input type="checkbox" name="category" class="CT_checkbox" id="PFcool" value="cool" /> <label for="PFcool">Cool</label></span>
+			<span class="catCheck last"><input type="checkbox" name="category" class="CT_checkbox" id="PFfashion" value="fashion" /> <label for="PFfashion">Fashionable</label></span>
             <div class="clearFix"></div>
 	</p>
 	<h2>Content details</h2>
 	<p>
-		<label for="pageURL">Page URL</label>
-		<input type="text" value="" id="pageURL" placeholder="Insert URL" />
+		<label for="PFpageURL">Page URL</label>
+		<input type="text" value="" id="PFpageURL" placeholder="Insert URL" />
 	</p>
 	<p>
-		<label for="pageTitle">Title</label>
-		<input type="text" value="" id="pageTitle" placeholder="Article title" />
+		<label for="PFpageTitle">Title</label>
+		<input type="text" value="" id="PFpageTitle" placeholder="Article title" />
 	</p>
 	<p>
-		<label for="pageDesc">Description</label>
-		<textarea type="text" id="pageDesc" value="" placeholder="(Optional, but great!!)"></textarea>
+		<label for="PFpageDesc">Description</label>
+		<textarea type="text" id="PFpageDesc" value="" placeholder="(Optional, but great!!)"></textarea>
 	</p>
 	<p>
-		<label for="pageImage">Image URL</label>
-		<input type="text"  value="" id="pageImage" placeholder="Insert largest photo URL" />
+		<label for="PFpageImage">Image URL</label>
+		<input type="text"  value="" id="PFpageImage" placeholder="Insert largest photo URL" />
 	</p>
 	<p>
-		<label for="pageSource">Source</label>
-		<input type="text" value="" id="pageSource" placeholder="e.g cnn.com" />
+		<label for="PFpageSource">Source</label>
+		<input type="text" value="" id="PFpageSource" placeholder="e.g cnn.com" />
 	</p>
-	<input type="button" id="sendForm" value="Send" /> or <a href="#" id="PFclose">cancel</a>
+	<a href="#" id="PFsendForm">Send</a> or <a href="#" id="PFclose">cancel</a>
 
 </div>
