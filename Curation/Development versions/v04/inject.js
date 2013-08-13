@@ -10,20 +10,20 @@ if (!String.prototype.format) {
   };
 }
 
-if ($('#curateTab').length == 0 ){
+if ($('#PFcurateTab').length == 0 ){
 	$.get(chrome.extension.getURL('curate.html'), function(data) {	
-		$("<div></div>").attr('id','curateTab').html(data).appendTo('body');
+		$(data).appendTo('body');
 		populate(document.location.href,document.title,$('meta[name=description]').attr("content"));
 		$('#PFclose').click(function(e){
 			e.preventDefault();
-			$('#curateTab').remove();
+			$('#PFcurateTab').remove();
 		});
 		$('#sendForm').click(function(){
-			validateFields($("#curateTab input"));
+			validateFields($("#PFcurateTab input"));
 		});	
 	});
 } else {
-	$('#curateTab').remove();
+	$('#PFcurateTab').remove();
 }
 
 
@@ -60,7 +60,7 @@ function sendKey(){
 		xhr.onreadystatechange = function() {			
   		if (xhr.readyState == 4) { 
   			console.log(xhr.responseText);
-  			$('#curateTab').remove();
+  			$('#PFcurateTab').remove();
   		}
 	}
 	xhr.send();

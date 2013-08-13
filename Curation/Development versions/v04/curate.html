@@ -1,5 +1,11 @@
 <style>
-	#curateTab {
+	@charset "UTF-8";
+#PFcurateTab div, #PFcurateTab span,#PFcurateTab h1, #PFcurateTab h2, #PFcurateTab h3, #PFcurateTab p, #PFcurateTab a, #PFcurateTab strong,#PFcurateTab b, #PFcurateTab u, #PFcurateTab i, #PFcurateTab ol, #PFcurateTab ul, #PFcurateTab li,#PFcurateTab fieldset, #PFcurateTab form, #PFcurateTab label {	margin: 0;	padding: 0;	border: 0;	font-size: 100%;	font: inherit;	vertical-align: baseline;width: auto;height: auto;}
+#PFcurateTab ol, #PFcurateTab ul {	list-style: none;}
+
+
+
+	#PFcurateTab {
 		position:fixed;
 		text-align: left;
 		direction: ltr;
@@ -15,61 +21,65 @@
 		font-family: arial, sans-serif;
 		font-size: 12px;
 	}
-	#curateTab input[type=text], #curateTab textarea {
+	#PFcurateTab input[type=text], #PFcurateTab textarea {
 		width: 390px;
 		padding: 2px;
 		display: block;
 	}
-	#curateTab .comment {
+	#PFcurateTab .comment {
 		font-size: 12px;
 		color: #666;
 	}
-	#curateTab p {
+	#PFcurateTab p {
 		margin-bottom: 10px;
 	}
-	.inputError{
+	#PFcurateTab .inputError{
 		border: 2px solid red;
 	}
-	label.inputError{
+	#PFcurateTab label.inputError{
 		font-weight:bold;
 		color:red;
 		border:0;
 	}
-	h2 {
+	#PFcurateTab h2 {
 		margin-bottom: 10px;
+		font-weight: bold;
+		font-size: 15px;
 	}
 </style>
 
-<p>
-	<h2>Categories</h2>
-		<input type="checkbox" name="category" class="CT_checkbox" id="geeky" value="geeky" /> <label for="geeky">Geeky</label>
-		<input type="checkbox" name="category" class="CT_checkbox" id="intelectual" value="intelectual" /> <label for="intelectual">Intelectual</label>
-		<input type="checkbox" name="category" class="CT_checkbox" id="music" value="music" /> <label for="music">Musicphile</label>
-		<input type="checkbox" name="category" class="CT_checkbox" id="food" value="food" /> <label for="food">Foodie</label>
-		<input type="checkbox" name="category" class="CT_checkbox" id="art" value="art" /> <label for="art">Artsy</label>
-		<input type="checkbox" name="category" class="CT_checkbox" id="cool" value="cool" /> <label for="cool">Cool</label>
-		<input type="checkbox" name="category" class="CT_checkbox" id="fashion" value="fashion" /> <label for="fashion">Fashionable</label>
-</p>
-<h2>Details</h2>
-<p>
-	<label for="pageURL">Page URL</label>
-	<input type="text" value="" id="pageURL" placeholder="Insert URL" />
-</p>
-<p>
-	<label for="pageTitle">Title</label>
-	<input type="text" value="" id="pageTitle" placeholder="Article title" />
-</p>
-<p>
-	<label for="pageDesc">Description</label>
-	<textarea type="text" id="pageDesc" value="" placeholder="(Optional, but great!!)"></textarea>
-</p>
-<p>
-	<label for="pageImage">Image URL</label>
-	<input type="text"  value="" id="pageImage" placeholder="Insert largest photo URL" />
-</p>
-<p>
-	<label for="pageSource">Source</label>
-	<input type="text" value="" id="pageSource" placeholder="e.g cnn.com" />
-</p>
-<input type="button" id="sendForm" value="Send" /> or <a href="#" id="PFclose">cancel</a>
+<div id="PFcurateTab">
+	<p>
+		<h2>Categories</h2>
+			<input type="checkbox" name="category" class="CT_checkbox" id="geeky" value="geeky" /> <label for="geeky">Geeky</label>
+			<input type="checkbox" name="category" class="CT_checkbox" id="intelectual" value="intelectual" /> <label for="intelectual">Intelectual</label>
+			<input type="checkbox" name="category" class="CT_checkbox" id="music" value="music" /> <label for="music">Musicphile</label>
+			<input type="checkbox" name="category" class="CT_checkbox" id="food" value="food" /> <label for="food">Foodie</label>
+			<input type="checkbox" name="category" class="CT_checkbox" id="art" value="art" /> <label for="art">Artsy</label>
+			<input type="checkbox" name="category" class="CT_checkbox" id="cool" value="cool" /> <label for="cool">Cool</label>
+			<input type="checkbox" name="category" class="CT_checkbox" id="fashion" value="fashion" /> <label for="fashion">Fashionable</label>
+	</p>
+	<h2>Details</h2>
+	<p>
+		<label for="pageURL">Page URL</label>
+		<input type="text" value="" id="pageURL" placeholder="Insert URL" />
+	</p>
+	<p>
+		<label for="pageTitle">Title</label>
+		<input type="text" value="" id="pageTitle" placeholder="Article title" />
+	</p>
+	<p>
+		<label for="pageDesc">Description</label>
+		<textarea type="text" id="pageDesc" value="" placeholder="(Optional, but great!!)"></textarea>
+	</p>
+	<p>
+		<label for="pageImage">Image URL</label>
+		<input type="text"  value="" id="pageImage" placeholder="Insert largest photo URL" />
+	</p>
+	<p>
+		<label for="pageSource">Source</label>
+		<input type="text" value="" id="pageSource" placeholder="e.g cnn.com" />
+	</p>
+	<input type="button" id="sendForm" value="Send" /> or <a href="#" id="PFclose">cancel</a>
 
+</div>
