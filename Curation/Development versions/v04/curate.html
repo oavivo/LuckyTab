@@ -18,13 +18,40 @@
 		padding: 10px;
 		-webkit-box-shadow: -5px 5px 10px rgba(0,0,0,.35);
 		z-index: 9999999999999;
-		font-family: arial, sans-serif;
+		font-family: "Lucida Grande", sans-serif, arial;
 		font-size: 12px;
+		color:#666;
 	}
-	#PFcurateTab input[type=text], #PFcurateTab textarea {
+	#PFcurateTab .topHeader{
+		height:50px;
+		background-color: #bf5656;
+	}
+	#PFcurateTab .pfHeader{
+		background-image:url("pf-logo-header.png");
+		background-repeat:no-repeat;
+		height:50px;
+		padding-left:50px;
+		font-family:georgia;
+		color:#ffe6e6;
+		font-weight:300;
+		font-size:16px;
+		line-height:50px;
+	}
+	#PFcurateTab input[type=text]{
 		width: 390px;
-		padding: 2px;
+		padding: 4px;
 		display: block;
+		height:28px;
+		border:1px solid #ccc;
+		margin-top:5px;
+	}
+	#PFcurateTab textarea {
+		width: 390px;
+		padding: 4px;
+		display: block;
+		height:58px;
+		border:1px solid #ccc;
+		margin-top:5px;
 	}
 	#PFcurateTab .comment {
 		font-size: 12px;
@@ -42,24 +69,46 @@
 		border:0;
 	}
 	#PFcurateTab h2 {
-		margin-bottom: 10px;
+		font-family:Georgia, "Times New Roman", Times, serif;
+		padding-top:8px;
+		padding-bottom:5px;
+		margin-bottom: 13px;
 		font-weight: bold;
-		font-size: 15px;
+		font-size: 14px;
+		font-style:italic;
+		color:#333;
+		border-bottom:1px solid #ccc;
+	}
+	#PFcurateTab .catCheck{
+		display:block;
+		width:98px;
+		float:left;
+	}
+	#PFcurateTab .catCheck.last{
+		display:block;
+		width:100px;
+	}
+	#PFcurateTab .clearFix{
+		clear:both;
 	}
 </style>
 
 <div id="PFcurateTab">
+    <div class="topHeader">
+        <div class="pfHeader">poshfeed Curator</div>
+    </div>
 	<p>
-		<h2>Categories</h2>
-			<input type="checkbox" name="category" class="CT_checkbox" id="geeky" value="geeky" /> <label for="geeky">Geeky</label>
-			<input type="checkbox" name="category" class="CT_checkbox" id="intelectual" value="intelectual" /> <label for="intelectual">Intelectual</label>
-			<input type="checkbox" name="category" class="CT_checkbox" id="music" value="music" /> <label for="music">Musicphile</label>
-			<input type="checkbox" name="category" class="CT_checkbox" id="food" value="food" /> <label for="food">Foodie</label>
-			<input type="checkbox" name="category" class="CT_checkbox" id="art" value="art" /> <label for="art">Artsy</label>
-			<input type="checkbox" name="category" class="CT_checkbox" id="cool" value="cool" /> <label for="cool">Cool</label>
-			<input type="checkbox" name="category" class="CT_checkbox" id="fashion" value="fashion" /> <label for="fashion">Fashionable</label>
+		<h2>Choose categories</h2>
+			<span class="catCheck"><input type="checkbox" name="category" class="CT_checkbox" id="geeky" value="geeky" /> <label for="geeky">Geeky</label></span>
+			<span class="catCheck"><input type="checkbox" name="category" class="CT_checkbox" id="intelectual" value="intelectual" /> <label for="intelectual">Intelectual</label></span>
+			<span class="catCheck"><input type="checkbox" name="category" class="CT_checkbox" id="music" value="music" /> <label for="music">Musicphile</label></span>
+			<span class="catCheck"><input type="checkbox" name="category" class="CT_checkbox" id="food" value="food" /> <label for="food">Foodie</label></span><br />
+			<span class="catCheck"><input type="checkbox" name="category" class="CT_checkbox" id="art" value="art" /> <label for="art">Artsy</label></span>
+			<span class="catCheck"><input type="checkbox" name="category" class="CT_checkbox" id="cool" value="cool" /> <label for="cool">Cool</label></span>
+			<span class="catCheck last"><input type="checkbox" name="category" class="CT_checkbox" id="fashion" value="fashion" /> <label for="fashion">Fashionable</label></span>
+            <div class="clearFix"></div>
 	</p>
-	<h2>Details</h2>
+	<h2>Content details</h2>
 	<p>
 		<label for="pageURL">Page URL</label>
 		<input type="text" value="" id="pageURL" placeholder="Insert URL" />
