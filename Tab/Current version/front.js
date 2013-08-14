@@ -10,13 +10,27 @@ getTopSites(function(url){
 });
 
 function fireClickEvent(redirectURL){
+	value = window.returnedJson;
+	
+    var title = encodeURIComponent(value.title.replace(/\"/g,'%22'));
+    var desc = encodeURIComponent(value.desc.replace(/\"/g,'\%22'));
+    var url = encodeURIComponent(value.url.replace(/\"/g,'%22'));
+    var source = encodeURIComponent(value.source.replace(/\"/g,'%22'));
+    var image = encodeURIComponent(value.image.replace(/\"/g,'%22'));
+    var category = encodeURIComponent(value.category.replace(/\"/g,'%22'))
+    
+    var sendUrl = 'http://poshfeed.com/addClickStat?value="title":"{0}","desc":"{1}","url":"{2}","source":"{3}","image":"{4}","category":"{5}"';
+    
+    sendUrl = sendUrl.format(title,desc,url,source,image,category);
+	
+	
 	var eventXHR = new XMLHttpRequest();
-		eventXHR.open("GET", "http://82.196.3.219/addClickStat", true);
+		eventXHR.open("GET", sendUrl, true);
 		eventXHR.onreadystatechange = function() {
 			if (eventXHR.readyState == 4) {
 				console.log(xhr.responseText);
 			}
-		}	
+		}
 	eventXHR.send();
 	setTimeout(function(){window.location.href = redirectURL},200);
 }
