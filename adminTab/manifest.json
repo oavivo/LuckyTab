@@ -1,0 +1,22 @@
+{
+	"name": "Poshfeed admin tab",
+	"version": "0.1",
+	"description": "Admin tab for poshFeed",
+	"homepage_url": "http://www.poshfeed.com",
+	"chrome_url_overrides": {
+		"newtab": "front.html"
+	},
+	"icons": { 
+		"16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+    },
+	"permissions": [
+		"topSites",
+		"chrome://favicon/",		
+		"http://poshfeed.com/",
+		"storage"
+	],
+	"content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
+	"manifest_version": 2	
+}
