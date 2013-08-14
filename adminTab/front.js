@@ -103,32 +103,34 @@ function getReviewItem(cats){
     var reviewXHR = new XMLHttpRequest();
     reviewXHR.open("GET", "http://poshfeed.com/getKeyForReview", true);
     reviewXHR.onreadystatechange = function() {
-        if (reviewXHR.readyState == 4 && reviewXHR.responseText != "") {
-            var responseObj = JSON.parse(reviewXHR.responseText);
-            window.returnedJson = responseObj;
-            $("body").css("background-image","url("+responseObj.image+")");
-            $("#pageTitle").html(responseObj.title).attr("href",responseObj.url).css("display","block").click(function(e){
-                e.preventDefault();
-                fireClickEvent(responseObj.url);
-            });
-            if (responseObj.desc) {$("#pageDesc").html(responseObj.desc).attr("href",responseObj.url).css("display","block").click(function(e){
-                e.preventDefault();
-                fireClickEvent(responseObj.url);
-            });
-            } //show only if description available
-            $("#readPage").attr("href",responseObj.url).css("display","inline").click(function(e){
-                e.preventDefault();
-                fireClickEvent(responseObj.url);
-            });
-            //var catDisplayName = $.inArray('food', PFcategoryList) > -1; // left this in the middle
-            //console.log(catDisplayName);
-            $("#pageSource").html("From: "+responseObj.source).css("display","");
-            $("#adminJsonDisplay").html(reviewXHR.responseText);
-            $("#approveArticle").one("click",function(){approveItem(reviewXHR.responseText)});
-            $("#declineArticle").one("click",function(){deleteItem()});
-        }else{
-            getContent(cats);
-        }
+        if (reviewXHR.readyState == 4) {
+			if(reviewXHR.responseText != ""){
+				var responseObj = JSON.parse(reviewXHR.responseText);
+				window.returnedJson = responseObj;
+				$("body").css("background-image","url("+responseObj.image+")");
+				$("#pageTitle").html(responseObj.title).attr("href",responseObj.url).css("display","block").click(function(e){
+					e.preventDefault();
+					fireClickEvent(responseObj.url);
+				});
+				if (responseObj.desc) {$("#pageDesc").html(responseObj.desc).attr("href",responseObj.url).css("display","block").click(function(e){
+					e.preventDefault();
+					fireClickEvent(responseObj.url);
+				});
+				} //show only if description available
+				$("#readPage").attr("href",responseObj.url).css("display","inline").click(function(e){
+					e.preventDefault();
+					fireClickEvent(responseObj.url);
+				});
+				//var catDisplayName = $.inArray('food', PFcategoryList) > -1; // left this in the middle
+				//console.log(catDisplayName);
+				$("#pageSource").html("From: "+responseObj.source).css("display","");
+				$("#adminJsonDisplay").html(reviewXHR.responseText).focus(function(){$(".adminButtons").addClass("noOpacity")}).blur(function(){$(".adminButtons").removeClass("noOpacity")});
+				$("#approveArticle").one("click",function(){approveItem(reviewXHR.responseText)});
+				$("#declineArticle").one("click",function(){deleteItem()});
+			}else{
+				getContent(cats);
+			}
+		}
     }
     reviewXHR.send();
 }

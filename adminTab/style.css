@@ -257,7 +257,7 @@ body#options {
 #adminStrip{
     position:absolute;
     width:720px;
-    bottom: 45px;
+    bottom: 64px;
     height: 180px;
     left:33%;
 }
@@ -267,8 +267,7 @@ body#options {
     border:2px solid white;
     color:white;
     padding:10px;
-    width:500px;
-    bottom: 45px;
+    width:500px;    
     height: 180px;
     float:left;
     opacity:0.4;
@@ -291,4 +290,7 @@ body#options {
 }
 .adminButtons#declineArticle{
     background:red;
+}
+.adminButtons.noOpacity{
+	opacity:1;
 }
