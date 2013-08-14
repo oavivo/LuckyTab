@@ -260,6 +260,7 @@ body#options {
     bottom: 64px;
     height: 180px;
     left:33%;
+    display:none;
 }
 
 #adminJsonDisplay{

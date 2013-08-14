@@ -42,6 +42,8 @@ function deleteItem(){
         }
     }
     deleteXHR.send();
+    $("#adminStrip").css("display","none");
+    
 }
 
 
@@ -104,7 +106,8 @@ function getReviewItem(cats){
     reviewXHR.open("GET", "http://poshfeed.com/getKeyForReview", true);
     reviewXHR.onreadystatechange = function() {
         if (reviewXHR.readyState == 4) {
-			if(reviewXHR.responseText != ""){
+			if(reviewXHR.responseText != "" && reviewXHR.responseText != "null"){
+				$("#adminStrip").css("display","block");
 				var responseObj = JSON.parse(reviewXHR.responseText);
 				window.returnedJson = responseObj;
 				$("body").css("background-image","url("+responseObj.image+")");
