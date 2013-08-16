@@ -60,12 +60,18 @@ function validateContactForm(){
 $("#sendFormButton").click(validateContactForm);
 window.formHTML = $("#contactForm").html();
 $(".appStoreLink").click(function(e){	
+	e.preventDefault();		
 	// Only apply inline install functionality to Chrome 15 and above
 	var chromeVersion = window.navigator.userAgent.match(/Chrome\/([0-9]*)/);	
-	if(chromeVersion != null && parseInt(chromeVersion[1]) > 15){
-		e.preventDefault();
-		chrome.webstore.install("",function(){},function(){
-			document.location.href = "https://chrome.google.com/webstore/detail/poshfeed/aimbgnciobahnpjegjhidihgoaipdabm";
+	if(chromeVersion != null && parseInt(chromeVersion[1]) > 15){		
+		chrome.webstore.install("",function(){},function(err){
+			//On error:			
+			// If the user canceled the installation, keep them on the page, else redirect to our chromestore page
+			if(err != "User cancelled install"){
+				document.location.href = "https://chrome.google.com/webstore/detail/poshfeed/aimbgnciobahnpjegjhidihgoaipdabm";
+			}
 		});
+	}else{
+		document.location.href = "https://chrome.google.com/webstore/detail/poshfeed/aimbgnciobahnpjegjhidihgoaipdabm";
 	}
 });
