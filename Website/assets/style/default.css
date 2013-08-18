@@ -82,19 +82,19 @@ h4{
 	text-decoration: none;
 	font-size:18px;
 	font-weight:800;
+	letter-spacing:-0.05em;
 	text-shadow:0 1px 0 #c99852;
-	line-height:70px;
-	padding:0 26px 0 64px;
-	background-color: #ecc56b;
-	border: solid 1px #af6928;
-	background-image: -webkit-linear-gradient(bottom, #e9b356, #ecc56b);
-	background-image: -moz-linear-gradient(bottom, #e9b356, #ecc56b);
-	background-image: -o-linear-gradient(bottom, #e9b356, #ecc56b);
-	background-image: -ms-linear-gradient(bottom, #e9b356, #ecc56b);
-	background-image: linear-gradient(to top, #e9b356, #ecc56b);
+	line-height:66px;
+	padding:0 24px 0 53px;
+	background-color: #e9b356;
+	background-image: -webkit-linear-gradient(bottom, #dea747, #e9b356);
+	background-image: -moz-linear-gradient(bottom, #dea747, #e9b356);
+	background-image: -o-linear-gradient(bottom, #dea747, #e9b356);
+	background-image: -ms-linear-gradient(bottom, #dea747, #e9b356);
+	background-image: linear-gradient(to top, #dea747, #e9b356);
 	background-image:url(../images/bg-add-btn.png);
 	background-repeat:no-repeat;
-	height:70px;
+	height:66px;
 	color:#fff8e9;
 	box-shadow:0 1px 10px rgba(0,0,0,.3);
 	-moz-box-shadow:0 1px 10px rgba(0,0,0,.3);
@@ -104,7 +104,7 @@ h4{
 	-webkit-transition:.2s ease-in;  
 }
 .topContent a:hover{
-	background-color:#e9b356;
+	background-color:#dea747;
 	color:#fff;
 	box-shadow:0 1px 20px rgba(0,0,0,.8);
 	-moz-box-shadow:0 1px 20px rgba(0,0,0,.8);
