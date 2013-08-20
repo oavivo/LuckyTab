@@ -12,19 +12,28 @@
 </head>
 <body>
 <div id="container">
-	<div class="navArea">
-    	<div id="logo"></div>
+<!--
+    <div class="videoLayer">
+       	<a class="closeBtn" href="#"></a>
+    	<iframe width="900" height="506" src="http://www.youtube.com/embed/zGzCtrVNcXc?autoplay=1" frameborder="0" allowfullscreen></iframe>
     </div>
+-->
 	<div class="topContent">
-		<h1>Amazing content delivered to your Chrome start page</h1>
-        <p>Get something inspiring from around the web every time you open up a new tab</p>
-        <a class="appStoreLink" href="https://chrome.google.com/webstore/detail/poshfeed/aimbgnciobahnpjegjhidihgoaipdabm">ADD TO CHROME</a>
+        <div class="navArea">
+            <div id="logo"></div>
+        </div>
+    	<div class="mainMessage">
+            <h1>Get Something Inspiring With Every New Tab</h1>
+            <p>Amazing content, served fresh every time you launch Chrome, or open up a new tab.</p>
+            <div class="watchVdo"></div>
+            <a class="appStoreLink" href="https://chrome.google.com/webstore/detail/poshfeed/aimbgnciobahnpjegjhidihgoaipdabm">Add to Chrome</a>
+        </div>
 	</div>
     <div class="featurama">
     	<div class="feature first">
         	<div class="icon"></div>
             <h2>Professionaly Curated</h2>
-            <p>Be surprised with every new tab, get hand-picked content from our professional editors.</p>
+            <p>Be surprised with every new tab, get hand-picked content from our professional curators.</p>
         </div>
     	<div class="feature second">
         	<div class="icon"></div>
@@ -96,7 +105,16 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/main.js"></script>
-
+<script type="text/javascript">
+	var top_header = '';
+	$(document).ready(function(){
+	  top_header = $('.topContent');
+	});
+	$(window).scroll(function () {
+	  var st = $(window).scrollTop();
+	  top_header.css({'background-position':"center "+(st*.5)+"px"});
+	});
+</script>
 <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-42937833-1']);
