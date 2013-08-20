@@ -108,9 +108,11 @@ function ytStateChanged(event) {
 }
 
 function openVideoLayer(){	
-	$(".videoLayer").css("display","block");
 	player.seekTo("0");	
-	player.playVideo();
+	player.playVideo();	
+	$(".videoLayer").css("display","block");	
+	
+	
 }
 
 function closeVideoLayer(){
@@ -118,8 +120,8 @@ function closeVideoLayer(){
 	$(".videoLayer").css("display","none");
 }
 
-
 function stopVideo() {	
+    player.seekTo("0");	
     player.stopVideo();
 }
 
