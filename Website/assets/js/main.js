@@ -90,9 +90,20 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
   
 var player;
-function onYouTubeIframeAPIReady() {
+function onYouTubeIframeAPIReady() {	
 	  player = new YT.Player('pf_vid_player', {		  
-		    events: {			      
+		    playerVars: {	'controls':0,
+		    				'enablejsapi':1,
+		    				'modestbranding':1,
+		    				'showinfo':0,
+		    				'iv_load_policy':3,
+		    				'wmode':'transparent',
+		    				'origin':'http://poshfeed.com'		    				
+		    			},
+		    height: '506',
+         	width: '900',
+         	videoId: 'ApOF2EIDd8A',
+		    events: {   	  			      
 			      'onStateChange': ytStateChanged
 		    }
 	  });
@@ -100,30 +111,27 @@ function onYouTubeIframeAPIReady() {
 
 
 
+
 function ytStateChanged(event) {
     if(player.getPlayerState() == 0){
     	closeVideoLayer();	
-    }
-    
+    }    
 }
 
-function openVideoLayer(){	
-	player.seekTo("0");	
-	player.playVideo();	
-	$(".videoLayer").css("display","block");	
-	
-	
+function openVideoLayer(){
+	player.setPlaybackQuality("hd720").playVideo();	
+	$(".videoLayer").css("z-index","1").animate({"opacity":"1"},500,function(){
+			
+	});
 }
 
-function closeVideoLayer(){
-	stopVideo();	
-	$(".videoLayer").css("display","none");
+function closeVideoLayer(){	
+	player.stopVideo();
+	$(".videoLayer").animate({"opacity":"0"},500,function(){		
+		$(this).css("z-index","-1");				
+	})	
 }
 
-function stopVideo() {	
-    player.seekTo("0");	
-    player.stopVideo();
-}
 
 $(".watchVdo").click(function(e){
 	openVideoLayer();	
