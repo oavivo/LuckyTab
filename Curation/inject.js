@@ -1,5 +1,3 @@
-console.log("inject injected");
-
 if (!String.prototype.format) {
   String.prototype.format = function() {
     var args = arguments;
@@ -122,7 +120,8 @@ function authorizeUser(){
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4) {
                     data = xhr.responseText;
-                    if(data[0] == "<"){
+                    dataLength = xhr.responseText.length;
+                    if(dataLength > 100){
                         window.open(oauthInitial,"poshFeedAuth","height=500,width=650,resizable=no,menubar=no,location=no");
                     }
                     if(data == "true"){
