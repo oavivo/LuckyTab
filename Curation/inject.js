@@ -1,3 +1,5 @@
+console.log("inject injected");
+
 if (!String.prototype.format) {
   String.prototype.format = function() {
     var args = arguments;
@@ -97,6 +99,7 @@ function showCurateTab(){
     }
 }
 
+
 function authorizeUser(){
     if(typeof $ == "undefined"){
         var getJQ = new XMLHttpRequest();
@@ -113,11 +116,15 @@ function authorizeUser(){
             showCurateTab();
         }else{
             var oauthURL = "https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=880521421279.apps.googleusercontent.com&redirect_uri=http://poshfeed.com/oauth2callback&scope=https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile&state=initial";
+            var oauthInitial = "https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=880521421279.apps.googleusercontent.com&redirect_uri=http://poshfeed.com/oauth2callback&scope=https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile&state=getPermissions";
             var xhr = new XMLHttpRequest();
             xhr.open("GET", oauthURL, true);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4) {
                     data = xhr.responseText;
+                    if(data[0] == "<"){
+                        window.open(oauthInitial,"poshFeedAuth","height=500,width=650,resizable=no,menubar=no,location=no");
+                    }
                     if(data == "true"){
                         chrome.storage.sync.set({'pf_auth': "true"}, function() {});
                         showCurateTab();
@@ -129,7 +136,6 @@ function authorizeUser(){
         }
     })
 }
-
 
 
 authorizeUser();
