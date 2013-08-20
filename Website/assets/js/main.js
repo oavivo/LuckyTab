@@ -126,8 +126,8 @@ function openVideoLayer(){
 }
 
 function closeVideoLayer(){	
-	player.stopVideo();
-	$(".videoLayer").animate({"opacity":"0"},500,function(){		
+	player.pauseVideo().seekTo("0");
+	$(".videoLayer").animate({"opacity":"0"},300,function(){		
 		$(this).css("z-index","-1");				
 	})	
 }
