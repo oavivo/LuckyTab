@@ -50,6 +50,7 @@ h4{
 	text-align:center;
 }
 .videoLayer{
+	display:none;
 	position:absolute;
 	top:94px;
 	width:100%;

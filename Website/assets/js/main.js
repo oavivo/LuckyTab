@@ -82,3 +82,53 @@ $(".appStoreLink").click(function(e){
 		document.location.href = "https://chrome.google.com/webstore/detail/poshfeed/aimbgnciobahnpjegjhidihgoaipdabm";
 	}
 });
+
+var tag = document.createElement('script');
+
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  
+var player;
+function onYouTubeIframeAPIReady() {
+	  player = new YT.Player('pf_vid_player', {		  
+		    events: {			      
+			      'onStateChange': ytStateChanged
+		    }
+	  });
+}
+
+
+
+function ytStateChanged(event) {
+    if(player.getPlayerState() == 0){
+    	closeVideoLayer();	
+    }
+    
+}
+
+function openVideoLayer(){	
+	$(".videoLayer").css("display","block");
+	player.seekTo("0");	
+	player.playVideo();
+}
+
+function closeVideoLayer(){
+	stopVideo();	
+	$(".videoLayer").css("display","none");
+}
+
+
+function stopVideo() {	
+    player.stopVideo();
+}
+
+$(".watchVdo").click(function(e){
+	openVideoLayer();	
+});
+
+$(".videoLayer .closeBtn").click(function(e){
+	e.preventDefault();	
+	closeVideoLayer();
+	
+})
