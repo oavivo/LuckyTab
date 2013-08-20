@@ -10,26 +10,10 @@ if (!String.prototype.format) {
   };
 }
 
-if ($('#PFcurateTab').length == 0 ){
-	$.get(chrome.extension.getURL('curate.html'), function(data) {	
-		$(data).appendTo('body');
-		populate(document.location.href,document.title,$('meta[name=description]').attr("content"));
-		$('#PFclose').click(function(e){
-			e.preventDefault();
-			$('#PFcurateTab').remove();
-		});
-		$('#PFsendForm').click(function(){
-			validateFields($("#PFcurateTab input"));
-		});	
-	});
-} else {
-	$('#PFcurateTab').remove();
-}
-
-
 function getDomain(url) {
 	return url.match(/:\/\/(www[0-9]?\.)?(.[^/:]+)/)[2];
 }
+
 function populate(url,title,descrip) {
   	$('#PFpageURL').val(url);
   	$('#PFpageSource').val(getDomain(url));
@@ -55,10 +39,10 @@ function sendKey(){
     var xhr = new XMLHttpRequest();
 		xhr.open("GET", sendUrl, true);
 		xhr.onreadystatechange = function() {			
-  		if (xhr.readyState == 4) { 
-  			console.log(xhr.responseText);
-  			$('#PFcurateTab').remove();
-  		}
+            if (xhr.readyState == 4) {
+                console.log(xhr.responseText);
+                $('#PFcurateTab').remove();
+            }
 	}
 	xhr.send();
 }
@@ -93,3 +77,59 @@ function validateFields(fieldsArray){
 		sendKey();
 	}
 }
+
+function showCurateTab(){
+
+    if ($('#PFcurateTab').length == 0 ){
+        $.get(chrome.extension.getURL('curate.html'), function(data) {
+            $(data).appendTo('body');
+            populate(document.location.href,document.title,$('meta[name=description]').attr("content"));
+            $('#PFclose').click(function(e){
+                e.preventDefault();
+                $('#PFcurateTab').remove();
+            });
+            $('#PFsendForm').click(function(){
+                validateFields($("#PFcurateTab input"));
+            });
+        });
+    } else {
+        $('#PFcurateTab').remove();
+    }
+}
+
+function authorizeUser(){
+    if(typeof $ == "undefined"){
+        var getJQ = new XMLHttpRequest();
+        getJQ.open("GET",chrome.extension.getURL('jquery.js'),true);
+        getJQ.onreadystatechange = function(){
+            if (getJQ.readyState == 4) {
+                console.log(getJQ.responseText);
+            }
+        }
+    }
+
+    chrome.storage.sync.get('pf_auth', function(data){
+        if(typeof data != "undefined" && data.pf_auth != "undefined" && data.pf_auth == "true"){
+            showCurateTab();
+        }else{
+            var oauthURL = "https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=880521421279.apps.googleusercontent.com&redirect_uri=http://poshfeed.com/oauth2callback&scope=https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile&state=initial";
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", oauthURL, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    data = xhr.responseText;
+                    if(data == "true"){
+                        chrome.storage.sync.set({'pf_auth': "true"}, function() {});
+                        showCurateTab();
+
+                    }
+                }
+            }
+            xhr.send();
+        }
+    })
+}
+
+
+
+authorizeUser();

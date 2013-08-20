@@ -1,11 +1,8 @@
 {
 	"name": "Poshfeed Curator",
-	"version": "0.5",	
+	"version": "0.6",
 	"permissions": [
-		"tabs", "http://*/*"
-	],
-	"permissions": [
-		"activeTab"
+		"activeTab","storage","tabs", "http://*/*"
 	],
 	"icons": { 
 		"16": "icon16.png",
