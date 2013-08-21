@@ -22,29 +22,35 @@ function populate(url,title,descrip) {
 }
 
 function sendKey(){
-    var sendUrl = 'http://poshfeed.com/setKey?value="title":"{0}","desc":"{1}","url":"{2}","source":"{3}","image":"{4}","category":"{5}"';
+    var sendUrl = 'http://poshfeed.com/setKeyForReview?authKey={0}&value="title":"{1}","desc":"{2}","url":"{3}","source":"{4}","image":"{5}","category":"{6}"';
 	var title = encodeURIComponent($("#PFpageTitle").val().replace(/\"/g,'%22'));
 	var desc = encodeURIComponent($("#PFpageDesc").val().replace(/\"/g,'\%22'));
 	var url = encodeURIComponent($("#PFpageURL").val().replace(/\"/g,'%22'));
 	var source = encodeURIComponent($("#PFpageSource").val().replace(/\"/g,'%22'));
 	var image = encodeURIComponent($("#PFpageImage").val().replace(/\"/g,'%22'));
+    var authKey;
+
 
     var categories = $('.CT_checkbox:checkbox:checked').map(function(){
         return this.value;
     }).get();
 
+    chrome.storage.sync.get('pf_auth', function(data){
+        authKey = data.pf_auth;
+        sendUrl = sendUrl.format(authKey,title,desc,url,source,image,categories);
 
-    sendUrl = sendUrl.format(title,desc,url,source,image,categories);
+        console.log(sendUrl);
 
-    var xhr = new XMLHttpRequest();
-		xhr.open("GET", sendUrl, true);
-		xhr.onreadystatechange = function() {			
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", sendUrl, true);
+        xhr.onreadystatechange = function() {
             if (xhr.readyState == 4) {
                 console.log(xhr.responseText);
                 $('#PFcurateTab').remove();
             }
-	}
-	xhr.send();
+        };
+        xhr.send();
+    });
 }
 
 function restoreBorder(el){
@@ -110,10 +116,10 @@ function authorizeUser(){
     }
 
     chrome.storage.sync.get('pf_auth', function(data){
-        if(typeof data != "undefined" && data.pf_auth != "undefined" && data.pf_auth == "true"){
+        if(typeof data != "undefined" && typeof data.pf_auth != "undefined"){
             showCurateTab();
         }else{
-            var oauthURL = "https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=880521421279.apps.googleusercontent.com&redirect_uri=http://poshfeed.com/oauth2callback&scope=https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile&state=initial";
+            var oauthURL = "https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=880521421279.apps.googleusercontent.com&redirect_uri=http://poshfeed.com/oauth2callback&scope=https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile&state="+Math.floor(Math.random()*1e16);
             var oauthInitial = "https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=880521421279.apps.googleusercontent.com&redirect_uri=http://poshfeed.com/oauth2callback&scope=https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile&state=getPermissions";
             var xhr = new XMLHttpRequest();
             xhr.open("GET", oauthURL, true);
@@ -123,11 +129,11 @@ function authorizeUser(){
                     dataLength = xhr.responseText.length;
                     if(dataLength > 100){
                         window.open(oauthInitial,"poshFeedAuth","height=500,width=650,resizable=no,menubar=no,location=no");
+                        return;
                     }
-                    if(data == "true"){
-                        chrome.storage.sync.set({'pf_auth': "true"}, function() {});
+                    if(data != "unknown_user"){
+                        chrome.storage.sync.set({'pf_auth': data}, function() {});
                         showCurateTab();
-
                     }
                 }
             }
