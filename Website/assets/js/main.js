@@ -57,37 +57,53 @@ function validateContactForm(){
 	}
 	
 }
+// Start up function
+(function initialScripts(){
+	$("#contactForm").css("height",$("body").height());
+	
+	var top_header = '';
+	$(document).ready(function(){
+	  	top_header = $('.topContent');
+	});
+	$(window).scroll(function () {
+	  	var st = $(window).scrollTop();
+	  	top_header.css({'background-position':"center "+(st*.5)+"px"});
+	});
+		
+	$("#sendFormButton").click(validateContactForm);
+	window.formHTML = $("#contactForm").html();
+	
+	$(".appStoreLink").click(function(e){	
+		e.preventDefault();	
+		_gaq.push(['_trackEvent','downloadLinkClicked','inlineInstall','initialClick']);
+		// Only apply inline install functionality to Chrome 15 and above
+		var chromeVersion = window.navigator.userAgent.match(/Chrome\/([0-9]*)/);	
+		if(chromeVersion != null && parseInt(chromeVersion[1]) > 15){		
+			chrome.webstore.install("",function(){			
+				_gaq.push(['_trackEvent','downloadLinkClicked','inlineInstall','success'])		
+			},function(err){
+				//On error:	If the user canceled the installation, keep them on the page, else redirect to our chromestore page						
+				if(err != "User cancelled install"){
+					_gaq.push(['_trackEvent','downloadLinkClicked','inlineInstall','fail_'+err]);
+					document.location.href = "https://chrome.google.com/webstore/detail/poshfeed/aimbgnciobahnpjegjhidihgoaipdabm";
+				}else{
+					_gaq.push(['_trackEvent','downloadLinkClicked','inlineInstall','fail_userAborted'])
+				}
+			});
+		}else{
+			document.location.href = "https://chrome.google.com/webstore/detail/poshfeed/aimbgnciobahnpjegjhidihgoaipdabm";
+		}
+	});
+})();
 
 
-$("#sendFormButton").click(validateContactForm);
-window.formHTML = $("#contactForm").html();
-$(".appStoreLink").click(function(e){	
-	e.preventDefault();	
-	_gaq.push(['_trackEvent','downloadLinkClicked','inlineInstall','initialClick']);
-	// Only apply inline install functionality to Chrome 15 and above
-	var chromeVersion = window.navigator.userAgent.match(/Chrome\/([0-9]*)/);	
-	if(chromeVersion != null && parseInt(chromeVersion[1]) > 15){		
-		chrome.webstore.install("",function(){			
-			_gaq.push(['_trackEvent','downloadLinkClicked','inlineInstall','success'])		
-		},function(err){
-			//On error:	If the user canceled the installation, keep them on the page, else redirect to our chromestore page						
-			if(err != "User cancelled install"){
-				_gaq.push(['_trackEvent','downloadLinkClicked','inlineInstall','fail_'+err]);
-				document.location.href = "https://chrome.google.com/webstore/detail/poshfeed/aimbgnciobahnpjegjhidihgoaipdabm";
-			}else{
-				_gaq.push(['_trackEvent','downloadLinkClicked','inlineInstall','fail_userAborted'])
-			}
-		});
-	}else{
-		document.location.href = "https://chrome.google.com/webstore/detail/poshfeed/aimbgnciobahnpjegjhidihgoaipdabm";
-	}
-});
-
-var tag = document.createElement('script');
-
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+(function injectYTApit(){
+	var tag = document.createElement('script');
+	
+	tag.src = "https://www.youtube.com/iframe_api";
+	var firstScriptTag = document.getElementsByTagName('script')[0];
+	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+})();
   
 var player;
 function onYouTubeIframeAPIReady() {	
