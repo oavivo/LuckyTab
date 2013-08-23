@@ -156,6 +156,7 @@ h4{
 	width:76px;
 	margin-bottom:80px;
 	cursor:pointer;
+	opacity:0;
 }
 .watchVdo:hover{
 	background-position-y:-76px;

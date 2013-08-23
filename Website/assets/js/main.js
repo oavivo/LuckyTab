@@ -123,6 +123,11 @@ function onYouTubeIframeAPIReady() {
 			      'onStateChange': ytStateChanged
 		    }
 	  });
+	  setTimeout(function(){
+		  $(".watchVdo").animate({"opacity":"1"}).click(function(e){	  	
+			openVideoLayer();	
+		  });
+	  },500)
 }
 
 
@@ -130,31 +135,28 @@ function onYouTubeIframeAPIReady() {
 
 function ytStateChanged(event) {
     if(player.getPlayerState() == 0){
-    	closeVideoLayer();	
+    	closeVideoLayer();
+    	_gaq.push(['_trackEvent','introVideo','playFinished']);	
     }    
 }
 
 function openVideoLayer(){
-	player.setPlaybackQuality("hd720").playVideo();	
+	player.playVideo().setPlaybackQuality("hd720");	
 	$(".videoLayer").css("z-index","1").animate({"opacity":"1"},500,function(){
 			
 	});
+	_gaq.push(['_trackEvent','introVideo','playStart']);
 }
 
 function closeVideoLayer(){	
 	player.pauseVideo().seekTo("0");
 	$(".videoLayer").animate({"opacity":"0"},300,function(){		
 		$(this).css("z-index","-1");				
-	})	
+	})
+	_gaq.push(['_trackEvent','introVideo','playPause']);	
 }
-
-
-$(".watchVdo").click(function(e){
-	openVideoLayer();	
-});
 
 $(".videoLayer .closeBtn").click(function(e){
 	e.preventDefault();	
-	closeVideoLayer();
-	
+	closeVideoLayer();	
 })

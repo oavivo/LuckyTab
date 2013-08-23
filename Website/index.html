@@ -3,12 +3,28 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Get an amazing content suggestion every time you open up a new tab on your browser. Curated by professionals, just for you. No more internet boredom, be inspired, get poshfeed.">
+
     <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/aimbgnciobahnpjegjhidihgoaipdabm">
 	<title>poshfeed is awesome</title>
     <link rel="shortcut icon" href="assets/images/favicon.ico" />
     <link href='http://fonts.googleapis.com/css?family=Merriweather:400,700,300' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
     <link href="assets/style/default.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        var fb_param = {};
+        fb_param.pixel_id = '6008297075211';
+        fb_param.value = '0.00';
+        fb_param.currency = 'ILS';
+        (function(){
+            var fpw = document.createElement('script');
+            fpw.async = true;
+            fpw.src = '//connect.facebook.net/en_US/fp.js';
+            var ref = document.getElementsByTagName('script')[0];
+            ref.parentNode.insertBefore(fpw, ref);
+        })();
+    </script>
+    <noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/offsite_event.php?id=6008297075211&amp;value=0&amp;currency=ILS" /></noscript>
+
 </head>
 <body>
 <div id="container">
@@ -106,16 +122,6 @@
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/main.js"></script>
 <script type="text/javascript">
-	var top_header = '';
-	$(document).ready(function(){
-	  top_header = $('.topContent');
-	});
-	$(window).scroll(function () {
-	  var st = $(window).scrollTop();
-	  top_header.css({'background-position':"center "+(st*.5)+"px"});
-	});
-</script>
-<script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-42937833-1']);
   _gaq.push(['_trackPageview']);
@@ -126,5 +132,6 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 </script>
+
 </body>
 </html>
