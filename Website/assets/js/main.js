@@ -149,7 +149,7 @@ function openVideoLayer(){
 }
 
 function closeVideoLayer(){	
-	player.pauseVideo().seekTo("0");
+	player.seekTo("0").pauseVideo();
 	$(".videoLayer").animate({"opacity":"0"},300,function(){		
 		$(this).css("z-index","-1");				
 	})
