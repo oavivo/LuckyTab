@@ -120,17 +120,17 @@ function onYouTubeIframeAPIReady() {
          	width: '900',
          	videoId: 'ApOF2EIDd8A',
 		    events: {   	  			      
-			      'onStateChange': ytStateChanged
+			      'onStateChange': ytStateChanged,
+				  'onReady': onPlayerReady
 		    }
-	  });
-	  setTimeout(function(){
-		  $(".watchVdo").animate({"opacity":"1"}).click(function(e){	  	
-			openVideoLayer();	
-		  });
-	  },500)
+	  }); 
 }
 
-
+ function onPlayerReady(event) {
+	$(".watchVdo").animate({"opacity":"1"}).click(function(e){	  	
+			openVideoLayer();	
+		  });        
+ }
 
 
 function ytStateChanged(event) {
