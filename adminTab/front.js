@@ -20,6 +20,10 @@ getTopSites(function(url){
 });
 
 function fireClickEvent(redirectURL){
+	/*
+	
+	--- DISABLING STATS FOR ADMIN TAB ---
+	 
 	value = window.returnedJson;
 	
     var title = encodeURIComponent(value.title.replace(/\"/g,'%22'));
@@ -43,6 +47,11 @@ function fireClickEvent(redirectURL){
 		}
 	eventXHR.send();
 	setTimeout(function(){window.location.href = redirectURL},200);
+	
+	*/
+	
+	window.location.href = redirectURL;
+	
 }
 
 
@@ -89,7 +98,7 @@ function approveItem(value){
 function getContent(cats){
     $("#adminStrip,#adminModeIndicator").remove();
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://poshfeed.com/getCategoryKey?categories="+cats, true);
+    xhr.open("GET", "http://poshfeed.com/getCategoryKey?adminMode=true&categories="+cats, true);
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
             var responseObj = JSON.parse(xhr.responseText);
@@ -173,8 +182,9 @@ chrome.storage.sync.get("categories", function(data){
     getReviewItem(data);
 });
 
+/*
+	--- DISABLING STATS FOR ADMIN TAB ---
 
-// google analytics
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-43001046-1']);
 _gaq.push(['_trackPageview']);
@@ -184,3 +194,4 @@ _gaq.push(['_trackPageview']);
   ga.src = 'https://ssl.google-analytics.com/ga.js';
   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();
+*/

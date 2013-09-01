@@ -58,16 +58,14 @@ function validateContactForm(){
 	
 }
 // Start up function
-(function initialScripts(){
+$(document).ready(function(){
 	$("#contactForm").css("height",$("body").height());
 	
-	var top_header = '';
-	$(document).ready(function(){
-	  	top_header = $('.topContent');
-	});
+	var top_header = $('.topContent');
+	
 	$(window).scroll(function () {
-	  	var st = $(window).scrollTop();
-	  	top_header.css({'background-position':"center "+(st*.5)+"px"});
+		var st = $(window).scrollTop();
+		top_header.css({'background-position':"center "+(st*.5)+"px"});
 	});
 		
 	$("#sendFormButton").click(validateContactForm);
@@ -94,7 +92,7 @@ function validateContactForm(){
 			document.location.href = "https://chrome.google.com/webstore/detail/poshfeed/aimbgnciobahnpjegjhidihgoaipdabm";
 		}
 	});
-})();
+});
 
 
 (function injectYTApit(){
@@ -142,21 +140,26 @@ function ytStateChanged(event) {
 
 function openVideoLayer(){
 	player.playVideo().setPlaybackQuality("hd720");	
-	$(".videoLayer").css("z-index","1").animate({"opacity":"1"},500,function(){
+	$(".videoLayer").css("z-index","3").animate({"opacity":"1"},500,function(){
 			
 	});
 	_gaq.push(['_trackEvent','introVideo','playStart']);
+	$(".videoLayer .closeBtn").one("click",function(e){		
+		e.preventDefault();	
+		closeVideoLayer();	
+	})
 }
 
 function closeVideoLayer(){	
 	player.seekTo("0").pauseVideo();
 	$(".videoLayer").animate({"opacity":"0"},300,function(){		
-		$(this).css("z-index","-1");				
+		$(this).css("z-index","1");				
 	})
 	_gaq.push(['_trackEvent','introVideo','playPause']);	
 }
 
 $(".videoLayer .closeBtn").click(function(e){
+	console.log("clicked");
 	e.preventDefault();	
 	closeVideoLayer();	
 })
