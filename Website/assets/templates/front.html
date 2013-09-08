@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>	
+	<meta charset="UTF-8" />
+	<title>Poshfeed: {{title}}</title>
+	<link href='http://fonts.googleapis.com/css?family=Merriweather:400,700,300,400italic' rel='stylesheet' type='text/css'>
+	<link href='../assets/templates/style.css' rel='stylesheet' type='text/css'>
+</head>
+<body id="poshfeed" style="background-image:url({{image}})">
+	<div id="container">
+		<div class="mainContent">
+			<div id="pageSource" class="source">{{source}}</div>
+			<h1><a id="pageTitle" href="#">{{title}}</a></h1><br />
+	        {{desc}}
+	        <a id="readPage" href="#" class="button">Read It!</a>
+		</div>
+	</div>	
+</body>
+<script>
+	poshFeed = {};
+	poshFeed.item = {{fullItem}};	
+</script>
+<script src="../assets/js/jquery.js"></script>
+<script src="../assets/js/webTab.js"></script>
+</html>
