@@ -195,3 +195,14 @@ _gaq.push(['_trackPageview']);
   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();
 */
+
+function reloadPage(){document.location.reload()}
+
+$(document).ready(function(){
+    $('body').bind('mousewheel', function(e){
+	    e.stopPropagation();
+        $('body').unbind('mousewheel');
+        setTimeout(reloadPage, 300)
+        //console.log(e)
+    });
+});
