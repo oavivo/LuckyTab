@@ -1,4 +1,14 @@
-
+if (!String.prototype.format) {
+    String.prototype.format = function() {
+        var args = arguments;
+        return this.replace(/{(\d+)}/g, function(match, number) {
+            return typeof args[number] != 'undefined'
+                ? args[number]
+                : match
+                ;
+        });
+    };
+}
 function getTopSites(callbackfunc) {
     chrome.topSites.get(function(url_list) {
         for (var i=0;i<url_list.length;i++) {callbackfunc(url_list[i]);}
@@ -25,7 +35,8 @@ function getContent(cats){
 	var xhr = new XMLHttpRequest();
 			xhr.open("GET", "http://poshfeed.com/getCategoryKey?categories="+cats, true);
 			xhr.onreadystatechange = function() {			
-	  		if (xhr.readyState == 4) {  			 		
+	  		if (xhr.readyState == 4) {  
+	  			window.rawPFresponse = xhr.responseText;			 		
 	    		var responseObj = JSON.parse(xhr.responseText);    		
 	    		window.returnedJson = responseObj;
 	    		$("body").css("background-image","url("+responseObj.image+")");
@@ -42,8 +53,24 @@ function getContent(cats){
 	    			e.preventDefault();
 	    			fireClickEvent(responseObj.url);    			    			
 	    		});
-				//var catDisplayName = $.inArray('food', PFcategoryList) > -1; // left this in the middle
-				//console.log(catDisplayName);
+	    		$("#sharePage").css("display","inline").click(function(e){
+	    			value = responseObj;
+	    			var sendUrl = 'http://poshfeed.com/shareURL?value="title":"{0}","desc":"{1}","url":"{2}","source":"{3}","image":"{4}","category":"{5}"';
+				    var title = encodeURIComponent(value.title.replace(/\"/g,'%22'));
+				    var desc = encodeURIComponent(value.desc.replace(/\"/g,'\%22'));
+				    var url = encodeURIComponent(value.url.replace(/\"/g,'%22'));
+				    var source = encodeURIComponent(value.source.replace(/\"/g,'%22'));
+				    var image = encodeURIComponent(value.image.replace(/\"/g,'%22'));
+				    var category = encodeURIComponent(value.category.replace(/\"/g,'%22'))
+				
+				    sendUrl = sendUrl.format(title,desc,url,source,image,category);	    			
+	    			e.preventDefault();
+	    			window.open(
+				      sendUrl, 
+				      'share-poshfeed', 
+				      'width=626,height=436'
+				    );  			    			
+	    		});
 				$("#pageSource").html("From: "+responseObj.source).css("display","");
 	  		}
 		}
