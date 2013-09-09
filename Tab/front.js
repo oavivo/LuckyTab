@@ -72,4 +72,15 @@ chrome.storage.sync.get("categories", function(data){
 });
 
 
+//reload on mousewheel
+function reloadPage(){document.location.reload()}
 
+
+//document ready
+$(document).ready(function(){
+    $('body').bind('mousewheel', function(e){
+	    e.stopPropagation();
+        $('body').unbind('mousewheel');
+        setTimeout(reloadPage, 300)
+    });
+});
