@@ -155,6 +155,18 @@ h1 a {
 	padding-left: 18px;
 	opacity: .8;
 }
+.copyrightLink {
+	line-height: 40px;
+	color: rgb(50, 50, 50);
+	text-decoration: none;
+	padding-left: 18px;
+	opacity: .5;
+	float: right;
+	font-weight: normal;
+	font-size: 9px;
+	display: inline-block;
+	margin-right: 10px;
+}
 #optionsLink:hover {
 	opacity: 1;
 }
