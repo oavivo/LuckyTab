@@ -16,7 +16,7 @@ function getTopSites(callbackfunc) {
 }
 getTopSites(function(url){
 	var thumbnailUrl = 'chrome://favicon/' + url.url;
-	$('#mostVisited ul').append("<li><a style='background:url("+thumbnailUrl+") no-repeat 2px 2px' href='"+url.url+"'>"+url.title+"</a></li>");
+	$('#mostVisited ul').append("<li><a style='background-image:url("+thumbnailUrl+")' href='"+url.url+"'>"+url.title+"</a></li>");
 });
 
 function fireClickEvent(redirectURL){
@@ -39,7 +39,7 @@ function getContent(cats){
 	  			window.rawPFresponse = xhr.responseText;			 		
 	    		var responseObj = JSON.parse(xhr.responseText);    		
 	    		window.returnedJson = responseObj;
-	    		$("body").css("background-image","url("+responseObj.image+")");
+	    		$("#megaWrapper").css("background-image","url("+responseObj.image+")");
 	    		$("#pageTitle").html(responseObj.title).attr("href",responseObj.url).css("display","block").click(function(e){
 	    			e.preventDefault();
 	    			fireClickEvent(responseObj.url);    			    			
@@ -49,11 +49,7 @@ function getContent(cats){
 	    			fireClickEvent(responseObj.url);    			    			
 	    		});	
 	    		} //show only if description available
-				$("#readPage").attr("href",responseObj.url).css("display","inline").click(function(e){
-	    			e.preventDefault();
-	    			fireClickEvent(responseObj.url);    			    			
-	    		});
-	    		$("#sharePage").css("display","inline").click(function(e){
+	    		$("#sharePage").css("display","inline-block").click(function(e){
 	    			value = responseObj;
 	    			var sendUrl = 'http://poshfeed.com/shareURL?value="title":"{0}","desc":"{1}","url":"{2}","source":"{3}","image":"{4}","category":"{5}"';
 				    var title = encodeURIComponent(value.title.replace(/\"/g,'%22'));
@@ -71,7 +67,7 @@ function getContent(cats){
 				      'width=626,height=436'
 				    );  			    			
 	    		});
-				$("#pageSource").html("From: "+responseObj.source).css("display","");
+				$("#pageSource").html(responseObj.source).css("display","");
 	  		}
 		}
 	xhr.send();
@@ -99,6 +95,58 @@ chrome.storage.sync.get("categories", function(data){
 });
 
 
+
+
+function populateCategories(){
+	for (obj in categoriesObj) {
+		var value = categoriesObj[obj];
+		$('#pfCategories').append("<li><input type='checkbox' name='category' id='"+value.id+"' value='"+value.id+"'  /> <label for='"+value.id+"'><span></span>"+value.display+"</label></li>");
+		
+	}
+	//$(categoriesObj).each(function(){
+	//	//console.log($(this)[0].display);
+	//	$('#poshOptionsContainer').append("<li><input type='checkbox' name='category' id='"+$(this)[0].id+"' value='"+$(this)[0].id+"'  /> <label for='"+$(this)[0].id+"'>"+$(this)[0].display+"</label></li>");
+	//})
+}
+
+function save_options() {
+	var checkedCats = $('input:checkbox:checked:enabled');
+	var categories = [];
+	$(checkedCats).each(function(){		
+		categories.push($(this).val());		
+	});
+	
+	chrome.storage.sync.set({'categories': categories});
+
+	$('#status').fadeIn();
+	setTimeout(function() {
+		$('#status').fadeOut();
+	}, 2000);
+	
+	
+}
+
+// Restores select box state to saved value from storage.
+function restore_options() {
+	savedCats = chrome.storage.sync.get("categories", function(data){		
+		data = $(data.categories).toArray();
+		if(data.length > 0){		
+			$(data).each(function(){
+				$('#'+this).attr('checked','checked').parent().addClass('checked');
+				
+			})
+		}else{
+			$("#poshOptionsContainer li input").each(function(){								
+				$(this).attr('checked','checked').parent().addClass('checked');				
+			})
+		}
+	})
+}
+
+
+
+
+
 //reload on mousewheel
 function reloadPage(){document.location.reload()}
 
@@ -110,4 +158,16 @@ $(document).ready(function(){
         $('body').unbind('mousewheel');
         setTimeout(reloadPage, 300)
     });
+    
+    $('#nextLink').click(reloadPage);
+    
+    $('#menuLink').click(function(){
+		$("body").toggleClass("open");
+	})
+
+
+	
+	populateCategories();
+    restore_options();
+    $('#pfCategories li input').change(save_options);
 });

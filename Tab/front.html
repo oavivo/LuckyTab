@@ -3,27 +3,48 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>New Tab</title>
-	<link href='http://fonts.googleapis.com/css?family=Merriweather:400,700,300,400italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Domine:400,700' rel='stylesheet' type='text/css'>
 	<link href='style.css' rel='stylesheet' type='text/css'>
 </head>
-<body id="poshfeed">
-	<div id="container">
-		<div class="mainContent">
-			<div id="pageSource" class="source" style="display:none"></div>
-			<h1><a id="pageTitle" href="#" style="display:none"></a></h1><br />
-	        <a href="#" id="pageDesc" style="display:none"></a><br /><br />
-	        <a id="readPage" href="#" class="button" style="display:none">Read It!</a>
-	        <a id="sharePage" href="#" class="button" style="display:none">Share It!</a>
-		</div>
-	</div>
-	<div id="mostVisited">
-		<h2>Most Visited</h2>
-		<ul></ul>		
-	</div>
-	<div id="footer">
-		<a href="http://www.poshfeed.com/" class="poshfeedLogo"></a>
-		You're getting the <span id="currentCats"></span> feed &nbsp;&nbsp;|&nbsp;&nbsp; <a href="#" id="optionsLink">Customize your poshfeed</a> <a href="http://www.poshfeed.com/copyright" target="_blank" class="copyrightLink">&copy; Copyright notice</a>
-	</div>
+<body>
+
+	<div id="menuPanel">
+        <div class="pfLogo"></div>
+        <h2>Content Preferences</h2>
+        <p>Select your favorite categories to customize your feed. We recommend to select them all.</p>
+        <ul id="pfCategories">
+            
+        </ul>
+        <h2>More</h2>
+        <ul>
+            <li><a href="http://www.poshfeed.com/">Visit poshfeed.com</a></li>
+            <li><a href="https://www.facebook.com/poshfeed">Like us on Facebook</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Report inappropriate content</a></li>
+        </ul>
+        <p class="copyright">poshfeed does not claim ownership or rights to the actual content curated and displayed both on the Google Chrome extension or on the company’s website. <a href="#">Read more</a></p>
+    </div>
+
+
+	<div id="megaWrapper">
+        <div id="container">
+            <a class="menuLink" id="menuLink" href="#"></a>
+            <a class="nextLink" id="nextLink" href="#"></a>
+            <div class="articleWrapper">
+                <h1><a id="pageTitle" href="#"></a></h1>
+                <a class="articleDesc" href="#" id="pageDesc"></a>
+                <a class="articleSource" href="#">via <span id="pageSource"></span></a>
+                <a id="sharePage" class="shareButton" href="#">Share</a>
+            </div>
+        </div>
+        
+        <div class="visitedTabs" id="mostVisited">
+            <ul>
+                
+            </ul>
+        </div>
+    </div>
 </body>
 <script src="jquery.js"></script>
 <script src="categories.js"></script>

@@ -1,7 +1,7 @@
 function populateCategories(){
 	for (obj in categoriesObj) {
 		var value = categoriesObj[obj];
-		$('#poshOptionsContainer').append("<li><input type='checkbox' name='category' id='"+value.id+"' value='"+value.id+"'  /> <label for='"+value.id+"'>"+value.display+"</label></li>");
+		$('#pfCategories').append("<li><input type='checkbox' name='category' id='"+value.id+"' value='"+value.id+"'  /> <label for='"+value.id+"'><span></span>"+value.display+"</label></li>");
 		
 	}
 	//$(categoriesObj).each(function(){
