@@ -39,6 +39,7 @@ function getContent(cats){
 	  			window.rawPFresponse = xhr.responseText;			 		
 	    		var responseObj = JSON.parse(xhr.responseText);    		
 	    		window.returnedJson = responseObj;
+	    		$('#contentReport').attr('href','http://poshfeed.com/?contactUs=4&urlToReport='+encodeURIComponent(responseObj.url));
 	    		$("#megaWrapper").css("background-image","url("+responseObj.image+")");
 	    		$("#pageTitle").html(responseObj.title).attr("href",responseObj.url).css("display","block").click(function(e){
 	    			e.preventDefault();
@@ -174,6 +175,7 @@ $(document).ready(function(){
         $('body').unbind('mousewheel');
         setTimeout(reloadPage, 300)
     });
+    
     
     $('#nextLink').click(reloadPage);
     
