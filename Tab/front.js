@@ -68,6 +68,7 @@ function getContent(cats){
 				    );  			    			
 	    		});
 				$("#pageSource").html(responseObj.source).css("display","");
+				$(".menuLink, .nextLink, .articleSource, #pageSource").css("display","");
 	  		}
 		}
 	xhr.send();
@@ -144,11 +145,26 @@ function restore_options() {
 }
 
 
+//open/close menu and attach events
+function toggleMenu(e) {
+	if ($('body').hasClass('open')) {
+		$('megaWrapper').unbind('click');
+		$('body').removeClass('open');
+		e.stopPropagation();
+	} else {
+		
+		$('#megaWrapper').bind('click', function(e){
+			$('body').removeClass('open');
+		});
+		$('body').addClass('open');
+		e.stopPropagation();
+	}
+}
 
 
 
 //reload on mousewheel
-function reloadPage(){document.location.reload()}
+function reloadPage(){chrome.tabs.reload()}
 
 
 //document ready
@@ -161,9 +177,7 @@ $(document).ready(function(){
     
     $('#nextLink').click(reloadPage);
     
-    $('#menuLink').click(function(){
-		$("body").toggleClass("open");
-	})
+    $('#menuLink').click(toggleMenu);
 
 
 	
