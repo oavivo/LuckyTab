@@ -4,6 +4,7 @@ http = require('http');
 http.globalAgent.maxSockets = 5000;
 var express = require('express');
 var app = express();
+mainObj = this;
 
 // Core modules
 redisHandler = require(__dirname + "/bin/redisHandler.js");
@@ -15,6 +16,28 @@ querystring = require('querystring');
 request = require('request');
 _ = require(__dirname + "/bin/node_modules/underscore");
 format = require('util').format;
+
+// Render articles pages
+mainObj.renderPage = function(item){
+	_.templateSettings = {
+			interpolate: /\{\{(.+?)\}\}/g
+		};
+		var html = _.template(tabTemplate);	
+		var desc = "";
+		if(item.desc != null && item.desc != ""){
+			desc = '<a href="#" id="pageDesc" class="articleDesc">'+item.desc+'</a>';
+		}
+		var outputHtml = html({
+			"title":item.title,
+			"source":item.source,
+			"desc": desc,
+			"image":item.image,
+			"itemDesc":item.desc,
+			"fullItem":JSON.stringify(item)
+		})
+		return outputHtml;
+}
+
 
 // Cache our HTML templates
 fs = require('fs');
@@ -37,22 +60,7 @@ app.get('/articles/:aid',function(req,res){
 	res.setTimeout(5000,function(){res.end("Timeout - 5 seconds")});    
 	res.writeHead(200, {'Content-Type': 'text/html','Content-Encoding':'utf-8'});
 	callback = function(item){		
-		_.templateSettings = {
-			interpolate: /\{\{(.+?)\}\}/g
-		};
-		var html = _.template(tabTemplate);	
-		var desc = "";
-		if(item.desc != null && item.desc != ""){
-			desc = '<a href="#" id="pageDesc" class="articleDesc">'+item.desc+'</a><br /><br />';
-		}
-		var outputHtml = html({
-			"title":item.title,
-			"source":item.source,
-			"desc": desc,
-			"image":item.image,
-			"itemDesc":item.desc,
-			"fullItem":JSON.stringify(item)
-		})
+		outputHtml = mainObj.renderPage(item);
 		res.write(outputHtml);
 		res.end();
 	}
@@ -64,22 +72,7 @@ app.get('/articles',function(req,res){
 	res.writeHead(200, {'Content-Type': 'text/html','Content-Encoding':'utf-8'});
 	cats = ["art","cool","fashion","food","geeky","intelectual","music"];	
 	callback = function(item){		
-		_.templateSettings = {
-			interpolate: /\{\{(.+?)\}\}/g
-		};
-		var html = _.template(tabTemplate);	
-		var desc = "";
-		if(item.desc != null && item.desc != ""){
-			desc = '<a href="#" id="pageDesc" class="articleDesc">'+item.desc+'</a><br /><br />';
-		}
-		var outputHtml = html({
-			"title":item.title,
-			"source":item.source,
-			"desc": desc,
-			"image":item.image,
-			"itemDesc":item.desc,
-			"fullItem":JSON.stringify(item)
-		})
+		outputHtml = mainObj.renderPage(item);
 		res.write(outputHtml);
 		res.end();
 	}
