@@ -84,12 +84,12 @@ $(document).ready(function(){
 	
 	$("#contactForm").css("height",$("body").height());
 	
-	var top_header = $('.topContent');
+	/*var top_header = $('.topContent');
 	
 	$(window).scroll(function () {
 		var st = $(window).scrollTop();
 		top_header.css({'background-position':"center "+(st*.5)+"px"});
-	});
+	});*/
 		
 	$("#sendFormButton").click(validateContactForm);
 	window.formHTML = $("#contactForm").html();

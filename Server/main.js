@@ -1,18 +1,28 @@
+// Startup sequence - URL, HTTP and Express
 url = require('url');
 http = require('http');
 http.globalAgent.maxSockets = 5000;
-format = require('util').format;
 var express = require('express');
 var app = express();
+
+// Core modules
 redisHandler = require(__dirname + "/bin/redisHandler.js");
 StatsManager = require(__dirname + "/bin/statsManager.js");
 nodeMailer = require(__dirname + "/node_modules/nodemailer");
+
+// Support functions
 querystring = require('querystring');
 request = require('request');
 _ = require(__dirname + "/bin/node_modules/underscore");
+format = require('util').format;
+
+// Cache our HTML templates
 fs = require('fs');
 var tabTemplate = fs.readFileSync(__dirname+"/assets/templates/front.html","utf-8");
+var homePageTemplate = fs.readFileSync(__dirname+"/assets/templates/index.html","utf-8");
+var legalTemplate = fs.readFileSync(__dirname+"/assets/templates/legal.html","utf-8");
 
+// Init StatsMan
 sm = new StatsManager();
 
 app.get('/shareURL',function(req,res){
@@ -288,30 +298,35 @@ app.get('/setCategoryKey', function(req, res){
 
 app.use('/assets', express.static(__dirname + '/assets'));
 
+app.get('/legal',function(req,res){
+	res.setTimeout(5000,function(){res.end("Timeout - 5 seconds")});    
+	res.writeHead(200, {'Content-Type': 'text/html','Content-Encoding':'utf-8'});
+	res.write(legalTemplate);
+	res.end();
+});
+
+
+
 app.get('/', function(req,res){
 	res.setTimeout(5000,function(){res.end("Timeout - 5 seconds")});    
 	res.writeHead(200, {'Content-Type': 'text/html','Content-Encoding':'utf-8'});
-	var callback = function(data){res.write(data);res.end()};
-	var url_parts = url.parse(req.url,true);	
-	fs.readFile(__dirname+'/index.html',"utf-8", function read(err, data) {			
-		callback(data);
-	});	
+	res.write(homePageTemplate);
+	res.end();
 });
-
 app.get('/*.html',function(req,res){
 	res.setTimeout(5000,function(){res.end("Timeout - 5 seconds")});    	
 	var callback = function(data){res.write(data);res.end()};
 	var url_parts = url.parse(req.url,true);	
-	fs.readFile(__dirname+url_parts.path,"utf-8", function read(err, data) {			
+	fs.readFile(__dirname+"/assets/templates/"+url_parts.path,"utf-8", function read(err, data) {			
 		if(err == null){
 			res.writeHead(200, {'Content-Type': 'text/html','Content-Encoding':'utf-8'});
 			callback(data);
 		}else{
 			res.redirect("http://poshfeed.com/");
-		}
-		
+		}		
 	});	
 })
+
 
 app.listen(80);
 console.log("Started on port 80");

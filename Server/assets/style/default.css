@@ -6,42 +6,50 @@ body{
 	margin:0;
 	background-color:#faf9f5;
 	-webkit-font-smoothing: antialiased;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Domine', serif;
 }
 h1{
-	font-family:Merriweather, georgia;
+	font-family: 'Oswald', sans-serif;
 	color:#fff;
-	font-weight:700;
-	font-size:32px;
-	line-height:38px;
+	font-weight:300;
+	font-size:38px;
+	line-height:42px;
 	letter-spacing:-0.05em;
 	margin-bottom:10px;
 	text-shadow: 0 1px 1px #0e2932;
 	display: inline-block;
 }
 h2{
-	font-family:Merriweather, georgia;
+	font-family: 'Oswald', sans-serif;
 	color:#555;
-	font-weight:700;
+	font-weight:400;
 	font-size:18px;
-	letter-spacing:-0.06em;
 	margin-top:20px;
 	margin-bottom:15px;
 }
 h3{
-	font-family:Merriweather, georgia;
+	font-family: 'Oswald', sans-serif;
 	color:#4c4c49;
-	font-weight:700;
-	font-size:14px;
+	font-weight:400;
+	font-size:15px;
 	margin-bottom:15px;
 }
 h4{
-	font-family:Merriweather, georgia;
+	font-family: 'Oswald', sans-serif;
 	color:#fff;
-	font-weight:700;
+	font-weight:400;
 	font-size:18px;
 	margin-top:10px;
 	margin-bottom:10px;
+}
+h5{
+	font-family: 'Oswald', sans-serif;
+	color:#333;
+	font-weight:400;
+	font-size:20px;
+	padding-bottom:20px;
+	border-bottom:1px solid #999;
+	margin-bottom:15px;
 }
 .clearFix{
 	clear:both;
@@ -89,7 +97,7 @@ h4{
 }
 #logo{
 	margin:0 auto;
-	background-image:url(../images/poshfeed.png);
+	text-align:left;
 	width:940px;
 	height:48px;
 	background-repeat:no-repeat;
@@ -110,7 +118,7 @@ h4{
 	width:780px;
 }
 .mainMessage p{
-	font-family:Merriweather, georgia;
+	font-family: 'Domine', serif;
 	color:#fff;
 	font-weight:300;
 	font-size:17px;
@@ -121,7 +129,7 @@ h4{
 .mainMessage a{
 	display:inline-block;
 	text-decoration: none;
-	font-family:Merriweather, georgia;
+	font-family: 'Domine', serif;
 	font-size:18px;
 	font-weight:700;
 	color:#0e2932;
@@ -258,6 +266,33 @@ h4{
 	background-color:#e6e4dc;
 	border-top: solid 1px #d6d4ce;
 }
+
+/* LEGAL PAGE */
+
+.legalPage{
+	margin:0 auto;
+	width:960px;
+	height:600px;
+	margin-bottom:100px;
+	position:relative;
+}
+.legalContent{
+	width:660px;
+	margin-left:150px;
+	text-align:left;
+}
+.legalContent p{
+	font-family: 'Domine', serif;
+	text-align:justify;
+	color:#444;
+	font-weight:400;
+	font-size:15px;
+	line-height:150%;
+	margin-bottom:30px;
+}
+
+/* FOOTER */
+
 .footer{
 	margin:0 auto;
 	width:940px;
