@@ -12,6 +12,7 @@ body{
 }
 #megaWrapper{
 	position:absolute;
+	opacity: 1;
 	left: 0;
 	float:left;
 	background-image:url('');
