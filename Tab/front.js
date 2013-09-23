@@ -11,8 +11,9 @@ var theContent;
 
 //      SHARE FUNCTION      /////////////////////////////////////////////////////////////
 function getShareLink(e){
-	_trackEvent('click', 'FBShareButton', 'Facebook share button click');
-	value = theContent;
+    e.preventDefault();
+	var value = theContent;
+    _gaq.push(['_trackEvent', 'click', 'FBShareButton',value.url]);
 	var sendUrl = 'http://poshfeed.com/shareURL?value="title":"{0}","desc":"{1}","url":"{2}","source":"{3}","image":"{4}","category":"{5}"';
     var title = encodeURIComponent(value.title.replace(/\"/g,'%22'));
     var desc = encodeURIComponent(value.desc.replace(/\"/g,'\%22'));
@@ -22,7 +23,7 @@ function getShareLink(e){
     var category = encodeURIComponent(value.category.replace(/\"/g,'%22'))
 
     sendUrl = sendUrl.format(title,desc,url,source,image,category);	    			
-	e.preventDefault();
+
 	window.open(
       sendUrl, 
       'share-poshfeed', 
@@ -47,16 +48,27 @@ function buildTopSites(data){
 //      LOAD USER CATEGORIES & GET THE CONTENT FROM SERVER      ////////////////////////////////////
 
 (function getCategories(){
-	chrome.storage.sync.get("categories", function(data){	
-		data = $(data.categories).toArray();
-		theCategories = data;
+	chrome.storage.sync.get("categories", function(data){
+        // Check if there are no stored categories --- First time users
+        if($.isEmptyObject(data)){
+            var allCats = [];
+            for(cat in categoriesObj){
+                allCats.push(cat);
+            }
+            chrome.storage.sync.set({'categories': allCats});
+            theCategories = allCats;
+            restore_options();
+        }else{
+            data = $(data.categories).toArray();
+		    theCategories = data;
+        }
 		getContent(theCategories);
 	});
 })();
 
 
 function getContent(cats){
-	content = $.ajax({
+	$.ajax({
 		dataType: "json",
 		url: "http://poshfeed.com/getCategoryKey?categories="+cats,
 		success: buildPage
@@ -90,10 +102,8 @@ function save_options() {
 	if(checkedCats.length == 0){
 		var allCats = [];
 		for(cat in categoriesObj){
-			console.log(cat);
 			allCats.push(cat);			
 		}
-		console.log(allCats);
 		chrome.storage.sync.set({'categories': allCats});
 	}
 }
@@ -118,11 +128,12 @@ function restore_options() {
 //      OPEN/CLOSE SIDEBAR AND ATTACH EVENTS     ///////////////////////////////////////////////////
 function toggleMenu(e) {
 	if ($('body').hasClass('open')) {
+        _gaq.push(['_trackEvent', 'Menu', 'closeMenu']);
 		$('megaWrapper').unbind('click');
 		$('body').removeClass('open');
 		e.stopPropagation();
 	} else {
-		
+        _gaq.push(['_trackEvent', 'Menu', 'openMenu']);
 		$('#megaWrapper').bind('click', function(e){
 			$('body').removeClass('open');
 		});
@@ -137,7 +148,6 @@ function populateCategories(){
 	for (obj in categoriesObj) {
 		var value = categoriesObj[obj];
 		$('#pfCategories').append("<li><input type='checkbox' name='category' id='"+value.id+"' value='"+value.id+"'  /> <label for='"+value.id+"'><span></span>"+value.display+"</label></li>");
-		
 	}
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -151,14 +161,14 @@ function reloadPage(){
 
 
 function fireClickEvent(e){
-	_trackEvent('click', 'itemClick', 'click on main link',e.target);
-	e.preventDefault();
-	var clickEvent = $.ajax({
+    e.preventDefault();
+    _gaq.push(['_trackEvent', 'click', 'itemClick', $(e.target).attr('id')]);
+	$.ajax({
 		dataType: "json",
 		url: "http://poshfeed.com/addClickStat?value="+JSON.stringify(theContent)
 	});
 		
-	setTimeout(function(){window.location.href = theContent.url},200);
+	//setTimeout(function(){window.location.href = theContent.url},200);
 }
 
 
