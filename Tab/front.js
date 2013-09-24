@@ -178,7 +178,7 @@ function fireClickEvent(e){
 		url: "http://poshfeed.com/addClickStat?value="+JSON.stringify(theContent)
 	});
 		
-	//setTimeout(function(){window.location.href = theContent.url},200);
+	setTimeout(function(){window.location.href = theContent.url},200);
 }
 
 
