@@ -81,9 +81,10 @@ function getContent(cats){
 function buildPage(content){
 	theContent = content;
 	$("#megaWrapper").css({'background-image':'url('+content.image+')'});
-	$("#pageTitle").text(content.title).show();
-	$("#pageDesc").text(content.desc).show();
-	$("#pageSource").text(content.source).show();
+	$("#pageTitle").text(content.title);
+	$("#pageDesc").text(content.desc);
+	$("#pageSource").text(content.source);
+	$('.articleWrapper').animate({'opacity':'1'});
 	$('.mainLink').attr('href',content.url).on('click',fireClickEvent);
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -129,7 +130,7 @@ function restore_options() {
 function toggleMenu(e) {
 	if ($('body').hasClass('open')) {
         _gaq.push(['_trackEvent', 'Menu', 'closeMenu']);
-		$('megaWrapper').unbind('click');
+		$('#megaWrapper').unbind('click');
 		$('body').removeClass('open');
 		e.stopPropagation();
 	} else {
@@ -159,6 +160,14 @@ function reloadPage(){
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+function scrollPager(){
+	$('body').bind('mousewheel', function(e){
+	    e.stopPropagation();
+        $('body').unbind('mousewheel');
+        setTimeout(reloadPage, 300)
+    });
+}
+
 
 function fireClickEvent(e){
     e.preventDefault();
@@ -180,17 +189,12 @@ $(document).ready(function(){
     populateCategories();
     restore_options();
     
+    setTimeout(scrollPager, 1000);
     
     $('#nextLink').click(reloadPage);
     $('#sharePage').click(getShareLink);
     $('#menuLink').click(toggleMenu);
     $('#pfCategories li input').change(save_options);
-    
-    $('body').bind('mousewheel', function(e){
-	    e.stopPropagation();
-        $('body').unbind('mousewheel');
-        setTimeout(reloadPage, 300)
-    });
 
 });
 
