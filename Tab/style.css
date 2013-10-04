@@ -105,6 +105,16 @@ h1 a {
 	background-color:#fff;
 	color:#111;
 }
+
+#likeIframeWrapper {
+	width: 52px;
+	display: inline-block;
+	height: 24px;
+	line-height: 24px;
+	position: relative;
+	top: 8px;
+	left: 6px;
+}
 .visitedTabs{
 	position:absolute;
 	bottom:0px;
