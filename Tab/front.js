@@ -12,17 +12,10 @@ var theContent;
 //      SHARE FUNCTION      /////////////////////////////////////////////////////////////
 function getShareLink(e){
     e.preventDefault();
-	var value = theContent;
+    var value = theContent;
     _gaq.push(['_trackEvent', 'click', 'FBShareButton',value.url]);
-	var sendUrl = 'http://poshfeed.com/shareURL?value="title":"{0}","desc":"{1}","url":"{2}","source":"{3}","image":"{4}","category":"{5}"';
-    var title = encodeURIComponent(value.title.replace(/\"/g,'%22'));
-    var desc = encodeURIComponent(value.desc.replace(/\"/g,'\%22'));
-    var url = encodeURIComponent(value.url.replace(/\"/g,'%22'));
-    var source = encodeURIComponent(value.source.replace(/\"/g,'%22'));
-    var image = encodeURIComponent(value.image.replace(/\"/g,'%22'));
-    var category = encodeURIComponent(value.category.replace(/\"/g,'%22'))
-
-    sendUrl = sendUrl.format(title,desc,url,source,image,category);	    			
+	var sendUrl = 'http://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent("http://poshfeed.com/articles/"+poshArticleUrl);
+    console.log(sendUrl);
 
 	window.open(
       sendUrl, 
@@ -30,6 +23,28 @@ function getShareLink(e){
       'width=626,height=436'
     );  			    			
 };
+
+function getArticleUrl(){
+    var value = theContent;
+    var sendUrl = 'http://poshfeed.com/getArticleURL?value="title":"{0}","desc":"{1}","url":"{2}","source":"{3}","image":"{4}","category":"{5}"';
+    var title = encodeURIComponent(value.title.replace(/\"/g,'%22'));
+    var desc = encodeURIComponent(value.desc.replace(/\"/g,'\%22'));
+    var url = encodeURIComponent(value.url.replace(/\"/g,'%22'));
+    var source = encodeURIComponent(value.source.replace(/\"/g,'%22'));
+    var image = encodeURIComponent(value.image.replace(/\"/g,'%22'));
+    var category = encodeURIComponent(value.category.replace(/\"/g,'%22'))
+
+    sendUrl = sendUrl.format(title,desc,url,source,image,category);
+
+    $.ajax({
+        dataType: "json",
+        url: sendUrl,
+        success: function(data){
+            window.poshArticleUrl = data;
+            $('#likeIframeWrapper').append('<iframe src="http://www.facebook.com/plugins/like.php?href='+encodeURIComponent("http://poshfeed.com/articles/"+poshArticleUrl)+'&amp;width=500&amp;height=80&amp;colorscheme=light&amp;layout=standard&amp;action=like&amp;show_faces=true&amp;send=false&amp;" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:500px; height:80px;" allowTransparency="true"></iframe>');
+        }
+    });
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //      GET & BUILD TOP SITES BAR      /////////////////////////////////////////////////////////////
@@ -80,12 +95,14 @@ function getContent(cats){
 //      BUILD PAGE      ///////////////////////////////////////////////////////////////////////////
 function buildPage(content){
 	theContent = content;
+    getArticleUrl();
 	$("#megaWrapper").css({'background-image':'url('+content.image+')'});
 	$("#pageTitle").text(content.title);
 	$("#pageDesc").text(content.desc);
 	$("#pageSource").text(content.source);
 	$('.articleWrapper').animate({'opacity':'1'});
 	$('.mainLink').attr('href',content.url).on('click',fireClickEvent);
+
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
