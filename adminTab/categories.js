@@ -5,7 +5,7 @@ var categoriesObj = {
 	"food": {id:"food",display:"Foodie"},
 	"art": {id:"art",display:"Artsy"},
 	"cool": {id:"cool",display:"Cool"},
-	"fashion": {id:"fashion",display:"Fashionable"}
+	"fashion": {id:"fashion",display:"Lifestyle"}
 }
 
 
