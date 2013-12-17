@@ -83,58 +83,17 @@ h1 a {
 	color:#faf9f5;
 }
 .articleSource span{
+	font-weight:700;
 	color:#49a69c;
 }
-.shareButton{
-	margin-top:20px;
-	display:inline-block;
-	background-color:#f2f2f2;
-	height:24px;
-	line-height:24px;
-	background-image:url(icon-fb.png);
-	background-repeat:no-repeat;
-	border-radius:2px;
-	color:#333;
-	font-size:12px;
-	text-decoration:none;
-	padding:0 10px 0 24px;
-	transition:.2s ease-in; 
-	-webkit-transition:.2s ease-in; 
-}
-.shareButton:hover{
-	background-color:#fff;
-	color:#111;
-}
-.shareButtonNew{
-	margin-top:20px;
-	display:inline-block;
-	background: #ebebeb;
-	background: -webkit-gradient(linear, center top, center bottom, from(#f7f7f7), to(#e3e3e3));
-	background: -webkit-linear-gradient(#f7f7f7, #e3e3e3);
-	border-color: rgba(0,0,0,.3);
-	-webkit-border-radius: 2px;
-	border-style: solid;
-	border-width: 1px;
-	color: #4e5665;
-	height: 18px;
-	font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande',tahoma,verdana,arial,sans-serif;
-	font-weight:bold;
-	font-size:11px;
-	line-height: 18px;
-	text-shadow: 0 1px 0 #eceef0;
-	padding: 0 4px;
-	text-decoration: none;
-}
-.shareButtonNew:hover{
-	background-color:#fff;
-}
 #likeIframeWrapper {
-	width: 52px;
+	width: 95px;
+	overflow:hidden;
 	display: inline-block;
 	height: 20px;
 	line-height: 20px;
 	position: relative;
-	top: 10px;
+	margin-top: 20px;
 }
 .visitedTabs{
 	position:absolute;

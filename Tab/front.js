@@ -41,7 +41,7 @@ function getArticleUrl(){
         url: sendUrl,
         success: function(data){
             window.poshArticleUrl = data;
-            $('#likeIframeWrapper').append('<iframe src="http://www.facebook.com/plugins/like.php?href='+encodeURIComponent("http://poshfeed.com/articles/"+poshArticleUrl)+'&amp;width=52&amp;height=26&amp;colorscheme=light&amp;layout=standard&amp;action=like&amp;show_faces=false&amp;send=false&amp;ref=poshfeedLike" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:52px; height:24px;" allowTransparency="true"></iframe>');
+            $('#likeIframeWrapper').append('<iframe src="http://www.facebook.com/plugins/like.php?href='+encodeURIComponent("http://poshfeed.com/articles/"+poshArticleUrl)+'&amp;width=95&amp;layout=standard&amp;action=like&amp;show_faces=false&amp;share=true&amp;height=35&amp;ref=poshfeedLike" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width=95px; height:35px;" allowTransparency="true"></iframe>');
         }
     });
 }
