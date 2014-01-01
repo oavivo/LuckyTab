@@ -173,7 +173,18 @@ h1 a {
 	height:30px;
 	background-image:url(icon-next.png);
 	background-repeat:no-repeat;
-	margin-right: 10px;
+	margin-right: 15px;
+}
+.currentTime{
+	display:block;
+	float: right;
+	margin-top:25px;
+	font-family: 'Oswald', sans-serif;
+	font-weight:300;
+	font-size:30px;
+	color:#fff;
+	text-shadow:0 1px 0 rgba(0,0,0,0.8);
+	margin-right: 15px;
 }
 
 .pfLogo{

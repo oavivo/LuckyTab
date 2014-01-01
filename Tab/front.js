@@ -198,7 +198,31 @@ function fireClickEvent(e){
 	setTimeout(function(){window.location.href = theContent.url},200);
 }
 
+//Clock
 
+
+function startTime(){
+		var today=new Date();
+		var h=today.getHours();
+		var m=today.getMinutes();
+		var dd = "AM";
+		if (h >= 12) {
+			h = h-12;
+			dd = "PM";
+		}
+		if (h == 0) {
+			h = 12;
+		}
+		m=checkTime(m);
+		$('#clock').html(h+":"+m+' '+dd);
+		t=setTimeout(function(){startTime()},10000);
+	}
+	function checkTime(i) {
+		if (i<10) {
+			i="0" + i;
+		}
+		return i;
+	}
 
 //document ready
 $(document).ready(function(){
@@ -206,6 +230,7 @@ $(document).ready(function(){
     getTopSites();
     populateCategories();
     restore_options();
+	startTime();
     
     setTimeout(scrollPager, 1000);
     
