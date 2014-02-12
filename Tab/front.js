@@ -179,9 +179,11 @@ function reloadPage(){
 //      MOUSEWHEEL RELOAD     //////////////////////////////////////////////////////////////////////
 function scrollPager(){
 	$('body').bind('mousewheel', function(e){
-	    e.stopPropagation();
-        $('body').unbind('mousewheel');
-        setTimeout(reloadPage, 300)
+	    if(e.originalEvent.wheelDelta > 0) { //only on scroll up
+        	e.stopPropagation();
+			$('body').unbind('mousewheel');
+			setTimeout(reloadPage, 300);
+		}	    
     });
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
