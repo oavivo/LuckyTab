@@ -1,6 +1,6 @@
 {
 	"name": "Poshfeed",
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"description": "Get something inspiring from around the web every time you open a new tab.",
 	"homepage_url": "http://www.poshfeed.com",
 	"chrome_url_overrides": {
