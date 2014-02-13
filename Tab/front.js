@@ -179,7 +179,7 @@ function reloadPage(){
 //      MOUSEWHEEL RELOAD     //////////////////////////////////////////////////////////////////////
 function scrollPager(){
 	$('body').bind('mousewheel', function(e){
-	    if(e.originalEvent.wheelDelta > 0) { //only on scroll up
+	    if(e.originalEvent.wheelDelta < 0) { //only on scroll down
         	e.stopPropagation();
 			$('body').unbind('mousewheel');
 			setTimeout(reloadPage, 300);
