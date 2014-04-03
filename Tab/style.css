@@ -95,6 +95,14 @@ h1 a {
 	position: relative;
 	margin-top: 20px;
 }
+.pocket-btn {
+	overflow:hidden;
+	display: inline-block;
+	height: 20px;
+	line-height: 20px;
+	position: relative;
+	margin-top: 20px;
+}
 .visitedTabs{
 	position:absolute;
 	bottom:0px;

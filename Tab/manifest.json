@@ -1,6 +1,6 @@
 {
 	"name": "Poshfeed",
-	"version": "1.0.8",
+	"version": "1.0.9",
 	"description": "Get something inspiring from around the web every time you open a new tab.",
 	"homepage_url": "http://www.poshfeed.com",
 	"chrome_url_overrides": {
@@ -17,6 +17,6 @@
 		"http://poshfeed.com/",
 		"storage"
 	],
-	"content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
+	"content_security_policy": "script-src 'self' https://ssl.google-analytics.com https://widgets.getpocket.com; object-src 'self'",
 	"manifest_version": 2	
 }

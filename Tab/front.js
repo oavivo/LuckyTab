@@ -102,6 +102,7 @@ function buildPage(content){
 	$("#pageSource").text(content.source);
 	$('.articleWrapper').animate({'opacity':'1'});
 	$('.mainLink').attr('href',content.url).on('click',fireClickEvent);
+	$('#pocketbtn').attr('data-save-url',content.url);
 
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -241,6 +242,8 @@ $(document).ready(function(){
     $('#menuLink').click(toggleMenu);
     $('#pfCategories li input').change(save_options);
     
+    //pocket script execution
+    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
     
 });
 
