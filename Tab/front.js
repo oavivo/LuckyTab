@@ -96,13 +96,14 @@ function getContent(cats){
 function buildPage(content){
 	theContent = content;
     getArticleUrl();
+	$('#pocketbtn').attr('data-save-url',encodeURIComponent(content.url));
 	$("#megaWrapper").css({'background-image':'url('+content.image+')'});
 	$("#pageTitle").text(content.title);
 	$("#pageDesc").text(content.desc);
 	$("#pageSource").text(content.source);
 	$('.articleWrapper').animate({'opacity':'1'});
 	$('.mainLink').attr('href',content.url).on('click',fireClickEvent);
-	$('#pocketbtn').attr('data-save-url',content.url);
+	
 
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -227,6 +228,12 @@ function startTime(){
 		return i;
 	}
 
+
+//pocket script execution
+function loadPocket(){
+	!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+}
+
 //document ready
 $(document).ready(function(){
    
@@ -236,14 +243,15 @@ $(document).ready(function(){
 	startTime();
     
     setTimeout(scrollPager, 1000);
+    setTimeout(loadPocket, 500);
     
     $('#nextLink').click(reloadPage);
     $('#sharePage').click(getShareLink);
     $('#menuLink').click(toggleMenu);
     $('#pfCategories li input').change(save_options);
     
-    //pocket script execution
-    !function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+    
+    
     
 });
 
