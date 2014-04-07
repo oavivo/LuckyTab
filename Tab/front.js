@@ -232,6 +232,7 @@ function startTime(){
 //pocket script execution
 function loadPocket(){
 	!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
+	$('#pocket-btn-js').on('load',function(e){console.log('loaded');$('.pocket-btn').delay(500).animate({opacity: 1}, 1500)});	
 }
 
 //document ready
@@ -244,14 +245,12 @@ $(document).ready(function(){
     
     setTimeout(scrollPager, 1000);
     setTimeout(loadPocket, 500);
+	
     
     $('#nextLink').click(reloadPage);
     $('#sharePage').click(getShareLink);
     $('#menuLink').click(toggleMenu);
     $('#pfCategories li input').change(save_options);
-    
-    
-    
     
 });
 

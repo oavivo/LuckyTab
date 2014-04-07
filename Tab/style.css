@@ -95,9 +95,12 @@ h1 a {
 	position: relative;
 	margin-top: 20px;
 }
+
 .pocket-btn {
+	width: 100px;
 	overflow:hidden;
 	display: inline-block;
+	opacity: 0;
 	height: 20px;
 	line-height: 20px;
 	position: relative;
