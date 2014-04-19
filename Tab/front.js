@@ -246,6 +246,7 @@ $(document).ready(function(){
     
     setTimeout(scrollPager, 1000);
     setTimeout(loadPocket, 500);
+    //loadPocket();
 	
     
     $('#nextLink').click(reloadPage);
