@@ -10,7 +10,6 @@
       "16": "icon16.png",
       "48": "icon48.png"
    },
-   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCRJ/4hWIY1GhBZ1t5oySc9Nh36vqPWx2xgnr33V9OTATLmix6pRbML5n1pVYio0NSq3xb8nOPpYSYdl1ye5QdhDAb0d+sENvrfpp8Dm1K95/vsXKgbqkXoCI5+Cr2OgoMzvdQeog5PNMJRJw1/hYgax2itPp8OHpQdasvnuhNGywIDAQAB",
    "manifest_version": 2,
    "name": "Poshfeed",
    "permissions": [ "topSites", "chrome://favicon/", "http://poshfeed.com/", "storage" ],
