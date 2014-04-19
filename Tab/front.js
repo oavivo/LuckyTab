@@ -1,6 +1,7 @@
 //GLOBAL VARS
 var theCategories;
 var theContent;
+var poshArticleUrl;
 
 
 //SUPPORT FUNCTIONS
@@ -15,7 +16,6 @@ function getShareLink(e){
     var value = theContent;
     _gaq.push(['_trackEvent', 'click', 'FBShareButton',value.url]);
 	var sendUrl = 'http://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent("http://poshfeed.com/articles/"+poshArticleUrl);
-    console.log(sendUrl);
 
 	window.open(
       sendUrl, 
@@ -35,13 +35,16 @@ function getArticleUrl(){
     var category = encodeURIComponent(value.category.replace(/\"/g,'%22'))
 
     sendUrl = sendUrl.format(title,desc,url,source,image,category);
-
     $.ajax({
         dataType: "json",
         url: sendUrl,
         success: function(data){
             window.poshArticleUrl = data;
             $('#likeIframeWrapper').append('<iframe src="http://www.facebook.com/plugins/like.php?href='+encodeURIComponent("http://poshfeed.com/articles/"+poshArticleUrl)+'&amp;width=95&amp;layout=standard&amp;action=like&amp;show_faces=false&amp;share=true&amp;height=35&amp;ref=poshfeedLike" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width=95px; height:35px;" allowTransparency="true"></iframe>');
+            //build twitter
+            console.log(poshArticleUrl);
+            $('#tweetbtn').attr('data-url','http://poshfeed.com/articles/'+poshArticleUrl).attr('data-text',unescape(title));
+            loadTwitter();
         }
     });
 }
@@ -232,8 +235,6 @@ function startTime(){
 //pocket script execution
 function loadPocket(){
 	!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
-	$('#pocket-btn-js').on('load',function(e){console.log('loaded');
-	});	
 }
 
 //document ready
@@ -250,14 +251,18 @@ $(document).ready(function(){
 	
     
     $('#nextLink').click(reloadPage);
-    $('#sharePage').click(getShareLink);
+    //$('#sharePage').click(getShareLink);
     $('#menuLink').click(toggleMenu);
     $('#pfCategories li input').change(save_options);
     
+    
+    
 });
 
-
-
+//load twitter iframe
+function loadTwitter(){
+	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+}
 
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-43001046-1']);
