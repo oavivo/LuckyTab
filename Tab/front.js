@@ -2,6 +2,7 @@
 var theCategories;
 var theContent;
 var poshArticleUrl;
+var pageTitle;
 
 
 //SUPPORT FUNCTIONS
@@ -10,24 +11,12 @@ var poshArticleUrl;
 ////////////////////////////////////////////////////////////////////////////////////////////////////	
 
 
-//      SHARE FUNCTION      /////////////////////////////////////////////////////////////
-function getShareLink(e){
-    e.preventDefault();
-    var value = theContent;
-    _gaq.push(['_trackEvent', 'click', 'FBShareButton',value.url]);
-	var sendUrl = 'http://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent("http://poshfeed.com/articles/"+poshArticleUrl);
-
-	window.open(
-      sendUrl, 
-      'share-poshfeed', 
-      'width=626,height=436'
-    );  			    			
-};
 
 function getArticleUrl(){
     var value = theContent;
     var sendUrl = 'http://poshfeed.com/getArticleURL?value="title":"{0}","desc":"{1}","url":"{2}","source":"{3}","image":"{4}","category":"{5}"';
     var title = encodeURIComponent(value.title.replace(/\"/g,'%22'));
+    pageTitle = unescape(title);
     var desc = encodeURIComponent(value.desc.replace(/\"/g,'\%22'));
     var url = encodeURIComponent(value.url.replace(/\"/g,'%22'));
     var source = encodeURIComponent(value.source.replace(/\"/g,'%22'));
@@ -40,12 +29,30 @@ function getArticleUrl(){
         url: sendUrl,
         success: function(data){
             window.poshArticleUrl = data;
+            poshArticleUrl = data;
+            
+
             $('#likeIframeWrapper').append('<iframe src="http://www.facebook.com/plugins/like.php?href='+encodeURIComponent("http://poshfeed.com/articles/"+poshArticleUrl)+'&amp;width=95&amp;layout=standard&amp;action=like&amp;show_faces=false&amp;share=true&amp;height=35&amp;ref=poshfeedLike" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width=95px; height:35px;" allowTransparency="true"></iframe>');
-            //build twitter
-            console.log(poshArticleUrl);
-            $('#tweetbtn').attr('data-url','http://poshfeed.com/articles/'+poshArticleUrl).attr('data-text',unescape(title));
-            loadTwitter();
+        
+			//build twitter button
+	        //twttr.ready(function (twttr) {
+				twttr.widgets.createShareButton(
+					'http://poshfeed.com/articles/'+poshArticleUrl,
+					document.getElementById('tweetbtn'),
+					function (el) {
+						//console.log("Button created.")
+						
+					},
+					{
+						count: 'none',
+						text: pageTitle,
+						via: 'poshfeed'
+					}
+				);
+
+			//});
         }
+        
     });
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -91,7 +98,6 @@ function getContent(cats){
 		url: "http://poshfeed.com/getCategoryKey?categories="+cats,
 		success: buildPage
 	});
-	
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -106,6 +112,7 @@ function buildPage(content){
 	$("#pageSource").text(content.source);
 	$('.articleWrapper').animate({'opacity':'1'});
 	$('.mainLink').attr('href',content.url).on('click',fireClickEvent);
+	
 	
 
 }
@@ -259,10 +266,41 @@ $(document).ready(function(){
     
 });
 
+
 //load twitter iframe
-function loadTwitter(){
-	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-}
+window.twttr = (function (d,s,id) {
+  var t, js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return; js=d.createElement(s); js.id=id;
+  js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+  return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+}(document, "script", "twitter-wjs"));
+
+
+//build fb buttons
+
+
+
+//SOCIAL TRACKING
+
+//twitter tweet
+function trackTwitter(intent_event) {
+    if (intent_event) {
+      var opt_pagePath;
+      if (intent_event.target && intent_event.target.nodeName == 'IFRAME') {
+            opt_target = extractParamFromUri(intent_event.target.src, 'url');
+      }
+      _gaq.push(['_trackSocial', 'twitter', 'tweet']);
+      //_gaq.push(['_trackEvent', 'click', 'tweetbtn']);
+    }
+  }
+
+twttr.ready(function (twttr) {
+	//event bindings
+	twttr.events.bind('tweet', trackTwitter);
+	twttr.events.bind('click', trackTwitter);
+});
+
+
 
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-43001046-1']);
@@ -273,3 +311,8 @@ _gaq.push(['_trackPageview']);
     ga.src = 'https://ssl.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();
+
+twttr.ready(function(twttr) {
+
+}); 
+
