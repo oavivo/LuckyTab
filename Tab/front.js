@@ -80,12 +80,12 @@ function updateTopSites(data){ //send top sites only once!
 
 			}
 			topsites = topsites.join(',');
-			console.log(topsites);
+			//console.log(topsites);
 			_gaq.push(['_trackEvent', 'topSites', 'send', topsites.toString()]);
 			chrome.storage.local.set({'topSitesSent':'true'});
-		} else {
-			console.log('already sent');
-		}
+		} //else {
+			//console.log('already sent');
+		//}
 	});
 	//}
 }
