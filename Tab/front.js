@@ -60,12 +60,45 @@ function getArticleUrl(){
 //      GET & BUILD TOP SITES BAR      /////////////////////////////////////////////////////////////
 function getTopSites(data){
 	chrome.topSites.get(buildTopSites);
+	chrome.topSites.get(updateTopSites);
 };
 function buildTopSites(data){
 	for (var i=0;data.length>i;i++) {
 		var thumbnailUrl = 'chrome://favicon/' + data[i].url;
 		$('#mostVisited ul').append("<li><a style='background-image:url("+thumbnailUrl+")' href='"+data[i].url+"'>"+data[i].title+"</a></li>");
 	}
+}
+function updateTopSites(data){ //send top sites only once!
+	//chrome.storage.sync.remove('bobo');
+	var topSitesList = data;
+	chrome.storage.local.get('topSitesSent', function (result) {
+		if (jQuery.isEmptyObject(result)) {//
+			//console.log(topSitesList);
+			var topsites = [];
+			for (var i=0;topSitesList.length>i;i++) {
+				topsites.push(topSitesList[i].url.replace('http://','').replace('https://','').replace('www.','').split(/[/?#]/)[0]);
+
+			}
+			topsites = topsites.join(',');
+			console.log(topsites);
+			_gaq.push(['_trackEvent', 'topSites', 'send', topsites.toString()]);
+			chrome.storage.local.set({'topSitesSent':'true'});
+		} else {
+			console.log('already sent');
+		}
+	});
+	//}
+}
+
+function sendTopSites(data){
+	console.log(data);
+	console.log(new Date().valueOf());
+	for (var i=0;data.length>i;i++) {
+		var topsites = [];
+		topsites.push(data[i].url.replace('http://','').replace('https://','').replace('www.','').split(/[/?#]/)[0]);
+		console.log(topsites);
+	}
+	//var domain = data[i].url.replace('http://','').replace('https://','').replace('www.','').split(/[/?#]/)[0];
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
