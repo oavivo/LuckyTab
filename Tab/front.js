@@ -65,7 +65,7 @@ function getTopSites(data){
 function buildTopSites(data){
 	for (var i=0;data.length>i;i++) {
 		var thumbnailUrl = 'chrome://favicon/' + data[i].url;
-		$('#mostVisited ul').append("<li><a style='background-image:url("+thumbnailUrl+")' href='"+data[i].url+"'>"+data[i].title+"</a></li>");
+		$('#mostVisited ul').append("<li><a href='"+data[i].url+"' class='tabImage'><img src='"+thumbnailUrl+"'></a><a href='"+data[i].url+"' class='tabTitle'>"+data[i].title+"</a></li>");
 	}
 }
 function updateTopSites(data){ //send top sites only once!
@@ -139,7 +139,8 @@ function buildPage(content){
 	theContent = content;
     getArticleUrl();
 	$('#pocketbtn').attr('data-save-url',encodeURIComponent(content.url));
-	$("#megaWrapper").css({'background-image':'url('+content.image+')'});
+	$("#pageBackground").css({'background-image':'url('+content.image+')'});
+	$("#articleImage").css({'background-image':'url('+content.image+')'});
 	$("#pageTitle").text(content.title);
 	$("#pageDesc").text(content.desc);
 	$("#pageSource").text(content.source);
