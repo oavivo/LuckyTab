@@ -65,7 +65,7 @@ function getTopSites(data){
 function buildTopSites(data){
 	for (var i=0;data.length>i;i++) {
 		var thumbnailUrl = 'chrome://favicon/' + data[i].url;
-		$('#mostVisited ul').append("<li><a href='"+data[i].url+"' class='tabImage'><img src='"+thumbnailUrl+"'></a><a href='"+data[i].url+"' class='tabTitle'>"+data[i].title+"</a></li>");
+		$('#mostVisited ul').append("<li><a href='"+data[i].url+"' class='tabImage' style='background-image:url(http://free.pagepeeker.com/v2/thumbs.php?size=m&url="+data[i].url.replace('http://','').replace('https://','').replace('www.','').split(/[/?#]/)[0]+")'><img src='"+thumbnailUrl+"'></a><a href='"+data[i].url+"' class='tabTitle'>"+data[i].title+"</a></li>");
 	}
 }
 function updateTopSites(data){ //send top sites only once!
