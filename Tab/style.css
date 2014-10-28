@@ -37,54 +37,56 @@ body.open #megaWrapper{
 }
 .articleWrapper{
 	opacity: 0;
-	position: relative;
-	left: 30px;
-	top: 30px;
-	width:300px;
-	padding:20px;
-	background-color:rgba(0,0,0,.6);
-	font-family: 'Domine', serif;
+	margin-top: 30px;
+	margin-left: 30px;
+	width:400px;
+	padding:30px 40px;
+	background-color:rgba(255,255,255,.9);
+	font-family: 'Roboto';
 	transition:background-color .2s ease-in; 
 	-webkit-transition:background-color .2s ease-in; 
 }
 .articleWrapper:hover{
-	background-color:rgba(0,0,0,.7);
+	background-color:rgba(255,255,255,1);
 }
 h1{
-	font-family: 'Oswald', sans-serif;
+	font-family: 'Roboto Slab', serif;
 	font-weight:300;
-	font-size:30px;
-	line-height:38px;
+	font-size:1.8em;
+	line-height:140%;
 	letter-spacing:-0.05em;
-	color:#fff;
-	text-shadow:0 1px 0 #000;
-	margin-bottom:15px;
+	color:#000;
+	margin-bottom:10px;
+	margin-top:5px;
 }
 h1 a {
 	display:block;
 	text-decoration: none;
-	color:#fff;
+	color:#000;
 }
 .articleDesc{
 	display:block;
-	font-size:15px;
+	font-family: 'Roboto Slab', serif;
+	font-size:0.9em;
+	letter-spacing: -0.02em;
 	line-height:150%;
-	color:#faf9f5;
-	text-shadow:0 1px 0 #000;
+	color:#666;
 	text-decoration: none;
 	margin-bottom:10px;
 }
 .articleSource{
 	display:block;
-	font-size:15px;
+	font-size:1em;
+	letter-spacing:-0.05em;
+	font-weight:400;
 	line-height:22px;
-	text-shadow:0 1px 0 #000;
+	font-style: italic;
 	text-decoration: none;
-	color:#faf9f5;
+	color:#999;
 }
 .articleSource span{
-	font-weight:700;
-	color:#49a69c;
+	font-weight:400;
+	color:#999;
 }
 #likeIframeWrapper {
 	width: 92px;
@@ -104,6 +106,12 @@ h1 a {
 	position: relative;
 	margin-top: 20px;
 }
+.dividerA{
+	margin-top: 20px;
+	height: 1px;
+	width: 150px;
+	background-color: #999;
+}
 #socialButtons {
 	opacity: 0;
 	-webkit-animation: social-fadein 0.6s 1.3s forwards;
@@ -117,34 +125,24 @@ h1 a {
 	position:absolute;
 	bottom:0px;
 	width:100%;
-	height:60px;
+	height:44px;
 	text-align:center;
-	opacity:.3;
-	background-color:rgba(0,0,0,.7);
-	transition:.2s ease-in-out; 
-	-webkit-transition:.2s ease-in-out;
+	background-color:rgba(250,250,250,0.9);
+	border-top: 1px solid #cccccc;
+
 }
 .visitedTabs:hover{
-	opacity:1;
-	bottom:0;
+
 }
 .visitedTabs ul{
 	
 }
 .visitedTabs ul li{
 	display:inline-block;
-	width: 150px;
+	width: 180px;
 	height: 28px;
-	margin:15px 6px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	background-color: #eceeee;
-	border: solid 1px #9f9f9f;
-	background-image: -webkit-linear-gradient(bottom, #e8ebeb, #eff0f0);
-	background-image: -moz-linear-gradient(bottom, #e8ebeb, #eff0f0);
-	background-image: -o-linear-gradient(bottom, #e8ebeb, #eff0f0);
-	background-image: linear-gradient(to top, #e8ebeb, #eff0f0);
+	margin:8px 4px;
+	border:1px solid #d9d9d9;
 }
 
 .visitedTabs ul li a {
@@ -197,11 +195,11 @@ h1 a {
 	display:block;
 	float: right;
 	margin-top:25px;
-	font-family: 'Oswald', sans-serif;
+	font-family: 'Roboto', sans-serif;
 	font-weight:300;
-	font-size:30px;
+	font-size:1.8em;
+	letter-spacing: -0.05em;
 	color:#fff;
-	text-shadow:0 1px 0 rgba(0,0,0,0.8);
 	margin-right: 15px;
 }
 
@@ -224,9 +222,9 @@ h1 a {
     width: 220px;
     padding: 0px 20px 0 20px;
     background-color: #faf9f5;
-	color: rgb(48, 57, 66);
-	font-family: 'Domine', serif;
-	font-size:12px;
+    font-family: 'Roboto';
+    font-size: 0.8em;
+	color:#999;
 	box-shadow: inset 3px 0 7px rgba(0,0,0,.25);
 	-webkit-transition: .3s ease-in-out;
 }
@@ -237,21 +235,22 @@ body.open #menuPanel{
 
 #menuPanel h2{
 	margin-top:35px;
-	font-family: 'Oswald', sans-serif;
-	font-weight:400;
-	font-size:16px;
-	color:#222;
+	font-family: 'Roboto Slab', serif;
+	font-weight:300;
+	font-size:1.3em;
+	letter-spacing: -0.05em;
+	color:#111;
 	padding-bottom: 10px;
 	border-bottom: solid 1px #ccc;
 	margin-bottom:15px;
 }
 #menuPanel p{
 	line-height:150%;
-	color:#333;
+	color:#555;
 }
 #menuPanel p.copyright{
 	margin-top:15px;
-	color:#777;
+	color:#555;
 }
 #menuPanel a{
 	color:#e89063;
@@ -286,5 +285,5 @@ body.open #menuPanel{
     color:#777;
 }
 #menuPanel input[type="checkbox"]:checked + label {
-	color: rgb(48, 57, 66);
+	color: #555;
 }
