@@ -14,6 +14,7 @@
         <div id="container">
             <a class="menuLink" id="menuLink" href="#"></a>
             <a class="nextLink" id="nextLink" href="#"></a>
+            <a class="linksLink" id="linksLink" data-dropdown="#dropdown-6" href="#"></a>
             <span class="currentTime" id="clock"></span>
             <div class="articleWrapper">
                 <a class="articleSource mainLink" href="#">via <span id="pageSource"></span></a>
@@ -25,8 +26,6 @@
 	                <span id="tweetbtn"></span>
 					<a data-pocket-label="pocket" id="pocketbtn" data-pocket-count="horizontal" data-save-url="" class="pocket-btn" data-lang="en"></a>
                 </div>
-                
-
             </div>
         </div>
         <div class="visitedTabs" id="mostVisited">
@@ -50,8 +49,27 @@
         </ul>
         <p class="copyright">poshfeed does not claim ownership or rights to the actual displayed content. <a href="http://poshfeed.com/legal" target="_blank">Read more</a></p>
     </div>
+    <div id="dropdown-6" class="dropdown dropdown-tip dropdown-anchor-right">
+        <div class="dropdown-panel">
+            <ul class="linksList sortable grid">
+                <li><a href="https://mail.google.com/mail/"><span class="linksImages gmail"></span><span class="linksTitle">Gmail</span></a></li>
+                <li><a href="http://facebook.com"><span class="linksImages facebook"></span><span class="linksTitle">Facebook</span></a></li>
+                <li><a href="http://twitter.com"><span class="linksImages twitter"></span><span class="linksTitle">Twitter</span></a></li>
+                <li><a href="http://youtube.com"><span class="linksImages youtube"></span><span class="linksTitle">YouTube</span></a></li>
+                <li><a href="https://drive.google.com/"><span class="linksImages drive"></span><span class="linksTitle">Drive</span></a></li>
+                <li><a href="http://dropbox.com"><span class="linksImages dropbox"></span><span class="linksTitle">Dropbox</span></a></li>
+                <li><a href="http://www.amazon.com/"><span class="linksImages amazon"></span><span class="linksTitle">amazon</span></a></li>
+                <li><a href="http://www.ebay.com/"><span class="linksImages ebay"></span><span class="linksTitle">ebay</span></a></li>
+                <li><a href="http://www.wikipedia.org/"><span class="linksImages wikipedia"></span><span class="linksTitle">Wikipedia</span></a></li>
+                <li><a href="https://www.tumblr.com/"><span class="linksImages tumblr"></span><span class="linksTitle">tumblr</span></a></li>
+                <li><a href="https://medium.com/"><span class="linksImages medium"></span><span class="linksTitle">Medium</span></a></li>
+                <li><a href="https://ello.co/"><span class="linksImages ello"></span><span class="linksTitle">Ello</span></a></li>
+            </ul>
+        </div>
+    </div>
 </body>
 <script src="jquery.js"></script>
+<script src="jquery.dropdown.min.js"></script>
 <script src="categories.js"></script>
 <script src="front.js"></script>
 </html>
