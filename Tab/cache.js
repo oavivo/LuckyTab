@@ -1,4 +1,4 @@
-var cacheInterval = 1;
+var cacheInterval = 5;
 
 chrome.alarms.create("cacheFeed", {
   periodInMinutes: cacheInterval
