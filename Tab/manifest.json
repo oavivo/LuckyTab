@@ -17,9 +17,13 @@
        },
       "default_title": "poshfeed"
    },
+   "background": {
+      "scripts": ["cache.js", "jquery.js"],
+      "persistent": false
+    },
    "manifest_version": 2,
    "name": "Poshfeed",
-   "permissions": [ "topSites", "chrome://favicon/", "http://poshfeed.com/", "storage" ],
+   "permissions": [ "topSites","alarms", "chrome://favicon/", "http://poshfeed.com/", "storage" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
    "version": "1.1.9"
 }

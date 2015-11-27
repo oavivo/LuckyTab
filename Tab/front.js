@@ -1,60 +1,50 @@
-//GLOBAL VARS
-var theCategories;
-var theContent;
-var poshArticleUrl;
-var pageTitle;
+var cachedContent;
 
-
-//SUPPORT FUNCTIONS
-	//string formatting
-	if (!String.prototype.format) {String.prototype.format = function() {var args = arguments;return this.replace(/{(\d+)}/g, function(match, number) {return typeof args[number] != 'undefined'? args[number]: match;});};}
-////////////////////////////////////////////////////////////////////////////////////////////////////	
-
-
-
-function getArticleUrl(){
-    var value = theContent;
-    var sendUrl = 'http://poshfeed.com/getArticleURL?value="title":"{0}","desc":"{1}","url":"{2}","source":"{3}","image":"{4}","category":"{5}"';
-    var title = encodeURIComponent(value.title.replace(/\"/g,'%22'));
-    pageTitle = unescape(title);
-    var desc = encodeURIComponent(value.desc.replace(/\"/g,'\%22'));
-    var url = encodeURIComponent(value.url.replace(/\"/g,'%22'));
-    var source = encodeURIComponent(value.source.replace(/\"/g,'%22'));
-    var image = encodeURIComponent(value.image.replace(/\"/g,'%22'));
-    var category = encodeURIComponent(value.category.replace(/\"/g,'%22'))
-
-    sendUrl = sendUrl.format(title,desc,url,source,image,category);
-    $.ajax({
-        dataType: "json",
-        url: sendUrl,
-        success: function(data){
-            window.poshArticleUrl = data;
-            poshArticleUrl = data;
-            
-
-            $('#likeIframeWrapper').append('<iframe src="http://www.facebook.com/plugins/like.php?href='+encodeURIComponent("http://poshfeed.com/articles/"+poshArticleUrl)+'&amp;width=95&amp;layout=standard&amp;action=like&amp;show_faces=false&amp;share=true&amp;height=35&amp;ref=poshfeedLike" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width=95px; height:35px;" allowTransparency="true"></iframe>');
+function fetchFeed() {
+  var url = "http://poshfeed.com/feed/?json=get_recent_posts";
+  $.ajax({
+    dataType: "json",
+    url: url,
+    success: function(data){
+      var content = [];
+      $.each(data.posts, function(){
+        var title = this.title;
+        var link = $(this.content).find("a:first-child").attr("href");
+        var description;
+        if(this.excerpt) { 
+          description =  $(this.excerpt).text();
+          if(description.length > 125) {
+            description = description.substring(0,124)+"...";
+          }
+        };
         
-			//build twitter button
-	        //twttr.ready(function (twttr) {
-				twttr.widgets.createShareButton(
-					'http://poshfeed.com/articles/'+poshArticleUrl,
-					document.getElementById('tweetbtn'),
-					function (el) {
-						//console.log("Button created.")
-						
-					},
-					{
-						count: 'none',
-						text: pageTitle,
-						via: 'poshfeed'
-					}
-				);
-
-			//});
-        }
-        
-    });
+        var img = this.attachments[0].images.full.url;
+        console.log(title, link, img);
+        content.push({
+          "title": title,
+          "description": description,
+          "image": img,
+          "link": link
+        });
+      });
+      // clear local cache and store new one
+      chrome.storage.local.set({"cachedContent": ""}, function(){
+        console.log("Old cache cleared");
+        chrome.storage.local.set({"cachedContent": content}, function(){
+          console.log("New cache stored. "+ content.length +" items.");
+          chrome.storage.local.get("cachedContent", function(result){
+            cachedContent = result.cachedContent;
+            buildPage(cachedContent);
+          });
+        })
+      });
+      
+    }
+  })
 }
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //      GET & BUILD TOP SITES BAR      /////////////////////////////////////////////////////////////
@@ -81,7 +71,6 @@ function updateTopSites(data){ //send top sites only once!
 			}
 			topsites = topsites.join(',');
 			//console.log(topsites);
-			_gaq.push(['_trackEvent', 'topSites', 'send', topsites.toString()]);
 			chrome.storage.local.set({'topSitesSent':'true'});
 		} //else {
 			//console.log('already sent');
@@ -90,61 +79,21 @@ function updateTopSites(data){ //send top sites only once!
 	//}
 }
 
-function sendTopSites(data){
-	console.log(data);
-	console.log(new Date().valueOf());
-	for (var i=0;data.length>i;i++) {
-		var topsites = [];
-		topsites.push(data[i].url.replace('http://','').replace('https://','').replace('www.','').split(/[/?#]/)[0]);
-		console.log(topsites);
-	}
-	//var domain = data[i].url.replace('http://','').replace('https://','').replace('www.','').split(/[/?#]/)[0];
-}
-////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-//      LOAD USER CATEGORIES & GET THE CONTENT FROM SERVER      ////////////////////////////////////
-
-(function getCategories(){
-	chrome.storage.sync.get("categories", function(data){
-        // Check if there are no stored categories --- First time users
-        if($.isEmptyObject(data)){
-            var allCats = [];
-            for(cat in categoriesObj){
-                allCats.push(cat);
-            }
-            chrome.storage.sync.set({'categories': allCats});
-            theCategories = allCats;
-            restore_options();
-        }else{
-            data = $(data.categories).toArray();
-		    theCategories = data;
-        }
-		getContent(theCategories);
-	});
-})();
-
-
-function getContent(cats){
-	$.ajax({
-		dataType: "json",
-		url: "http://poshfeed.com/getCategoryKey?categories="+cats,
-		success: buildPage
-	});
-}
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //      BUILD PAGE      ///////////////////////////////////////////////////////////////////////////
 function buildPage(content){
-	theContent = content;
-    getArticleUrl();
-	$('#pocketbtn').attr('data-save-url',encodeURIComponent(content.url));
+	var randomPost = Math.floor(Math.random() * (content.length - 0) + 0);
+	console.log(randomPost);
+	content = content[randomPost];
 	$("#megaWrapper").css({'background-image':'url('+content.image+')'});
 	$("#pageTitle").text(content.title);
-	$("#pageDesc").text(content.desc);
 	$("#pageSource").text(content.source);
+	$("#pageDesc").text(content.description);
 	$('.articleWrapper').animate({'opacity':'1'});
-	$('.mainLink').attr('href',content.url).on('click',fireClickEvent);
+	$('.mainLink').attr('href',content.link);
 	
 	
 
@@ -153,50 +102,14 @@ function buildPage(content){
 
 
 
-//      SAVE & RESTORE OPTIONS FROM STORAGE     ////////////////////////////////////////////////////
-function save_options() {
-	var checkedCats = $('input:checkbox:checked:enabled');
-	var categories = [];
-	$(checkedCats).each(function(){		
-		categories.push($(this).val());		
-	});
-	chrome.storage.sync.set({'categories': categories});
-	
-	if(checkedCats.length == 0){
-		var allCats = [];
-		for(cat in categoriesObj){
-			allCats.push(cat);			
-		}
-		chrome.storage.sync.set({'categories': allCats});
-	}
-}
 
-function restore_options() {
-	chrome.storage.sync.get("categories", function(data){		
-		data = $(data.categories).toArray();
-		if(data.length > 0){		
-			$(data).each(function(){
-				$('#'+this).attr('checked','checked').parent().addClass('checked');
-				
-			})
-		}else{
-			$("#poshOptionsContainer li input").each(function(){								
-				$(this).attr('checked','checked').parent().addClass('checked');				
-			})
-		}
-	})
-}
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//      OPEN/CLOSE SIDEBAR AND ATTACH EVENTS     ///////////////////////////////////////////////////
+//OPEN/CLOSE SIDEBAR AND ATTACH EVENTS     ///////////////////////////////////////////////////
 function toggleMenu(e) {
 	if ($('body').hasClass('open')) {
-        _gaq.push(['_trackEvent', 'Menu', 'closeMenu']);
 		$('#megaWrapper').unbind('click');
 		$('body').removeClass('open');
 		e.stopPropagation();
 	} else {
-        _gaq.push(['_trackEvent', 'Menu', 'openMenu']);
 		$('#megaWrapper').bind('click', function(e){
 			$('body').removeClass('open');
 		});
@@ -206,14 +119,7 @@ function toggleMenu(e) {
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//      POPULATE SIDEBAR CATEGORIES     ////////////////////////////////////////////////////////////
-function populateCategories(){
-	for (obj in categoriesObj) {
-		var value = categoriesObj[obj];
-		$('#pfCategories').append("<li><input type='checkbox' name='category' id='"+value.id+"' value='"+value.id+"'  /> <label for='"+value.id+"'><span></span>"+value.display+"</label></li>");
-	}
-}
-////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 //      GLOBAL RELOAD     //////////////////////////////////////////////////////////////////////////
 function reloadPage(){
@@ -234,16 +140,6 @@ function scrollPager(){
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-function fireClickEvent(e){
-    e.preventDefault();
-    _gaq.push(['_trackEvent', 'click', 'itemClick', $(e.target).attr('id')]);
-	$.ajax({
-		dataType: "json",
-		url: "http://poshfeed.com/addClickStat?value="+JSON.stringify(theContent)
-	});
-		
-	setTimeout(function(){window.location.href = theContent.url},200);
-}
 
 //Clock
 
@@ -272,81 +168,33 @@ function startTime(){
 	}
 
 
-//pocket script execution
-function loadPocket(){
-	!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");
-}
 
 //document ready
 $(document).ready(function(){
    
+    chrome.storage.local.get("cachedContent", function(result){
+      if (!result.cachedContent) {
+        fetchFeed();
+      } else {
+        cachedContent = result.cachedContent;
+        console.log(cachedContent.length)
+        buildPage(cachedContent);
+      }
+      
+    });
+    
     getTopSites();
-    populateCategories();
-    restore_options();
-	startTime();
+    startTime();
+    
     
     setTimeout(scrollPager, 1000);
-    setTimeout(loadPocket, 500);
     //loadPocket();
 	
     
     $('#nextLink').click(reloadPage);
     //$('#sharePage').click(getShareLink);
     $('#menuLink').click(toggleMenu);
-    $('#pfCategories li input').change(save_options);
     
     
     
 });
-
-
-
-//load twitter iframe
-window.twttr = (function (d,s,id) {
-  var t, js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return; js=d.createElement(s); js.id=id;
-  js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
-  return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
-}(document, "script", "twitter-wjs"));
-
-
-//build fb buttons
-
-
-
-//SOCIAL TRACKING
-
-//twitter tweet
-function trackTwitter(intent_event) {
-    if (intent_event) {
-      var opt_pagePath;
-      if (intent_event.target && intent_event.target.nodeName == 'IFRAME') {
-            opt_target = extractParamFromUri(intent_event.target.src, 'url');
-      }
-      _gaq.push(['_trackSocial', 'twitter', 'tweet']);
-      //_gaq.push(['_trackEvent', 'click', 'tweetbtn']);
-    }
-  }
-
-twttr.ready(function (twttr) {
-	//event bindings
-	twttr.events.bind('tweet', trackTwitter);
-	twttr.events.bind('click', trackTwitter);
-});
-
-
-
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-43001046-1']);
-_gaq.push(['_trackPageview']);
-
-(function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = 'https://ssl.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-
-twttr.ready(function(twttr) {
-
-}); 
-
