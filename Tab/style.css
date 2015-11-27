@@ -40,6 +40,7 @@ body.open #megaWrapper{
 	margin-top: 30px;
 	margin-left: 30px;
 	width:35vw;
+	max-width: 500px;
 	padding:30px 40px;
 	background-color:rgba(255,255,255,.9);
 	font-family: 'Roboto';
