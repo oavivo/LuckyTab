@@ -141,10 +141,14 @@ h1 a {
 }
 .visitedTabs ul li{
 	display:inline-block;
-	width: 11vw;
+	width: 10.9vw;
 	height: 38px;
 	margin:0;
 	border-right:1px solid #ccc;
+}
+
+.visitedTabs ul li:nth-child(9) {
+  border-right: 0;
 }
 
 .visitedTabs ul li a {
