@@ -1,3 +1,9 @@
+chrome.browserAction.onClicked.addListener(function () {
+  chrome.tabs.create({'url': chrome.extension.getURL('front.html')}, function (tab) {
+    // Tab opened.
+  });
+});
+
 var cacheInterval = 5;
 
 chrome.alarms.create("cacheFeed", {
@@ -11,7 +17,7 @@ chrome.alarms.onAlarm.addListener(function (alarm) {
 });
 
 function cacheFeed() {
-  var url = "http://poshfeed.com/feed/?json=get_recent_posts";
+  var url = "http://poshfeed.com/feed/?json=get_recent_posts&count=200";
   $.ajax({
     dataType: "json",
     url: url,
@@ -28,7 +34,12 @@ function cacheFeed() {
           }
         };
         
-        var img = this.attachments[0].images.full.url;
+        var img;
+        if (this.attachments.length > 0) {
+          img = this.attachments[0].images.full.url;
+        }else {
+          img = $(this.content).find("img:first-child").attr("src");
+        }
         console.log(title, link, img);
         content.push({
           "title": title,

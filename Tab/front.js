@@ -1,7 +1,7 @@
 var cachedContent;
 
 function fetchFeed() {
-  var url = "http://poshfeed.com/feed/?json=get_recent_posts";
+  var url = "http://poshfeed.com/feed/?json=get_recent_posts&count=20";
   $.ajax({
     dataType: "json",
     url: url,
@@ -18,7 +18,13 @@ function fetchFeed() {
           }
         };
         
-        var img = this.attachments[0].images.full.url;
+        var img;
+        if (this.attachments.length > 0) {
+          img = this.attachments[0].images.full.url;
+        }else {
+          img = $(this.content).find("img:first-child").attr("src");
+        }
+
         console.log(title, link, img);
         content.push({
           "title": title,
