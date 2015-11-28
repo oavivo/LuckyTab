@@ -1,6 +1,6 @@
 {
    "chrome_url_overrides": {
-      "newtab": "front.html"
+      "newtab": "index.html"
    },
    "content_security_policy": "script-src 'self' https://www.google-analytics.com https://widgets.getpocket.com https://platform.twitter.com https://platform.twitter.com; object-src 'self'",
    "description": "Get something inspiring from around the web every time you open a new tab.",
@@ -18,7 +18,7 @@
       "default_title": "poshfeed"
    },
    "background": {
-      "scripts": ["cache.js", "jquery.js"],
+      "scripts": ["js/cache.js", "js/jquery.js"],
       "persistent": false
     },
    "manifest_version": 2,
