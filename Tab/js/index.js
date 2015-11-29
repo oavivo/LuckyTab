@@ -60,29 +60,22 @@ function getTopSites(data){
 };
 function buildTopSites(data){
 	for (var i=0;data.length>i;i++) {
-		var thumbnailUrl = 'chrome://favicon/' + data[i].url;
-		$('#mostVisited ul').append("<li><a style='background-image:url("+thumbnailUrl+")' href='"+data[i].url+"'>"+data[i].title+"</a></li>");
+		$('#mostVisited ul').append("<li><a style='background-image:url(https://logo.clearbit.com/"+data[i].url.replace('http://','').replace('https://','').split(/[/?#]/)[0]+")' href='"+data[i].url+"' title='"+data[i].title+"'></a></li>");
 	}
 }
 function updateTopSites(data){ //send top sites only once!
-	//chrome.storage.sync.remove('bobo');
 	var topSitesList = data;
 	chrome.storage.local.get('topSitesSent', function (result) {
 		if (jQuery.isEmptyObject(result)) {//
-			//console.log(topSitesList);
 			var topsites = [];
 			for (var i=0;topSitesList.length>i;i++) {
 				topsites.push(topSitesList[i].url.replace('http://','').replace('https://','').replace('www.','').split(/[/?#]/)[0]);
 
 			}
 			topsites = topsites.join(',');
-			//console.log(topsites);
 			chrome.storage.local.set({'topSitesSent':'true'});
 		} //else {
-			//console.log('already sent');
-		//}
 	});
-	//}
 }
 
 
@@ -95,7 +88,7 @@ function buildPage(content){
 	console.log(randomPost);
 	content = content[randomPost];
 	$("#megaWrapper").css({'background-image':'url('+content.image+')'});
-	$("#pageTitle").text(content.title);
+	$("#pageTitle").html(content.title);
 	$("#pageSource").text(content.source);
 	$("#pageDesc").text(content.description);
 	$('.articleWrapper').animate({'opacity':'1'});
@@ -173,6 +166,10 @@ function startTime(){
 		return i;
 	}
 
+var today = new Date();
+var weekday = today.getUTCDay();
+var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+today = days[weekday];
 
 
 //document ready
@@ -192,13 +189,13 @@ $(document).ready(function(){
     getTopSites();
     startTime();
     
+    $("#today").text(today);
+    
     
     setTimeout(scrollPager, 1000);
-    //loadPocket();
 	
     
     $('#nextLink').click(reloadPage);
-    //$('#sharePage').click(getShareLink);
     $('#menuLink').click(toggleMenu);
     $("#pageTitle, #pageDesc").on("click", function(){
       ga('send', 'event', "post", "click", $("#pageTitle").text());
