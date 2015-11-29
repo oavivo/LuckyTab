@@ -96,7 +96,7 @@ function buildPage(content){
 	content = content[randomPost];
 	$("#megaWrapper").css({'background-image':'url('+content.image+')'});
 	$("#pageTitle").text(content.title);
-	$("#pageSource").text(content.source);
+	$("#pageSource").text(content.link.replace('http://','').replace('https://','').replace('www.','').split(/[/?#]/)[0]);
 	$("#pageDesc").text(content.description);
 	$('.articleWrapper').animate({'opacity':'1'});
 	$('.mainLink').attr('href',content.link);
