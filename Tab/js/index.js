@@ -59,8 +59,8 @@ function getTopSites(data){
 	chrome.topSites.get(updateTopSites);
 };
 function buildTopSites(data){
-	for (var i=0;data.length>i;i++) {
-		$('#mostVisited ul').append("<li><a style='background-image:url(https://logo.clearbit.com/"+data[i].url.replace('http://','').replace('https://','').split(/[/?#]/)[0]+")' href='"+data[i].url+"' title='"+data[i].title+"'></a></li>");
+	for (var i=0;i<8;i++) {
+		$('#mostVisited ul').append("<li><a href='"+data[i].url+"' title='"+data[i].title+"'><span class='icon' style='background-image:url(https://logo.clearbit.com/"+data[i].url.replace('http://','').replace('https://','').split(/[/?#]/)[0]+")'></span><span class='name'>"+data[i].title+"</span></a></li>");
 	}
 }
 function updateTopSites(data){ //send top sites only once!
@@ -87,12 +87,20 @@ function buildPage(content){
 	var randomPost = Math.floor(Math.random() * (content.length - 0) + 0);
 	console.log(randomPost);
 	content = content[randomPost];
-	$("#megaWrapper").css({'background-image':'url('+content.image+')'});
+    var imgUrl;
+    $('<img>').attr('src',function(){
+        imgUrl = content.image;
+        return imgUrl;
+    }).load(function(){
+       $("#imgWrapper").css({'background-image':'url('+imgUrl+')'}).addClass("loaded");
+    });
+	
+	
 	$("#pageTitle").html(content.title);
 	$("#pageSource").text(content.source);
 	$("#pageDesc").text(content.description);
 	$('.articleWrapper').animate({'opacity':'1'});
-	$('.mainLink').attr('href',content.link);
+	$('#megaWrapper').attr('href',content.link);
 	
 	
 
@@ -127,6 +135,7 @@ function reloadPage(){
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //      MOUSEWHEEL RELOAD     //////////////////////////////////////////////////////////////////////
+/*
 function scrollPager(){
 	$('body').bind('mousewheel', function(e){
 	    if(e.originalEvent.wheelDelta < 0) { //only on scroll down
@@ -136,6 +145,7 @@ function scrollPager(){
 		}	    
     });
 }
+*/
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -172,6 +182,8 @@ var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturda
 today = days[weekday];
 
 
+
+
 //document ready
 $(document).ready(function(){
    
@@ -187,17 +199,17 @@ $(document).ready(function(){
     });
     
     getTopSites();
-    startTime();
+    //startTime();
     
-    $("#today").text(today);
+    //$("#today").text(today);
     
     
-    setTimeout(scrollPager, 1000);
+    //setTimeout(scrollPager, 1000);
 	
     
     $('#nextLink').click(reloadPage);
     $('#menuLink').click(toggleMenu);
-    $("#pageTitle, #pageDesc").on("click", function(){
+    $("#imgWrapper").on("click", function(){
       ga('send', 'event', "post", "click", $("#pageTitle").text());
     })
     
