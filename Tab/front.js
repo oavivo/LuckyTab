@@ -25,7 +25,6 @@ function fetchFeed() {
           img = $(this.content).find("img:first-child").attr("src");
         }
 
-        console.log(title, link, img);
         content.push({
           "title": title,
           "description": description,
@@ -95,7 +94,7 @@ function buildPage(content){
 	console.log(randomPost);
 	content = content[randomPost];
 	$("#megaWrapper").css({'background-image':'url('+content.image+')'});
-	$("#pageTitle").text(content.title);
+	$("#pageTitle").html(content.title);
 	$("#pageSource").text(content.link.replace('http://','').replace('https://','').replace('www.','').split(/[/?#]/)[0]);
 	$("#pageDesc").text(content.description);
 	$('.articleWrapper').animate({'opacity':'1'});
