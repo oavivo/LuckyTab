@@ -40,7 +40,7 @@ function cacheFeed() {
         }else {
           img = $(this.content).find("img:first-child").attr("src");
         }
-        console.log(title, link, img);
+        //console.log(title, link, img);
         content.push({
           "title": title,
           "description": description,

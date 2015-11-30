@@ -4,7 +4,6 @@
    },
    "content_security_policy": "script-src 'self' https://www.google-analytics.com https://widgets.getpocket.com https://platform.twitter.com https://platform.twitter.com; object-src 'self'",
    "description": "Get something inspiring from around the web every time you open a new tab.",
-   "homepage_url": "http://www.poshfeed.com",
    "icons": {
       "128": "icon128.png",
       "16": "icon16.png",
@@ -15,15 +14,14 @@
          "19": "icon19.png",
          "38": "icon38.png"
        },
-      "default_title": "poshfeed"
+      "default_title": "Sidedish"
    },
    "background": {
       "scripts": ["js/cache.js", "js/jquery.js"],
       "persistent": false
     },
    "manifest_version": 2,
-   "name": "Poshfeed",
+   "name": "Sidedish",
    "permissions": [ "topSites","alarms", "http://poshfeed.com/", "storage" ],
-   "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "1.2.0"
+   "version": "0.0.1"
 }

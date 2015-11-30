@@ -19,7 +19,16 @@ aside {
     height: 30px;
     background: url(../sidedish.png) no-repeat center center;
     background-size: 100px;
-    opacity: .3;
+  }
+  span.diclaimer {
+    display: block;
+    text-align: center;
+    width: 350px;
+    position: absolute;
+    bottom: 7px;
+    font-size: 10px;
+    color: #666;
+    font-family: arial, sans-serif;
   }
   position: absolute;
   right: 0;
@@ -43,7 +52,7 @@ aside {
       font-size: 13px;
       &:focus {
         outline: none;
-        -webkit-box-shadow: 0 0 3px lightblue;
+        -webkit-box-shadow: 0 0 3px #bbb;
       }
     }
   }
@@ -119,6 +128,18 @@ body.open #megaWrapper{
   	-webkit-transition:opacity .2s ease-in; 
   	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   	text-transform: capitalize;
+  }
+  h1 span:nth-child(3) {
+  	display:block;
+  	float: left;
+  	margin-left: 60px;
+  	text-decoration: none;
+  	color: rgba(255, 255, 255, .6);
+  	width: calc(30vw);
+  	font-size: 12px;
+  	-webkit-transition:opacity .2s ease-in; 
+  	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  	clear: both;
   }
   &:hover {
     //background: rgba(0, 0, 0, 0.5);
