@@ -84,25 +84,36 @@ function updateTopSites(data){ //send top sites only once!
 
 //      BUILD PAGE      ///////////////////////////////////////////////////////////////////////////
 function buildPage(content){
-	var randomPost = Math.floor(Math.random() * (content.length - 0) + 0);
-	console.log(randomPost);
-	content = content[randomPost];
-    var imgUrl;
-    $('<img>').attr('src',function(){
-        imgUrl = content.image;
-        return imgUrl;
-    }).load(function(){
-       $("#imgWrapper").css({'background-image':'url('+imgUrl+')'}).addClass("loaded");
-    });
-	
-	
-	$("#pageTitle").html(content.title);
-	$(".source").text(content.link.replace('http://','').replace('https://','').replace('www.','').split(/[/?#]/)[0]);
-	$("#pageDesc").text(content.description);
-	$('.articleWrapper').animate({'opacity':'1'});
-	$('#megaWrapper').attr('href',content.link);
-	
-	
+	var lastPost;
+	 chrome.storage.local.get("lastPost", function(result) {
+  	lastPost = parseInt(result);
+  	console.log("prev: ", result.lastPost)
+  	var randomPost = Math.floor(Math.random() * (content.length - 0) + 0);
+  	if (lastPost == randomPost) {
+    	randomPost = randomPost +1;
+    	console.log(randomPost = randomPost +1);
+    	chrome.storage.local.set({"lastPost": randomPost}, function(){})
+  	} else {
+    	chrome.storage.local.set({"lastPost": randomPost}, function(){});
+  	}
+  	
+  	console.log(randomPost);
+  	content = content[randomPost];
+      var imgUrl;
+      $('<img>').attr('src',function(){
+          imgUrl = content.image;
+          return imgUrl;
+      }).load(function(){
+         $("#imgWrapper").css({'background-image':'url('+imgUrl+')'}).addClass("loaded");
+      });
+  	
+  	
+  	$("#pageTitle").html(content.title);
+  	$(".source").text(content.link.replace('http://','').replace('https://','').replace('www.','').split(/[/?#]/)[0]);
+  	$("#pageDesc").text(content.description);
+  	$('.articleWrapper').animate({'opacity':'1'});
+  	$('#megaWrapper').attr('href',content.link);
+  })
 
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
