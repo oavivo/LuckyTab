@@ -59,7 +59,14 @@ function getTopSites(data){
 	chrome.topSites.get(updateTopSites);
 };
 function buildTopSites(data){
-	for (var i=0;i<8;i++) {
+	var batchSize;
+	if (data.length >= 8) {
+  	batchSize = 8;
+	}
+	else {
+  	batchSize = data.length;
+	}
+	for (var i=0;i<batchSize;i++) {
 		$('#mostVisited ul').append("<li><a href='"+data[i].url+"' title='"+data[i].title+"'><span class='icon' style='background-image:url(https://logo.clearbit.com/"+data[i].url.replace('http://','').replace('https://','').split(/[/?#]/)[0]+")'></span><span class='name'>"+data[i].title+"</span></a></li>");
 	}
 }
@@ -86,18 +93,18 @@ function updateTopSites(data){ //send top sites only once!
 function buildPage(content){
 	var lastPost;
 	 chrome.storage.local.get("lastPost", function(result) {
-  	lastPost = parseInt(result);
-  	console.log("prev: ", result.lastPost)
+  	lastPost = parseInt(result.lastPost);
+  	console.log("previous article: ", result.lastPost)
   	var randomPost = Math.floor(Math.random() * (content.length - 0) + 0);
   	if (lastPost == randomPost) {
     	randomPost = randomPost +1;
-    	console.log(randomPost = randomPost +1);
+    	console.log("Dup, new random: ", randomPost);
     	chrome.storage.local.set({"lastPost": randomPost}, function(){})
   	} else {
     	chrome.storage.local.set({"lastPost": randomPost}, function(){});
   	}
   	
-  	console.log(randomPost);
+  	console.log("current article: ",randomPost);
   	content = content[randomPost];
       var imgUrl;
       $('<img>').attr('src',function(){
@@ -203,7 +210,7 @@ $(document).ready(function(){
         fetchFeed();
       } else {
         cachedContent = result.cachedContent;
-        console.log(cachedContent.length)
+        console.log("total cached articles: ",cachedContent.length)
         buildPage(cachedContent);
       }
       
