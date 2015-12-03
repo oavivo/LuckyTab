@@ -36,7 +36,7 @@ function cacheFeed() {
         
         var img;
         if (this.attachments.length > 0) {
-          img = this.attachments[0].images.full.url;
+          img = this.attachments[0].url;
         }else {
           img = $(this.content).find("img:first-child").attr("src");
         }
@@ -49,7 +49,7 @@ function cacheFeed() {
         });
       });
       // clear local cache and store new one
-      chrome.storage.local.set({"cachedContent": ""}, function(){
+      chrome.storage.local.set({"cachedContent": []}, function(){
         console.log("Old cache cleared");
         chrome.storage.local.set({"cachedContent": content}, function(){
           console.log("New cache stored. "+ content.length +" items.");
